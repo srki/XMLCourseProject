@@ -1,6 +1,7 @@
 # XMLCourseProject
 
 TO INSTALL THE NECESSERY TOOLS GO TO THE HOME DIRECTORY OF YOUR UBUNTU OR DEBIAN DISTRIBUTON AND RUN THE FOLLOWING COMMANDS
+
 ```shell
 mkdir tools
 cd tools
@@ -12,9 +13,12 @@ sudo apt-get install openjdk-8-jdk
 curl -O http://download.jboss.org/wildfly/10.0.0.Final/wildfly-10.0.0.Final.zip
 unzip wildfly-10.0.0.Final.zip
 ```
+
 TO RUN THE MARKLOGIC SERVER RUN THE FOLLOWING COMMAND
 
+```shell
 sudo service MarkLogic start
+```
 
 TO RUN INTELLIJ IDEA GO TO THE EXTRACTED DIRECTORY/bin AND run ./idea.sh
 
