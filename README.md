@@ -1,6 +1,6 @@
 # XMLCourseProject
 
-TO INSTALL THE NECESSERY TOOLS GO TO THE HOME DIRECTORY OF YOUR UBUNTU OR DEBIAN DISTRIBUTON AND RUN THE FOLLOWING COMMANDS
+To install the necessery tools go to the home directory of your ubuntu or debian distributon and run the following commands
 
 ```shell
 mkdir tools
@@ -14,12 +14,12 @@ curl -O http://download.jboss.org/wildfly/10.0.0.Final/wildfly-10.0.0.Final.zip
 unzip wildfly-10.0.0.Final.zip
 ```
 
-TO RUN THE MARKLOGIC SERVER RUN THE FOLLOWING COMMAND
+To run the marklogic server run the following command
 
 ```shell
 sudo service MarkLogic start
 ```
 
-TO RUN INTELLIJ IDEA GO TO THE EXTRACTED DIRECTORY/bin AND run ./idea.sh
+To run intellij idea go to the extracted directory /bin AND run ./idea.sh
 
-TO RUN THE SERVER START INTELLIJ IDEA OPEN THE GITHUB PROJECT AND CONFIGURE THE JBOOS RUN CONFIGURATION
+To run the server start intellij idea open the github project and configure the JBoos run configuration
