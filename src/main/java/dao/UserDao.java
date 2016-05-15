@@ -1,5 +1,5 @@
 package dao;
 
 
-public class UserDao extends AbstarctDao implements IUserDao {
+public class UserDao extends AbstractDao implements IUserDao {
 }

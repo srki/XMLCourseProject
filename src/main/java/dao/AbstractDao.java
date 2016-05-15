@@ -18,7 +18,7 @@ import java.io.*;
 
 @Stateless
 @Local(IAbstractDao.class)
-public abstract class AbstarctDao implements IAbstractDao {
+public abstract class AbstractDao implements IAbstractDao {
 
     @EJB
     IDatabaseManager databaseManager;

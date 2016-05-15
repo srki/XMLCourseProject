@@ -1,0 +1,26 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://ftn.uns.ac.rs/xml" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="users">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="user" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:token" name="username"/>
+              <xs:element type="xs:token" name="password"/>
+					<xs:element name="type">
+					  <xs:simpleType>
+						 <xs:restriction base="xs:token">
+							<xs:enumeration value="president"/>
+							<xs:enumeration value="citizen"/>
+							<xs:enumeration value="representative"/>
+						 </xs:restriction>
+					  </xs:simpleType>
+					</xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

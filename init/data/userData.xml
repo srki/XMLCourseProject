@@ -1,0 +1,20 @@
+<users xsi:schemaLocation="http://ftn.uns.ac.rs/xml /xml/users.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns="http://ftn.uns.ac.rs/xml">
+  <user>
+		<username>a</username>
+		<password>a</password>
+		<type>citizen</type>
+  </user>
+  <user>
+		<username>b</username>
+		<password>b</password>
+		<type>representative</type>
+  </user>
+  <user>
+		<username>b</username>
+		<password>b</password>
+		<type>president</type>
+  </user>
+</users>
+
