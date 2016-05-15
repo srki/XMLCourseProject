@@ -48,6 +48,16 @@
         </dependency>
         <!-- JAX RS end -->
 
+        <!-- MarkLogic Client begin -->
+
+        <dependency>
+            <groupId>com.marklogic</groupId>
+            <artifactId>client-api-java</artifactId>
+            <version>1.0-1</version>
+        </dependency>
+
+        <!-- MarkLogic Client end -->
+
     </dependencies>
 
     <build>
@@ -59,4 +69,13 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>dmc</id>
+            <name>MarkLogic Developer Community</name>
+            <url>http://developer.marklogic.com/maven2/</url>
+        </repository>
+    </repositories>
+
 </project>

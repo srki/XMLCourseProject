@@ -1,0 +1,6 @@
+cd ../../
+mkdir tools
+cd tools
+curl -O https://dl.dropboxusercontent.com/s/v6c8st274vn77d1/marklogic_8.0-6.2_amd64.deb
+sudo dpkg -i marklogic_8.0-6.2_amd64.deb
+

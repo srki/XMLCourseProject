@@ -1,8 +1,10 @@
 package rest;
 
 
+import database.IDatabaseManager;
 import rest.response.TestXML;
 
+import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -14,6 +16,9 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_XML)
 public class TestXmlRest {
 
+    @EJB
+    IDatabaseManager databaseManager;
+
     @GET
     public Object get() {
 
@@ -21,6 +26,8 @@ public class TestXmlRest {
 
         t.setTestInt(10);
         t.setTestString("Ovo je test");
+
+        databaseManager.printStuff();
 
         return Response
                 .status(Response.Status.CREATED)
