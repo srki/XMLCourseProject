@@ -1,48 +1,30 @@
 package rest;
 
-
 import dao.IUserDao;
-import database.IDatabaseManager;
 import model.User;
 import rest.response.TestXML;
 
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/test")
+@Path("/login")
 @Produces(MediaType.APPLICATION_XML)
-public class TestXmlRest {
+public class LoginRest {
 
     @EJB
     IUserDao userDao;
 
-    @GET
+    @POST
     public Object get() {
-
-        try {
-            User u = userDao.getUser("qwe");
-            u = userDao.getUser("a");
-            u = userDao.getUser("c");
-            int x = 0;
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-
-        TestXML t = new TestXML();
-
-        t.setTestInt(10);
-        t.setTestString("Ovo je test");
 
         return Response
                 .status(Response.Status.CREATED)
-                .entity(t)
+                .entity(null)
                 .build();
     }
-
 }

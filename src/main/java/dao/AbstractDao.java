@@ -23,8 +23,6 @@ public abstract class AbstractDao implements IAbstractDao {
     @EJB
     IDatabaseManager databaseManager;
 
-    protected String collectionName;
-    protected String directory;
 
     @Override
     public void createDocument(String documentName, Document document) throws IOException {
@@ -38,14 +36,14 @@ public abstract class AbstractDao implements IAbstractDao {
 
         XMLDocumentManager docMgr = databaseManager.getDatabaseClient().newXMLDocumentManager();
 
-        if (collectionName == null) {
-            docMgr.write(directory + documentName, handle);
+        if (getCollectionName() == null) {
+            docMgr.write(getDirectoryName() + documentName, handle);
         }
         else {
             DocumentMetadataHandle metadata = new DocumentMetadataHandle();
-            metadata.getCollections().addAll(collectionName);
+            metadata.getCollections().addAll(getCollectionName());
 
-            docMgr.write(directory + documentName, metadata, handle);
+            docMgr.write(getDirectoryName() + documentName, metadata, handle);
         }
     }
 
@@ -53,7 +51,7 @@ public abstract class AbstractDao implements IAbstractDao {
     public void deleteDocument(String documentName) {
 
         GenericDocumentManager docMgr = databaseManager.getDatabaseClient().newDocumentManager();
-        docMgr.delete(directory + documentName);
+        docMgr.delete(getDirectoryName() + documentName);
     }
 
     @Override
@@ -61,8 +59,14 @@ public abstract class AbstractDao implements IAbstractDao {
 
         XMLDocumentManager docMgr = databaseManager.getDatabaseClient().newXMLDocumentManager();
         DOMHandle handle = new DOMHandle();
-        docMgr.read(directory + documentName, handle);
+        docMgr.read(getDirectoryName() + documentName, handle);
 
         return handle.get();
     }
+
+    @Override
+    public String getCollectionName() {
+        return null;
+    }
+
 }

@@ -52,8 +52,8 @@
 
         <dependency>
             <groupId>com.marklogic</groupId>
-            <artifactId>client-api-java</artifactId>
-            <version>1.0-1</version>
+            <artifactId>java-client-api</artifactId>
+            <version>4.0.0-EA2</version>
         </dependency>
 
         <!-- MarkLogic Client end -->

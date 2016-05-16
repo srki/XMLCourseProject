@@ -1,8 +1,12 @@
 package dao;
 
 
-interface IUserDao extends IAbstractDao {
+import model.User;
 
+import javax.xml.bind.JAXBException;
 
+public interface IUserDao extends IAbstractDao {
+
+    User getUser(String username) throws JAXBException;
 
 }

@@ -6,6 +6,9 @@ import java.io.IOException;
 
 interface IAbstractDao {
 
+    String getCollectionName();
+    String getDirectoryName();
+
     void createDocument(String documentName, Document document) throws IOException;
     void deleteDocument(String documentName);
 

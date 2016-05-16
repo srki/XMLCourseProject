@@ -2,6 +2,7 @@ package database;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
+import com.marklogic.client.io.DOMHandle;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
