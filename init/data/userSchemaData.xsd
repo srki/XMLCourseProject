@@ -6,7 +6,7 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element type="xs:token" name="username"/>
-              <xs:element type="xs:token" name="password"/>
+              <xs:element type="xs:token" name="type"/>
 					<xs:element name="type">
 					  <xs:simpleType>
 						 <xs:restriction base="xs:token">

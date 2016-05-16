@@ -11,17 +11,17 @@ class DatabaseConfig {
 
     private static Properties props = loadProperties();
 
-    static String host = props.getProperty("xml.host");
+    static final String host = props.getProperty("xml.host");
 
-    static int port = Integer.parseInt(props.getProperty("xml.port"));
+    static final int port = Integer.parseInt(props.getProperty("xml.port"));
 
-    static String user = props.getProperty("xml.writer_user");
+    static final String user = props.getProperty("xml.writer_user");
 
-    static String password = props.getProperty("xml.writer_password");
+    static final String password = props.getProperty("xml.writer_password");
 
-    public static String admin_user = props.getProperty("xml.admin_user");
+    static final String adminUser = props.getProperty("xml.admin_user");
 
-    public static String admin_password = props.getProperty("xml.admin_password");
+    static final String adminPassword = props.getProperty("xml.admin_password");
 
     static Authentication authType = Authentication.valueOf(
             props.getProperty("xml.authentication_type").toUpperCase()
