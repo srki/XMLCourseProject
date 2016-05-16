@@ -14,6 +14,13 @@ curl -O http://download.jboss.org/wildfly/10.0.0.Final/wildfly-10.0.0.Final.zip
 unzip wildfly-10.0.0.Final.zip
 ```
 
+or run the command ```shell./setup-tools.sh``` inside the init directory
+
+Next start the marklogic server go to localhost:8001 and you'll be prompted to enter the username and password for the new admin.
+Set it to root for the username and root for the password.
+
+After that run the ```shell./init.sh``` inside the init directory
+
 To run the marklogic server run the following command
 
 ```shell
