@@ -15,15 +15,13 @@ public class DatabaseManager implements IDatabaseManager {
 
     private DatabaseClient client;
 
-
     @PostConstruct
     public void init() {
-
         client = DatabaseClientFactory.newClient(DatabaseConfig.host,
-                                                                DatabaseConfig.port,
-                                                                DatabaseConfig.user,
-                                                                DatabaseConfig.password,
-                                                                DatabaseConfig.authType);
+                DatabaseConfig.port,
+                DatabaseConfig.user,
+                DatabaseConfig.password,
+                DatabaseConfig.authType);
     }
 
     @PreDestroy

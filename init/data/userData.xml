@@ -3,17 +3,17 @@
  xmlns="http://ftn.uns.ac.rs/xml">
   <user>
 		<username>a</username>
-		<type>a</type>
+		<password>a</password>
 		<type>citizen</type>
   </user>
   <user>
 		<username>b</username>
-		<type>b</type>
+		<password>b</password>
 		<type>representative</type>
   </user>
   <user>
 		<username>c</username>
-		<type>c</type>
+		<password>c</password>
 		<type>president</type>
   </user>
 </users>
