@@ -30,3 +30,14 @@ Response example
     <username>c</username> 
 </user>
 ```
+
+###POST /api/register 
+
+Request example
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<user>
+    <username>d</username>
+    <password>d</password>
+</user>
+```
