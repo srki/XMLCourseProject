@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "user", namespace = "http://ftn.uns.ac.rs/xml")
-public class User {
+public class User extends AbstractEntity<User> {
 
     private String username;
     private String password;

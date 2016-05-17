@@ -19,7 +19,11 @@ public class UserDao extends AbstractDao implements IUserDao {
             "declare variable $username as xs:token external;" +
             "for $x in doc('/xml/users/xml-user.xml')/mlt:users/mlt:user " +
             "where $x/mlt:username=$username " +
-            "return $x\n";
+            "return $x";
+
+    private static final String addUserQuery = "declare namespace mlt = 'http://ftn.uns.ac.rs/xml';" +
+            "declare variable $user as xs:string external;" +
+            "xdmp:node-insert-child(doc('/xml/users/xml-user.xml')/mlt:users, xdmp:unquote($user)/mlt:user);";
 
     @Override
     public User getUser(String username) throws JAXBException {
@@ -35,6 +39,24 @@ public class UserDao extends AbstractDao implements IUserDao {
         Unmarshaller um = context.createUnmarshaller();
 
         return raw != null ? (User) um.unmarshal(new StringReader(raw)) : null;
+    }
+
+    @Override
+    public void storeUser(User u) throws Exception {
+
+        if (getUser(u.getUsername()) != null) {
+            throw new Exception("User already exists!");
+        }
+
+        ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
+        call.xquery(addUserQuery);
+
+        String userString = u.toString();
+        if(userString.equals(""))
+            throw new Exception("Wrong data!");
+
+        call.addVariable("user", userString);
+        call.eval();
     }
 
     @Override
