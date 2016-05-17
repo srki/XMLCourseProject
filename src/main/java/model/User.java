@@ -9,7 +9,8 @@ public class User extends AbstractEntity<User> {
     private String username;
     private String password;
     private String type;
-
+    private String name;
+    private String lastname;
 
     @XmlElement(name="username", namespace = "http://ftn.uns.ac.rs/xml")
     public String getUsername() {
@@ -19,6 +20,16 @@ public class User extends AbstractEntity<User> {
     @XmlElement(name="password", namespace = "http://ftn.uns.ac.rs/xml")
     public String getPassword() {
         return password;
+    }
+
+    @XmlElement(name="name", namespace = "http://ftn.uns.ac.rs/xml")
+    public String getName() {
+        return name;
+    }
+
+    @XmlElement(name="lastname", namespace = "http://ftn.uns.ac.rs/xml")
+    public String getLastname() {
+        return lastname;
     }
 
     @XmlElement(name="type", namespace = "http://ftn.uns.ac.rs/xml")
@@ -36,5 +47,13 @@ public class User extends AbstractEntity<User> {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 }

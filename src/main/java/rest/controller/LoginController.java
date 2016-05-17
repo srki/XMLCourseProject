@@ -31,7 +31,7 @@ public class LoginController {
 
         if(u != null){
             return Response.status(200)
-                    .entity(new AuthenticationResponse(u.getUsername(), u.getType()))
+                    .entity(new AuthenticationResponse(u.getUsername(), u.getType(), u.getName(), u.getLastname()))
                     .build();
         }
         else {
@@ -50,7 +50,7 @@ public class LoginController {
 
                 request.getSession().setAttribute(USER_IDENTIFIER, u);
                 return Response.status(200)
-                        .entity(new AuthenticationResponse(u.getUsername(), u.getType()))
+                        .entity(new AuthenticationResponse(u.getUsername(), u.getType(), u.getName(), u.getLastname()))
                         .build();
             }
             else {

@@ -1,5 +1,5 @@
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://ftn.uns.ac.rs/xml"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+    xmlns:targetNamespace="http://ftn.uns.ac.rs/xml" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="users">
         <xs:complexType>
             <xs:sequence>
@@ -17,6 +17,8 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
+                            <xs:element type="xs:string" name="name"/>
+                            <xs:element type="xs:string" name="lastname"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -24,4 +26,3 @@
         </xs:complexType>
     </xs:element>
 </xs:schema>
-

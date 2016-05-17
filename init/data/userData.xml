@@ -4,16 +4,22 @@
   <user>
 		<username>a</username>
 		<password>a</password>
+  		<name>a</name>
+  		<lastname>a</lastname>
 		<type>citizen</type>
   </user>
   <user>
 		<username>b</username>
 		<password>b</password>
+  		<name>b</name>
+  		<lastname>b</lastname>
 		<type>representative</type>
   </user>
   <user>
 		<username>c</username>
 		<password>c</password>
+  		<name>c</name>
+  		<lastname>c</lastname>
 		<type>president</type>
   </user>
 </users>

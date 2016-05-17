@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    xmlns:targetNamespace="http://ftn.uns.ac.rs/xml" attributeFormDefault="unqualified">
+    <xs:complexType mixed="true" name="content">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="block">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="uri" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="act">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" maxOccurs="1" name="preamble" type="content"/>
+                <xs:choice minOccurs="1" maxOccurs="1">
+                    <xs:sequence>
+                        <xs:element ref="part" minOccurs="2" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element ref="head" minOccurs="2" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:sequence>
+                        <xs:element ref="article" minOccurs="2" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="title" type="xs:string" use="required"/>
+            <xs:attribute name="country" type="xs:string" use="required"/>
+            <xs:attribute name="region" type="xs:string" use="required"/>
+            <xs:attribute name="establishment" type="xs:string" use="required"/>
+            <xs:attribute name="serial" type="xs:token" use="required"/>
+            <xs:attribute name="date" type="xs:date" use="required"/>
+            <xs:attribute name="city" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="part">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="2" maxOccurs="unbounded" ref="head"/>
+            </xs:sequence>
+            <xs:attribute name="title" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="head">
+        <xs:complexType>
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element minOccurs="1" maxOccurs="unbounded" ref="article"/>
+                </xs:sequence>
+                <xs:sequence>
+                    <xs:element minOccurs="2" maxOccurs="unbounded" ref="section"/>
+                </xs:sequence>
+            </xs:choice>
+            <xs:attribute name="title" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="section">
+        <xs:complexType>
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element minOccurs="2" maxOccurs="unbounded" ref="subsection"/>
+                </xs:sequence>
+                <xs:sequence>
+                    <xs:element minOccurs="1" maxOccurs="unbounded" ref="article"/>
+                </xs:sequence>
+            </xs:choice>
+            <xs:attribute name="title" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="subsection">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" maxOccurs="unbounded" ref="article"/>
+            </xs:sequence>
+            <xs:attribute name="title" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="article">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" maxOccurs="unbounded" ref="paragraph"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="paragraph">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="item"/>
+                    <xs:element name="text" type="content"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="title" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="item">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="subitem"/>
+                    <xs:element name="text" type="content"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="subitem">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="ident"/>
+                    <xs:element name="text" type="content"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ident" type="content"/>
+</xs:schema>

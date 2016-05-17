@@ -4,6 +4,7 @@ package rest.controller;
 import dao.IUserDao;
 import model.User;
 import rest.requests.AuthenticationRequest;
+import rest.requests.RegistrationRequest;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
@@ -25,11 +26,13 @@ public class RegisterController {
     IUserDao userDao;
 
     @POST
-    public Object post(@Valid AuthenticationRequest registrationRequest, @Context HttpServletRequest request) {
+    public Object post(@Valid RegistrationRequest registrationRequest, @Context HttpServletRequest request) {
 
         User u = new User();
         u.setUsername(registrationRequest.getUsername());
         u.setPassword(registrationRequest.getPassword());
+        u.setName(registrationRequest.getName());
+        u.setLastname(registrationRequest.getLastname());
         u.setType("citizen");
 
         try {

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<act xmlns:targetNamespace="http://ftn.uns.ac.rs/xml"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/C:/Users/dimitrije/Desktop/Schema.xsd" title="title0" country="country0" region="region0" establishment="establishment0" serial="serial0" date="2006-05-04"
+     city="city0">
+    <head title="title1">
+        <article>
+            <paragraph title="title2">
+                <text>
+                    <block uri="uri0">block0</block>
+                    <block uri="uri1">block1</block>
+                </text>
+                <item>
+                    <text>
+                        <block uri="uri2">block2</block>
+                        <block uri="uri3">block3</block>
+                    </text>
+                    <subitem>
+                        <ident>
+                            <block uri="uri4">block4</block>
+                            <block uri="uri5">block5</block>
+                        </ident>
+                        <ident>
+                            <block uri="uri6">block6</block>
+                            <block uri="uri7">block7</block>
+                        </ident>
+                    </subitem>
+                </item>
+            </paragraph>
+            <paragraph title="title3">
+                <item>
+                    <text>
+                        <block uri="uri8">block8</block>
+                        <block uri="uri9">block9</block>
+                    </text>
+                    <text>
+                        <block uri="uri10">block10</block>
+                        <block uri="uri11">block11</block>
+                    </text>
+                </item>
+                <text>
+                    <block uri="uri12">block12</block>
+                    <block uri="uri13">block13</block>
+                </text>
+            </paragraph>
+        </article>
+        <article>
+            <paragraph title="title4">
+                <text>
+                    <block uri="uri14">block14</block>
+                    <block uri="uri15">block15</block>
+                </text>
+                <text>
+                    <block uri="uri16">block16</block>
+                    <block uri="uri17">block17</block>
+                </text>
+            </paragraph>
+            <paragraph title="title5">
+                <item>
+                    <subitem>
+                        <ident>
+                            <block uri="uri18">block18</block>
+                            <block uri="uri19">block19</block>
+                        </ident>
+                        <text>
+                            <block uri="uri20">block20</block>
+                            <block uri="uri21">block21</block>
+                        </text>
+                    </subitem>
+                    <text>
+                        <block uri="uri22">block22</block>
+                        <block uri="uri23">block23</block>
+                    </text>
+                </item>
+                <item>
+                    <subitem>
+                        <text>
+                            <block uri="uri24">block24</block>
+                            <block uri="uri25">block25</block>
+                        </text>
+                        <ident>
+                            <block uri="uri26">block26</block>
+                            <block uri="uri27">block27</block>
+                        </ident>
+                    </subitem>
+                    <subitem>
+                        <ident>
+                            <block uri="uri28">block28</block>
+                            <block uri="uri29">block29</block>
+                        </ident>
+                        <ident>
+                            <block uri="uri30">block30</block>
+                            <block uri="uri31">block31</block>
+                        </ident>
+                    </subitem>
+                </item>
+            </paragraph>
+        </article>
+    </head>
+    <head title="title6">
+        <article>
+            <paragraph title="title7">
+                <item>
+                    <subitem>
+                        <text>
+                            <block uri="uri32">block32</block>
+                            <block uri="uri33">block33</block>
+                        </text>
+                        <ident>
+                            <block uri="uri34">block34</block>
+                            <block uri="uri35">block35</block>
+                        </ident>
+                    </subitem>
+                    <subitem>
+                        <text>
+                            <block uri="uri36">block36</block>
+                            <block uri="uri37">block37</block>
+                        </text>
+                        <text>
+                            <block uri="uri38">block38</block>
+                            <block uri="uri39">block39</block>
+                        </text>
+                    </subitem>
+                </item>
+                <item>
+                    <text>
+                        <block uri="uri40">block40</block>
+                        <block uri="uri41">block41</block>
+                    </text>
+                    <text>
+                        <block uri="uri42">block42</block>
+                        <block uri="uri43">block43</block>
+                    </text>
+                </item>
+            </paragraph>
+            <paragraph title="title8">
+                <text>
+                    <block uri="uri44">block44</block>
+                    <block uri="uri45">block45</block>
+                </text>
+                <item>
+                    <text>
+                        <block uri="uri46">block46</block>
+                        <block uri="uri47">block47</block>
+                    </text>
+                    <text>
+                        <block uri="uri48">block48</block>
+                        <block uri="uri49">block49</block>
+                    </text>
+                </item>
+            </paragraph>
+        </article>
+        <article>
+            <paragraph title="title9">
+                <item>
+                    <subitem>
+                        <ident>
+                            <block uri="uri50">block50</block>
+                            <block uri="uri51">block51</block>
+                        </ident>
+                        <ident>
+                            <block uri="uri52">block52</block>
+                            <block uri="uri53">block53</block>
+                        </ident>
+                    </subitem>
+                    <text>
+                        <block uri="uri54">block54</block>
+                        <block uri="uri55">block55</block>
+                    </text>
+                </item>
+                <item>
+                    <subitem>
+                        <ident>
+                            <block uri="uri56">block56</block>
+                            <block uri="uri57">block57</block>
+                        </ident>
+                        <ident>
+                            <block uri="uri58">block58</block>
+                            <block uri="uri59">block59</block>
+                        </ident>
+                    </subitem>
+                    <subitem>
+                        <text>
+                            <block uri="uri60">block60</block>
+                            <block uri="uri61">block61</block>
+                        </text>
+                        <ident>
+                            <block uri="uri62">block62</block>
+                            <block uri="uri63">block63</block>
+                        </ident>
+                    </subitem>
+                </item>
+            </paragraph>
+            <paragraph title="title10">
+                <text>
+                    <block uri="uri64">block64</block>
+                    <block uri="uri65">block65</block>
+                </text>
+                <text>
+                    <block uri="uri66">block66</block>
+                    <block uri="uri67">block67</block>
+                </text>
+            </paragraph>
+        </article>
+    </head>
+</act>
