@@ -1,0 +1,15 @@
+.nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer;
+}
+
+body {
+    background-color: #E9E9E9;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.ta-mid {
+    text-align: center;
+}

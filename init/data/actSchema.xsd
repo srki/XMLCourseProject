@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    xmlns:targetNamespace="http://ftn.uns.ac.rs/xml" attributeFormDefault="unqualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
     <xs:complexType mixed="true" name="content">
         <xs:sequence>
             <xs:element maxOccurs="unbounded" minOccurs="1" name="block">
