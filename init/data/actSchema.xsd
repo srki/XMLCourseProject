@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    xmlns:targetNamespace="http://ftn.uns.ac.rs/xml" attributeFormDefault="unqualified">
+    targetNamespace="http://ftn.uns.ac.rs/xml" attributeFormDefault="unqualified"
+    xmlns="http://ftn.uns.ac.rs/xml">
     <xs:complexType mixed="true" name="content">
         <xs:sequence>
             <xs:element maxOccurs="unbounded" minOccurs="1" name="block">
@@ -86,6 +87,7 @@
             <xs:sequence>
                 <xs:element minOccurs="1" maxOccurs="unbounded" ref="paragraph"/>
             </xs:sequence>
+            <xs:attribute name="title" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="paragraph">
@@ -96,7 +98,6 @@
                     <xs:element name="text" type="content"/>
                 </xs:choice>
             </xs:sequence>
-            <xs:attribute name="title" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="item">

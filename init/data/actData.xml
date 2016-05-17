@@ -1,204 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<act xmlns:targetNamespace="http://ftn.uns.ac.rs/xml"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="file:/C:/Users/dimitrije/Desktop/Schema.xsd" title="title0" country="country0" region="region0" establishment="establishment0" serial="serial0" date="2006-05-04"
-     city="city0">
-    <head title="title1">
+<act xmlns="http://ftn.uns.ac.rs/xml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://ftn.uns.ac.rs/xml /xml/acts.xsd" 
+     title="PRAVILNIK O NAČINU I POSTUPKU DODELE SREDSTAVA IZ BUDžETA GRADA NOVOG SADA ZA PROGRAME SPORTSKIH UDRUŽENjA NA TERITORIJI GRADA NOVOG SADA" 
+     country="SRBIJA" 
+     region="AUTONOMNA POKRAJNA VOJVODINA" 
+     establishment="GRADSKO VEĆE GRADA NOVOG SADA" 
+     serial="6-19/2015-723-II" 
+     date="2011-12-31"
+     city="NOVI SAD">
+    <preamble>
+        <block>Na osnovu člana 12. Odluke o obezbeđivanju sredstava za programe sportskih udruženja na teritoriji Grada Novog Sada („Službeni list Grada Novog Sada“, broj 33/15), Gradsko veće Grada Novog Sada na 271. sednici održanoj 31. decembra 2015. godine, donosi</block>
+    </preamble>
+    <head title="OPŠTA ODREDBA">
         <article>
-            <paragraph title="title2">
+            <paragraph>
                 <text>
-                    <block uri="uri0">block0</block>
-                    <block uri="uri1">block1</block>
+                    <block>Ovim pravilnikom bliže se uređuju način i postupak dodele sredstava iz budžeta Grada Novog Sada (u daljem tekstu: budžet Grada) za odobrenje godišnjih i posebnih programa sportskih udruženja na teritoriji Grada Novog Sada, zaključenje ugovora, izveštavanje, način javnog objavljivanja podataka o predloženim godišnjim i posebnim programima za dodelu sredstava, odobrenim programima i realizaciji programa, kao i nadzor nad realizacijom godišnjih i posebnih programa.</block>
                 </text>
-                <item>
-                    <text>
-                        <block uri="uri2">block2</block>
-                        <block uri="uri3">block3</block>
-                    </text>
-                    <subitem>
-                        <ident>
-                            <block uri="uri4">block4</block>
-                            <block uri="uri5">block5</block>
-                        </ident>
-                        <ident>
-                            <block uri="uri6">block6</block>
-                            <block uri="uri7">block7</block>
-                        </ident>
-                    </subitem>
-                </item>
-            </paragraph>
-            <paragraph title="title3">
-                <item>
-                    <text>
-                        <block uri="uri8">block8</block>
-                        <block uri="uri9">block9</block>
-                    </text>
-                    <text>
-                        <block uri="uri10">block10</block>
-                        <block uri="uri11">block11</block>
-                    </text>
-                </item>
-                <text>
-                    <block uri="uri12">block12</block>
-                    <block uri="uri13">block13</block>
-                </text>
-            </paragraph>
-        </article>
-        <article>
-            <paragraph title="title4">
-                <text>
-                    <block uri="uri14">block14</block>
-                    <block uri="uri15">block15</block>
-                </text>
-                <text>
-                    <block uri="uri16">block16</block>
-                    <block uri="uri17">block17</block>
-                </text>
-            </paragraph>
-            <paragraph title="title5">
-                <item>
-                    <subitem>
-                        <ident>
-                            <block uri="uri18">block18</block>
-                            <block uri="uri19">block19</block>
-                        </ident>
-                        <text>
-                            <block uri="uri20">block20</block>
-                            <block uri="uri21">block21</block>
-                        </text>
-                    </subitem>
-                    <text>
-                        <block uri="uri22">block22</block>
-                        <block uri="uri23">block23</block>
-                    </text>
-                </item>
-                <item>
-                    <subitem>
-                        <text>
-                            <block uri="uri24">block24</block>
-                            <block uri="uri25">block25</block>
-                        </text>
-                        <ident>
-                            <block uri="uri26">block26</block>
-                            <block uri="uri27">block27</block>
-                        </ident>
-                    </subitem>
-                    <subitem>
-                        <ident>
-                            <block uri="uri28">block28</block>
-                            <block uri="uri29">block29</block>
-                        </ident>
-                        <ident>
-                            <block uri="uri30">block30</block>
-                            <block uri="uri31">block31</block>
-                        </ident>
-                    </subitem>
-                </item>
             </paragraph>
         </article>
     </head>
-    <head title="title6">
+    <head title="NAČIN I POSTUPAK DODELE SREDSTAVA IZ BUDžETA GRADA NOVOG SADA ZA REALIZACIJU GODIŠNjIH I POSEBNIH PROGRAMA">
         <article>
-            <paragraph title="title7">
-                <item>
-                    <subitem>
-                        <text>
-                            <block uri="uri32">block32</block>
-                            <block uri="uri33">block33</block>
-                        </text>
-                        <ident>
-                            <block uri="uri34">block34</block>
-                            <block uri="uri35">block35</block>
-                        </ident>
-                    </subitem>
-                    <subitem>
-                        <text>
-                            <block uri="uri36">block36</block>
-                            <block uri="uri37">block37</block>
-                        </text>
-                        <text>
-                            <block uri="uri38">block38</block>
-                            <block uri="uri39">block39</block>
-                        </text>
-                    </subitem>
-                </item>
-                <item>
-                    <text>
-                        <block uri="uri40">block40</block>
-                        <block uri="uri41">block41</block>
-                    </text>
-                    <text>
-                        <block uri="uri42">block42</block>
-                        <block uri="uri43">block43</block>
-                    </text>
-                </item>
-            </paragraph>
-            <paragraph title="title8">
+            <paragraph>
                 <text>
-                    <block uri="uri44">block44</block>
-                    <block uri="uri45">block45</block>
+                    <block>Sportskom udruženju mogu da se dodele sredstva iz budžeta Grada, na osnovu podnetog predloga godišnjeg odnosno posebnog programa, pod uslovom da:</block>
                 </text>
                 <item>
-                    <text>
-                        <block uri="uri46">block46</block>
-                        <block uri="uri47">block47</block>
-                    </text>
-                    <text>
-                        <block uri="uri48">block48</block>
-                        <block uri="uri49">block49</block>
-                    </text>
+                    <text><block>je upisano u registar kod nadležnog organa</block></text>
+                </item>
+                <item>
+                    <text><block>posluje na nedobitnoj osnovi</block></text>
+                </item>
+                <item>
+                    <text><block>srazmera učešća budžetskih dotacija u realizaciji programa sportskog udruženja u ostvarivanju cilja programa.</block></text>
+                </item>
+                <item>
+                    <text><block>ima sedište i svoju aktivnost realizuje na teritoriji Grada Novog Sada,</block></text>
+                </item>
+                <item>
+                    <text><block>nije u postupku likvidacije, stečaja i pod privremenom zabranom obavljanja delatnosti,</block></text>
+                </item>
+                <item>
+                    <text><block>nema blokadu poslovnog računa, poreske dugove ili dugove prema organizacijama socijalnog osiguranja,</block></text>
+                </item>
+                <item>
+                    <text><block>nije u poslednje dve godine pravosnažnom odlukom kažnjeno za prekršaj ili privredni prestup u vezi sa svojom delatnošću,</block></text>
+                </item>
+                <item>
+                    <text><block>je direktno odgovorno za pripremu i izvođenje programa,</block></text>
+                </item>
+                <item>
+                    <text><block>je prethodno obavljalo delatnost najmanje godinu dana</block></text>
+                </item>
+                <item>
+                    <text><block>angažuje sportskog stručnjaka koji ima zakonom predviđene kvalifikacije za rad u sportu, i</block></text>
+                </item>
+                <item>
+                    <text><block>ima obezbeđen prostor za realizaciju programa.</block></text>
                 </item>
             </paragraph>
         </article>
         <article>
-            <paragraph title="title9">
+            <paragraph>
+                <text>
+                    <block>Sportsko udruženje dostavlja svoj predlog godišnjeg, odnosno posebnog programa Gradskoj upravi za sport i omladinu (u daljem tekstu: gradska uprava), na posebnom obrascu čiji izgled i sadržinu utvrđuje gradska uprava.</block>
+                </text>
+            </paragraph>
+        </article>
+        <article>
+            <paragraph>
+                <text>
+                    <block>Analizu i ocenu podnetih predloga godišnjih, odnosno posebnih programa vrši stručna komisija za izbor godišnjih odnosno posebnih programa (u daljem tekstu: Komisija) koju obrazuje i imenuje Gradsko veće Grada Novog Sada (u daljem tekstu: Gradsko veće).</block>
+                 </text>
+            </paragraph>
+        </article>
+        <article>
+            <paragraph>
+                <text>
+                    <block>Analiza i ocena podnetih predloga godišnjih, odnosno posebnih programa vrši se na osnovu opštih i posebnih merila.</block>
+                </text>
+            </paragraph>
+        </article>
+        <article>
+            <paragraph>
+                <text><block>Opšta merila na osnovu kojih Komisija vrši analizu i ocenu podnetih predloga godišnjih i posebnih programa su:</block></text>
                 <item>
-                    <subitem>
-                        <ident>
-                            <block uri="uri50">block50</block>
-                            <block uri="uri51">block51</block>
-                        </ident>
-                        <ident>
-                            <block uri="uri52">block52</block>
-                            <block uri="uri53">block53</block>
-                        </ident>
-                    </subitem>
-                    <text>
-                        <block uri="uri54">block54</block>
-                        <block uri="uri55">block55</block>
-                    </text>
+                    <text><block>značaj sportskog udruženja u Gradu Novom Sadu po osnovu godina trajanja,</block></text>
                 </item>
                 <item>
-                    <subitem>
-                        <ident>
-                            <block uri="uri56">block56</block>
-                            <block uri="uri57">block57</block>
-                        </ident>
-                        <ident>
-                            <block uri="uri58">block58</block>
-                            <block uri="uri59">block59</block>
-                        </ident>
-                    </subitem>
-                    <subitem>
-                        <text>
-                            <block uri="uri60">block60</block>
-                            <block uri="uri61">block61</block>
-                        </text>
-                        <ident>
-                            <block uri="uri62">block62</block>
-                            <block uri="uri63">block63</block>
-                        </ident>
-                    </subitem>
+                    <text><block> programska ostvarenja sportskog udruženja (na teritoriji: Grada Novog Sada, Republike Srbije i međunarodnoj sceni),</block></text>
                 </item>
             </paragraph>
-            <paragraph title="title10">
+        </article>
+        <article>
+            <paragraph>
+                <text><block> da program utiče na sportsko-zdravstveno obrazovanje i unapređenje zdravlja učesnika programa,</block></text>
+                <item>
+                    <text><block>da program obuhvata od 40 do 160 učesnika programa po angažovanom sportskom stručnjaku, osim za sportska udruženja koja su lima sportske grane</block></text>
+                </item>
+                <item>
+                    <text><block> programska ostvarenja sportskog udruženja (na teritoriji: Grada Novog Sada, Republike Srbije i međunarodnoj sceni),</block></text>
+                </item>
+                
+                <item>
+                    <text><block>da nivo i kvalitet organizovanja i vođenja takmičarskih aktivnosti sportskih udruženja, njihova analiza i obrada kao i formiranje baze podataka i informacija doprinosi mapiranju Grada Novog Sada na domaćoj i međunarodnoj sportskoj i kulturnoj sceni.</block></text>
+                </item>
+            </paragraph>
+        </article>
+        <article>
+            <paragraph>
                 <text>
-                    <block uri="uri64">block64</block>
-                    <block uri="uri65">block65</block>
+                    <block>Nakon izvršene analize i ocene podnetih predloga godišnjih, odnosno posebnih programa, u skladu sa opštim i posebnim merilima iz čl. 6. i 7. ovog pravilnika, Komisija sačinjava obrazložen predlog godišnjih programa za narednu budžetsku godinu, odnosno predlog posebnih programa u tekućoj godini koji mogu da se finansiraju iz budžeta Grada, i predlaže iznos sredstava sportskom udruženju za svaki pojedinačni program.</block>
+                    <block>Obrazložen predlog iz stava 1. ovog pravilnika Komisija dostavlja Gradskom veću</block>
                 </text>
+            </paragraph>
+        </article>
+        <article>
+            <paragraph>
                 <text>
-                    <block uri="uri66">block66</block>
-                    <block uri="uri67">block67</block>
+                    <block>Gradsko veće, na predlog Komisije, donosi pojedinačna rešenja kojim se odobravaju godišnji, odnosno posebni programi i utvrđuje iznos sredstava za njihovu realizaciju.</block>
+                </text>
+            </paragraph>
+        </article>
+        <article>
+            <paragraph>
+                <text>
+                    <block>Rešenje o odobrenju godišnjeg, odnosno posebnog programa iz člana 9. ovog pravilnika, objavljuje se u „Službenom listu Grada Novog Sada“ i na zvaničnoj internet prezentaciji Gradske uprave www. sio. novi sad. rs</block>
+                </text>
+            </paragraph>
+        </article>
+        <article>
+            <paragraph>
+                <text>
+                    <block>Gradska uprava sa sportskim udruženjem, kome je odobren godišnji, odnosno posebni program zaključuje ugovor o dodeli sredstava za realizaciju programa koji sadrži: naziv i sedište sportskog udruženja, vrstu i sadržinu programa, vreme realizacije godišnjeg, odnosno posebnog programa, iznos dobijenih sredstava, vremenski plan upotrebe sredstava, način vršenja redovnog i vanrednog nadzora nad realizacijom programa, obaveze sportskog udruženja u pogledu podnošenja izveštaja o realizaciji programa sa dokazom o realizaciji programa, dokaz o namenskom korišćenju sredstava, kao i medijskom predstavljaju programa i učešća Grada Novog Sada u njegovom finansiranju.</block>
+                </text>
+            </paragraph>
+        </article>
+        <article>
+            <paragraph>
+                <text>
+                    <block>Postupci započeti do dana stupanja na snagu ovog pravilnika okončaće se u skladu sa Pravilnikom o načinu i postupku dodele sredstava iz budžeta Grada Novog Sada za realizaciju programa kojima se ostvaruju potrebe i interesi građana u oblasti sporta („Službeni list Grada Novog Sada“, broj 45/12).</block>
+                </text>
+            </paragraph>
+        </article>
+        <article>
+            <paragraph>
+                <text>
+                    <block>Danom stupanja na snagu ovog pravilnika prestaje da važi Pravilnik o načinu i postupku dodele sredstava iz budžeta Grada Novog Sada za realizaciju programa kojima se ostvaruju potrebe i interesi građana u oblasti sporta („Službeni list Grada Novog Sada“, broj 45/12).</block>
+                </text>
+            </paragraph>
+        </article>
+        <article>
+            <paragraph>
+                <text>
+                    <block>Ovaj pravilnik stupa na snagu osmog dana od dana objavljivanja u „Službenom listu Grada Novog Sada“.</block>
                 </text>
             </paragraph>
         </article>

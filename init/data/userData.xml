@@ -1,26 +1,24 @@
-<users xsi:schemaLocation="http://ftn.uns.ac.rs/xml /xml/users.xsd"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns="http://ftn.uns.ac.rs/xml">
+<users xsi:schemaLocation="http://ftn.uns.ac.rs/xml /xml/users.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ftn.uns.ac.rs/xml">
   <user>
 		<username>a</username>
 		<password>a</password>
+  		<type>citizen</type>
   		<name>a</name>
   		<lastname>a</lastname>
-		<type>citizen</type>
   </user>
   <user>
 		<username>b</username>
 		<password>b</password>
+  		<type>representative</type>
   		<name>b</name>
   		<lastname>b</lastname>
-		<type>representative</type>
   </user>
   <user>
 		<username>c</username>
 		<password>c</password>
+  		<type>president</type>
   		<name>c</name>
   		<lastname>c</lastname>
-		<type>president</type>
   </user>
 </users>
 
