@@ -20,4 +20,11 @@ public class Users extends AbstractEntity<Users>{
         }
         return user;
     }
+
+    public void addUser(User u) {
+        if (user == null) {
+            user = new ArrayList<>();
+        }
+        user.add(u);
+    }
 }
