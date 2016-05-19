@@ -15,6 +15,7 @@
                 error = function (response) {
                     console.log(response)
                 };
+
             $scope.login = function () {
                 if (!$scope.user.username) {
                     $scope.alertMessage = 'Username cannot be empty.';

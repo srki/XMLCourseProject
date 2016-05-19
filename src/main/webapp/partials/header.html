@@ -1,11 +1,15 @@
+<!--suppress HtmlUnknownTarget -->
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-subject">
-            <img src="/img/logo.png" class="mt-5 mr-10 pull-left" height="40" width="40"/>
+            <img src="/img/logo40.png" class="mt-5 mr-10 pull-left" height="40" width="40"/>
             <a class="navbar-brand" href="/">City of Novi Sad - Parliament</a>
         </div>
 
         <ul class="nav navbar-nav navbar-left">
+            <li ng-if="display == 'representative' || display == 'president'">
+                <a href="/meetings">Assembly meetings</a>
+            </li>
             <li ng-if="display == 'representative' || display == 'president'">
                 <a href="/users">Users</a>
             </li>
