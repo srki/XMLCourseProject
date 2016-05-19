@@ -8,9 +8,9 @@ import javax.annotation.PreDestroy;
 import javax.ejb.Local;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.ejb.Stateless;
 
-@Singleton
-@Startup
+@Stateless
 @Local(IDatabaseManager.class)
 public class DatabaseManager implements IDatabaseManager {
 
