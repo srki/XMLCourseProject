@@ -58,6 +58,16 @@
 
         <!-- MarkLogic Client end -->
 
+        <!-- ApacheCommons Client begin -->
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+
+        <!-- ApacheCommons Client end -->
+
     </dependencies>
 
     <build>
