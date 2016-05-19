@@ -7,8 +7,14 @@
     "use strict";
 
     angular.module('app.HomeCtrl', [])
-        .controller('HomeCtrl', function ($scope) {
+        .controller('HomeCtrl', function ($scope, $location, Auth) {
             (function () {
+                Auth.isLogged(function (isLogged) {
+                    if (!isLogged) {
+                        $location.path('/login');
+                    }
+                });
+
                 $scope.options = {
                     schemaUri: '/api/schemas/',
                     schemaName: 'act.xsd',

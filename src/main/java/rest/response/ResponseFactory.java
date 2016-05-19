@@ -20,6 +20,10 @@ public class ResponseFactory {
         return createResponse(status, response.toString());
     }
 
+    public static Response createNoContentResponse() {
+        return Response.status(Response.Status.NO_CONTENT).build();
+    }
+
     public static Response createErrorResponse(Response.Status status, String message) {
         if (message == null) {
             message = status.toString();

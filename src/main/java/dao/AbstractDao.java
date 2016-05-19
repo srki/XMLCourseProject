@@ -22,19 +22,37 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.net.URL;
-import java.util.Scanner;
 
 @Stateless
 @Local(IAbstractDao.class)
 public abstract class AbstractDao implements IAbstractDao {
 
     @EJB
-    IDatabaseManager databaseManager;
+    protected IDatabaseManager databaseManager;
 
+    protected static String getScriptContent(String fileName) {
+        ClassLoader classLoader = AbstractDao.class.getClassLoader();
+        URL url = classLoader.getResource("scripts/" + fileName);
+
+        if (url == null) {
+            return null;
+        }
+
+        StringBuilder result = new StringBuilder("");
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
+            for (String line = br.readLine(); line != null; line = br.readLine()) {
+                result.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result.toString();
+    }
 
     @Override
     public void createDocument(String documentName, Document document) throws IOException {
-
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         XMLWriter xmlWriter = new XMLWriter(outputStream, OutputFormat.createPrettyPrint());
         xmlWriter.write(document);
@@ -93,35 +111,5 @@ public abstract class AbstractDao implements IAbstractDao {
     public String getCollectionName() {
         return null;
     }
-
-    protected static String getScriptContent(String fileName) {
-
-        StringBuilder result = new StringBuilder("");
-
-        ClassLoader classLoader = AbstractDao.class.getClassLoader();
-        URL url = classLoader.getResource("scripts/" + fileName);
-        
-        if (url == null)
-            return null;
-
-        File file = new File(url.getFile());
-
-        try (Scanner scanner = new Scanner(file)) {
-
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                result.append(line).append("\n");
-            }
-
-            scanner.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return result.toString();
-
-    }
-
 
 }

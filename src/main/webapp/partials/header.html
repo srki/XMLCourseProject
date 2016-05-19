@@ -1,12 +1,27 @@
+<!--suppress HtmlUnknownTarget -->
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-subject">
-            <img src="/img/logo.png" class="mt-5 mr-10 pull-left" height="40" width="40"/>
+            <img src="/img/logo40.png" class="mt-5 mr-10 pull-left" height="40" width="40"/>
             <a class="navbar-brand" href="/">City of Novi Sad - Parliament</a>
         </div>
 
         <ul class="nav navbar-nav navbar-left">
-            <li><a href="/users">Users</a></li>
+            <li ng-if="display == 'representative' || display == 'president'">
+                <a href="/meetings">Assembly meetings</a>
+            </li>
+            <li ng-if="display == 'representative' || display == 'president'">
+                <a href="/users">Users</a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-if="display == 'citizen' || display == 'representative' || display == 'president'">
+                <a href="/logout"><span class="glyphicon glyphicon-log-out mr-5" aria-hidden="true"></span>Log out</a>
+            </li>
+            <li ng-if="display == 'login'">
+                <a href="/login"><span class="glyphicon glyphicon-log-in mr-5" aria-hidden="true"></span>Login</a>
+            </li>
         </ul>
     </div>
 </nav>

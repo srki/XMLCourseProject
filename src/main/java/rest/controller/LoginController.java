@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBException;
 
-@Path("/login")
+@Path("/")
 @Produces(MediaType.APPLICATION_XML)
 @Consumes(MediaType.APPLICATION_XML)
 public class LoginController {
@@ -27,20 +27,29 @@ public class LoginController {
     private IUserDao userDao;
 
     @GET
+    @Path("/login")
     @RolesAllowed({User.CITIZEN, User.REPRESENTATIVE, User.PRESIDENT})
     public Object get(@Context User user) {
         return new AuthenticationResponse(user.getUsername(), user.getType(), user.getName(), user.getLastname());
     }
 
     @POST
+    @Path("/login")
     public Object post(@Valid AuthenticationRequest authRequest, @Context HttpServletRequest request) throws JAXBException {
-        User u = userDao.getUser(authRequest.getUsername());
-        if (u != null && u.getPassword().equals(authRequest.getPassword())) {
-            request.getSession().setAttribute(USER_IDENTIFIER, u);
-            return new AuthenticationResponse(u.getUsername(), u.getType(), u.getName(), u.getLastname());
+        User user = userDao.getUser(authRequest.getUsername());
+        if (user != null && user.getPassword().equals(authRequest.getPassword())) {
+            request.getSession().setAttribute(USER_IDENTIFIER, user);
+            return new AuthenticationResponse(user.getUsername(), user.getType(), user.getName(), user.getLastname());
         } else {
             return ResponseFactory.createErrorResponse(Response.Status.BAD_REQUEST);
         }
-
     }
+
+    @POST
+    @Path("/logout")
+    public Object logout(@Context HttpServletRequest request) {
+        request.getSession().removeAttribute(USER_IDENTIFIER);
+        return ResponseFactory.createNoContentResponse();
+    }
+
 }
