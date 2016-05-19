@@ -29,8 +29,12 @@
                     controller: 'HomeCtrl'
                 })
                 .when('/users', {
-                    templateUrl: 'partials/users.html',
+                    templateUrl: 'partials/Users.html',
                     controller: 'UsersCtrl'
+                })
+                .when('/meetings', {
+                    templateUrl: 'partials/assemblyMeeting.html',
+                    controller: 'AssemblyMeetingCtrl'
                 })
                 .otherwise('/');
 
