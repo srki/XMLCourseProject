@@ -14,6 +14,12 @@ import org.w3c.dom.Document;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ws.rs.NotFoundException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 
 @Stateless
@@ -62,6 +68,23 @@ public abstract class AbstractDao implements IAbstractDao {
         docMgr.read(getDirectoryName() + documentName, handle);
 
         return handle.get();
+    }
+
+    @Override
+    public String getDocumentAsString(String documentName) {
+        try {
+
+            DOMSource domSource = new DOMSource(getDocument(documentName));
+            StringWriter writer = new StringWriter();
+            StreamResult result = new StreamResult(writer);
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer transformer = tf.newTransformer();
+            transformer.transform(domSource, result);
+
+            return writer.toString();
+        } catch (TransformerException ex) {
+            throw new NotFoundException();
+        }
     }
 
     @Override

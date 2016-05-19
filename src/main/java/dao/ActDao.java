@@ -26,7 +26,17 @@ public class ActDao extends AbstractDao implements IActDao {
             "  }" +
             "else 'NOT OK';";
     
-
+    private static final String getAllDocuments = "declare namespace mlt = 'http://ftn.uns.ac.rs/xml';" +
+            "<acts>" +
+            "{" +
+            "  for $x in cts:uris((), (), cts:directory-query('/xml/acts/','infinity')) " +
+            "  return " +
+            "  <act>" +
+            "    <uri>{$x}</uri>" +
+            "    <title>{data(doc($x)/mlt:act/@title)}</title>" +
+            "  </act>" +
+            "}" +
+            "</acts>";
 
     @Override
     public void storeAct(String raw) throws Exception {
@@ -40,6 +50,15 @@ public class ActDao extends AbstractDao implements IActDao {
 
         if (result!= null && result.equals("NOT OK"))
             throw new Exception("Failed to store the act");
+    }
+
+    @Override
+    public String getAllActs() {
+        ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
+
+        call.xquery(getAllDocuments);
+
+        return call.evalAs(String.class);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class SchemasController {
     private ISchemasDao schemasDao;
 
     @GET
-    @Path("/{name : .+}")
+    @Path("/{name}")
     public Object getSchema(@PathParam("name") String name) {
         return schemasDao.getSchema(name);
     }

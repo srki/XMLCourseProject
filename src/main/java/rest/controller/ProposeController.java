@@ -4,22 +4,19 @@ import dao.IActDao;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
-@Path("/propose")
+@Path("/acts")
 @Produces(MediaType.APPLICATION_XML)
 @Consumes(MediaType.APPLICATION_XML)
 public class ProposeController {
 
     @EJB
-    IActDao actDao;
+    private IActDao actDao;
 
     @POST
     public Object post(@Context HttpServletRequest request, String actString) {
@@ -36,5 +33,16 @@ public class ProposeController {
                     .status(Response.Status.BAD_REQUEST)
                     .build();
         }
+    }
+
+    @GET
+    @Path("/{uuid}")
+    public Object get(@PathParam("uuid") String uuid) {
+        return actDao.getDocument(uuid);
+    }
+
+    @GET
+    public Object get() {
+        return actDao.getAllActs();
     }
 }
