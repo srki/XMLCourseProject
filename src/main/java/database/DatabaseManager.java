@@ -15,7 +15,6 @@ import javax.ejb.Startup;
 public class DatabaseManager implements IDatabaseManager {
 
     private DatabaseClient client;
-    private DatabaseClient schemaClient;
 
     @PostConstruct
     public void init() {
@@ -24,19 +23,11 @@ public class DatabaseManager implements IDatabaseManager {
                 DatabaseConfig.user,
                 DatabaseConfig.password,
                 DatabaseConfig.authType);
-
-        schemaClient = DatabaseClientFactory.newClient(DatabaseConfig.host,
-                DatabaseConfig.port,
-                "Schemas",
-                DatabaseConfig.user,
-                DatabaseConfig.password,
-                DatabaseConfig.authType);
     }
 
     @PreDestroy
     public void remove() {
         client.release();
-        schemaClient.release();
     }
 
     @Override
