@@ -1,7 +1,7 @@
 package rest.interceptors;
 
 import com.marklogic.client.ResourceNotFoundException;
-import rest.response.AbstractResponse;
+import rest.response.ResponseFactory;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
@@ -14,6 +14,6 @@ import javax.ws.rs.ext.Provider;
 public class ResourceNotFoundExceptionMapper implements ExceptionMapper<ResourceNotFoundException> {
     @Override
     public Response toResponse(ResourceNotFoundException e) {
-        return AbstractResponse.createErrorResponse(Response.Status.NOT_FOUND, "Resource did not found.");
+        return ResponseFactory.createErrorResponse(Response.Status.NOT_FOUND, "Resource did not found.");
     }
 }
