@@ -21,6 +21,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.net.URL;
+import java.util.Scanner;
 
 @Stateless
 @Local(IAbstractDao.class)
@@ -91,5 +93,35 @@ public abstract class AbstractDao implements IAbstractDao {
     public String getCollectionName() {
         return null;
     }
+
+    protected static String getScriptContent(String fileName) {
+
+        StringBuilder result = new StringBuilder("");
+
+        ClassLoader classLoader = AbstractDao.class.getClassLoader();
+        URL url = classLoader.getResource("scripts/" + fileName);
+        
+        if (url == null)
+            return null;
+
+        File file = new File(url.getFile());
+
+        try (Scanner scanner = new Scanner(file)) {
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                result.append(line).append("\n");
+            }
+
+            scanner.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result.toString();
+
+    }
+
 
 }
