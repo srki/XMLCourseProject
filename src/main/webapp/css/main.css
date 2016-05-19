@@ -26,3 +26,39 @@ iframe {
 #RegisterButton, #LoginButton, #BackButton {
     width: 370px;
 }
+
+@media (min-height: 500px) {
+    .editor {
+        height: 400px;
+    }
+}
+
+@media (min-height: 600px) {
+    .editor {
+        height: 500px;
+    }
+}
+
+@media (min-height: 700px) {
+    .editor {
+        height: 600px;
+    }
+}
+
+@media (min-height: 800px) {
+    .editor {
+        height: 700px;
+    }
+}
+
+@media (min-height: 900px) {
+    .editor {
+        height: 800px;
+    }
+}
+
+@media (min-height: 1000px) {
+    .editor {
+        height: 900px;
+    }
+}

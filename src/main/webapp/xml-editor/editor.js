@@ -11,6 +11,10 @@ $(function () {
         }
     }
 
+    if (params.schemaName == null || params.schemaUri || params.rootElement) {
+        return;
+    }
+
     console.log(params);
 
     var extractor = new Xsd2Json(params.schemaName, {

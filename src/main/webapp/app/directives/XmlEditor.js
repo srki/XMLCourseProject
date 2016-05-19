@@ -10,7 +10,7 @@
         .directive('xmlEditor', function () {
             return {
                 restrict: 'E',
-                template: '<iframe ng-src="{{ createUrl() }}" width="100%" height="{{height}}">',
+                template: '<iframe class="editor" ng-src="{{ createUrl() }}" width="100%">',
                 scope: {
                     options: '=',
                     height: '@'

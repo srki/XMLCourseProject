@@ -14,13 +14,6 @@
                         $location.path('/login');
                     }
                 });
-
-                $scope.options = {
-                    schemaUri: '/api/schemas/',
-                    schemaName: 'act.xsd',
-                    rootElement: 'act',
-                    submitPath: '/api/propose'
-                }
             })();
         });
 }(angular));

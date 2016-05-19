@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 @Path("/acts")
 @Produces(MediaType.APPLICATION_XML)
 @Consumes(MediaType.APPLICATION_XML)
-public class ProposeController {
+public class ActsController {
 
     @EJB
     private IActDao actDao;

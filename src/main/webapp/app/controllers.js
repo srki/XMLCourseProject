@@ -9,5 +9,6 @@ angular.module('app.controllers', [
     'app.LogoutCtrl',
     'app.HomeCtrl',
     'app.UsersCtrl',
-    'app.AssemblyMeetingCtrl'
+    'app.AssemblyMeetingCtrl',
+    'app.NewActCtrl'
 ]);
