@@ -11,9 +11,9 @@
             (function () {
                 $scope.options = {
                     schemaUri: '/api/schemas/',
-                    schemaName: 'acts.xsd',
+                    schemaName: 'act.xsd',
                     rootElement: 'act',
-                    submitPath: '/api/acts'
+                    submitPath: '/api/propose'
                 }
             })();
         });

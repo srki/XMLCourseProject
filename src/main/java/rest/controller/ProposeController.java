@@ -22,12 +22,10 @@ public class ProposeController {
     IActDao actDao;
 
     @POST
-    public Object post(@Context HttpServletRequest request) {
+    public Object post(@Context HttpServletRequest request, String actString) {
 
         try {
-
-            String xml = org.apache.commons.io.IOUtils.toString(request.getInputStream());
-            actDao.storeAct(xml);
+            actDao.storeAct(actString);
 
             return Response
                     .status(Response.Status.CREATED)
