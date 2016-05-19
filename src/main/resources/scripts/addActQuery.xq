@@ -1,7 +1,8 @@
 import schema "http://ftn.uns.ac.rs/xml" at "/xml/act.xsd";
 declare namespace mlt = "http://ftn.uns.ac.rs/xml";
 
-declare variable $act := fn:doc("/xml/acts/act1.xml");
+declare variable $act_string as xs:string external;
+declare variable $act := fxdmp:unquote($act_string);
 declare variable $errors := xdmp:validate($act, "strict");
 declare variable $validation_error := if (exists($errors//error:error)) then "NOT OK" else "OK";
 declare variable $is_not_act_error := if (name($act/mlt:act) eq "act") then "OK" else "NOT OK";

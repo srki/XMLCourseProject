@@ -42,7 +42,17 @@ public class ProposeController {
     }
 
     @GET
-    public Object get() {
+    public Object get(@QueryParam("title") String title,
+                      @QueryParam("country") String country,
+                      @QueryParam("region") String region,
+                      @QueryParam("establishment") String establishment,
+                      @QueryParam("date") String date,
+                      @QueryParam("city") String city,
+                      @QueryParam("serial") String serial) {
+
+
+
+
         return actDao.getAllActs();
     }
 }
