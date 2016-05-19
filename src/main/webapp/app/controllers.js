@@ -7,5 +7,6 @@ angular.module('app.controllers', [
     'app.LoginCtrl',
     'app.RegisterCtrl',
     'app.LogoutCtrl',
-    'app.HomeCtrl'
+    'app.HomeCtrl',
+    'app.UsersCtrl'
 ]);

@@ -1,0 +1,17 @@
+<div id="Users" class="pl-50 pr-50 pb-50 pt-20">
+    <h2 class="mb-20">Users</h2>
+    <table class="table table-bordered table-striped table-hover">
+        <tr>
+            <th>Username</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Role</th>
+        </tr>
+        <tr ng-repeat="user in users">
+            <td>{{ user.username }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.lastname }}</td>
+            <td class="text-capitalize">{{ user.type }}</td>
+        </tr>
+    </table>
+</div>
