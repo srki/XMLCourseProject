@@ -4,6 +4,7 @@ import dao.IUserDao;
 import model.User;
 import model.Users;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -18,6 +19,7 @@ public class UserController {
     IUserDao userDao;
 
     @GET
+    @RolesAllowed({User.REPRESENTATIVE, User.CITIZEN})
     public Object getUsers(@QueryParam("type") String type) {
         try {
             if(type == null || "".equals(type)) {
@@ -34,6 +36,7 @@ public class UserController {
 
     @GET
     @Path("/{username}")
+    @RolesAllowed({User.REPRESENTATIVE, User.CITIZEN})
     public Object getUser(@PathParam("username") String username) {
         try {
             User u = userDao.getUser(username);

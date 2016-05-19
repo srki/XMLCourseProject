@@ -37,7 +37,11 @@
 
             (function () {
                 $scope.user = {};
-                Auth.isLogged().then(success, error);
+                Auth.isLogged(function (isLogged) {
+                    if (isLogged) {
+                        $location.path('/home');
+                    }
+                });
             })();
         });
 }(angular));

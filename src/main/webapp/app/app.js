@@ -43,8 +43,11 @@
             $httpProvider.interceptors.push('ForbiddenResponseInterceptor');
             $httpProvider.interceptors.push('ContentTypeInterceptor');
         })
-
-        .run(function () {
-            // TODO: check if user is logged and store credentials
+        .run(function (Auth, $location) {
+            Auth.isLogged(function (isLogged) {
+                if (isLogged) {
+                    $location.path('/');
+                }
+            });
         });
 }(angular));
