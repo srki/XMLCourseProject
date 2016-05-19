@@ -9,7 +9,12 @@
     angular.module('app.HomeCtrl', [])
         .controller('HomeCtrl', function ($scope) {
             (function () {
-
+                $scope.options = {
+                    schemaUri: '/api/schemas/',
+                    schemaName: 'acts.xsd',
+                    rootElement: 'act',
+                    submitPath: '/api/acts'
+                }
             })();
         });
 }(angular));
