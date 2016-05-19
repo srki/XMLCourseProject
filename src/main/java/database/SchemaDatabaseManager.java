@@ -9,23 +9,19 @@ import javax.ejb.Local;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
+/**
+ * @author - Srđan Milaković
+ */
 @Singleton
 @Startup
-@Local(IDatabaseManager.class)
-public class DatabaseManager implements IDatabaseManager {
+@Local(ISchemaDatabaseManager.class)
+public class SchemaDatabaseManager implements ISchemaDatabaseManager {
 
     private DatabaseClient client;
-    private DatabaseClient schemaClient;
 
     @PostConstruct
     public void init() {
         client = DatabaseClientFactory.newClient(DatabaseConfig.host,
-                DatabaseConfig.port,
-                DatabaseConfig.user,
-                DatabaseConfig.password,
-                DatabaseConfig.authType);
-
-        schemaClient = DatabaseClientFactory.newClient(DatabaseConfig.host,
                 DatabaseConfig.port,
                 "Schemas",
                 DatabaseConfig.user,
@@ -36,12 +32,10 @@ public class DatabaseManager implements IDatabaseManager {
     @PreDestroy
     public void remove() {
         client.release();
-        schemaClient.release();
     }
 
     @Override
-    public DatabaseClient getDatabaseClient() {
+    public DatabaseClient getSchemaDatabaseClient() {
         return client;
     }
-
 }

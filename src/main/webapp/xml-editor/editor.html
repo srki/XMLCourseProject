@@ -19,9 +19,9 @@
 
 <script>
     $(function () {
-        var extractor = new Xsd2Json("actSchema.xsd", {
-            schemaURI: "../schemas/",
-            rootElement: "act"
+        var extractor = new Xsd2Json("users.xsd", {
+            schemaURI: "/api/schemas/",
+            rootElement: "users"
         });
 
         $('#XMLEditor')

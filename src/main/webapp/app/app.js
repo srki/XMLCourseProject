@@ -28,6 +28,10 @@
                     templateUrl: 'partials/home.html',
                     controller: 'HomeCtrl'
                 })
+                .when('/users', {
+                    templateUrl: 'partials/users.html',
+                    controller: 'UsersCtrl'
+                })
                 .otherwise('/');
 
             $locationProvider.html5Mode(true);
