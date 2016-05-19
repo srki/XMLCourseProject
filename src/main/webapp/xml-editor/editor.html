@@ -12,32 +12,9 @@
     <script src="lib/jquery.autosize.min.js"></script>
     <script src="lib/xsd2json.min.js"></script>
     <script src="lib/jquery.xmleditor.min.js"></script>
+    <script src="editor.js"></script>
 </head>
 <body>
-
 <div id="XMLEditor"></div>
-
-<script>
-    $(function () {
-        var extractor = new Xsd2Json("users.xsd", {
-            schemaURI: "/api/schemas/",
-            rootElement: "users"
-        });
-
-        $('#XMLEditor')
-                .text('<act xlmns="http://ftn.uns.ac.rs/xml"></act>')
-                .xmlEditor({
-                    menuEntries: [],
-                    enforceOccurs: true,
-                    prependNewElements: true,
-                    schema: extractor.getSchema(),
-                    ajaxOptions: {
-                        xmlUploadPath: "/submit"
-                    }
-                });
-    });
-
-
-</script>
 </body>
 </html>
