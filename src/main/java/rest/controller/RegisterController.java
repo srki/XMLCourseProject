@@ -3,7 +3,6 @@ package rest.controller;
 
 import dao.IUserDao;
 import model.User;
-import rest.requests.AuthenticationRequest;
 import rest.requests.RegistrationRequest;
 
 import javax.ejb.EJB;
@@ -33,7 +32,7 @@ public class RegisterController {
         u.setPassword(registrationRequest.getPassword());
         u.setName(registrationRequest.getName());
         u.setLastname(registrationRequest.getLastname());
-        u.setType("citizen");
+        u.setType(User.CITIZEN);
 
         try {
             userDao.storeUser(u);
