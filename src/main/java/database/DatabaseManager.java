@@ -8,14 +8,13 @@ import javax.annotation.PreDestroy;
 import javax.ejb.Local;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.ejb.Stateless;
 
-@Singleton
-@Startup
+@Stateless
 @Local(IDatabaseManager.class)
 public class DatabaseManager implements IDatabaseManager {
 
     private DatabaseClient client;
-    private DatabaseClient schemaClient;
 
     @PostConstruct
     public void init() {
@@ -24,19 +23,11 @@ public class DatabaseManager implements IDatabaseManager {
                 DatabaseConfig.user,
                 DatabaseConfig.password,
                 DatabaseConfig.authType);
-
-        schemaClient = DatabaseClientFactory.newClient(DatabaseConfig.host,
-                DatabaseConfig.port,
-                "Schemas",
-                DatabaseConfig.user,
-                DatabaseConfig.password,
-                DatabaseConfig.authType);
     }
 
     @PreDestroy
     public void remove() {
         client.release();
-        schemaClient.release();
     }
 
     @Override

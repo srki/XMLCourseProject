@@ -3,11 +3,13 @@ package dao;
 import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.DOMHandle;
 import database.ISchemaDatabaseManager;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.w3c.dom.Document;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ws.rs.NotFoundException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -38,8 +40,7 @@ public class SchemasDao implements ISchemasDao {
             transformer.transform(domSource, result);
             return writer.toString();
         } catch (TransformerException ex) {
-            ex.printStackTrace();
-            return null;
+            throw new NotFoundException();
         }
     }
 

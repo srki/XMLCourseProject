@@ -16,24 +16,13 @@ import java.io.StringReader;
 @Local(IUserDao.class)
 public class UserDao extends AbstractDao implements IUserDao {
 
-    private static final String getUserQuery = "declare namespace mlt = 'http://ftn.uns.ac.rs/xml'; " +
-            "declare variable $username as xs:token external;" +
-            "for $x in doc('/xml/users/xml-user.xml')/mlt:users/mlt:user " +
-            "where $x/mlt:username=$username " +
-            "return $x";
+    private static final String getUserQuery = getScriptContent("getUserQuery.xq");
 
-    private static final String addUserQuery = "declare namespace mlt = 'http://ftn.uns.ac.rs/xml';" +
-            "declare variable $user as xs:string external;" +
-            "xdmp:node-insert-child(doc('/xml/users/xml-user.xml')/mlt:users, xdmp:unquote($user)/mlt:user);";
+    private static final String addUserQuery = getScriptContent("addUserQuery.xq");
 
-    private static final String getUsersQuery = "declare namespace mlt = 'http://ftn.uns.ac.rs/xml';" +
-            "fn:doc('/xml/users/xml-user.xml')/mlt:users";
+    private static final String getUsersQuery = getScriptContent("getUsersQuery.xq");
 
-    private static final String getUsersByTypeQuery = "declare namespace mlt = 'http://ftn.uns.ac.rs/xml'; " +
-            "declare variable $type as xs:token external;" +
-            "for $x in doc('/xml/users/xml-user.xml')/mlt:users/mlt:user " +
-            "where $x/mlt:username=$type " +
-            "return $x";
+    private static final String getUsersByTypeQuery = getScriptContent("getUsersByTypeQuery.xq");
 
     @Override
     public User getUser(String username) throws JAXBException {
@@ -79,11 +68,7 @@ public class UserDao extends AbstractDao implements IUserDao {
         Users users = (Users) um.unmarshal(new StringReader(raw));
         Users selectedUsers = new Users();
 
-        for(User u : users.getUsers()) {
-            if(u.getType().equals(type)) {
-                selectedUsers.addUser(u);
-            }
-        }
+        users.getUser().stream().filter(u -> u.getType().equals(type)).forEach(selectedUsers::addUser);
 
         return selectedUsers;
     }

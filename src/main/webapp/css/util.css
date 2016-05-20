@@ -13,3 +13,7 @@ body {
 .ta-mid {
     text-align: center;
 }
+
+.fl-right{
+    float: right;
+}

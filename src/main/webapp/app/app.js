@@ -32,6 +32,14 @@
                     templateUrl: 'partials/users.html',
                     controller: 'UsersCtrl'
                 })
+                .when('/meetings', {
+                    templateUrl: 'partials/assemblyMeeting.html',
+                    controller: 'AssemblyMeetingCtrl'
+                })
+                .when('/newAct', {
+                    templateUrl: 'partials/newAct.html',
+                    controller: 'NewActCtrl'
+                })
                 .otherwise('/');
 
             $locationProvider.html5Mode(true);
@@ -39,8 +47,11 @@
             $httpProvider.interceptors.push('ForbiddenResponseInterceptor');
             $httpProvider.interceptors.push('ContentTypeInterceptor');
         })
-
-        .run(function () {
-            // TODO: check if user is logged and store credentials
+        .run(function (Auth, $location) {
+            Auth.isLogged(function (isLogged) {
+                if (isLogged) {
+                    $location.path('/');
+                }
+            });
         });
 }(angular));

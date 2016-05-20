@@ -8,5 +8,7 @@ angular.module('app.controllers', [
     'app.RegisterCtrl',
     'app.LogoutCtrl',
     'app.HomeCtrl',
-    'app.UsersCtrl'
+    'app.UsersCtrl',
+    'app.AssemblyMeetingCtrl',
+    'app.NewActCtrl'
 ]);

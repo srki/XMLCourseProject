@@ -1,7 +1,9 @@
 package rest.controller;
 
 import dao.ISchemasDao;
+import model.User;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -18,7 +20,8 @@ public class SchemasController {
     private ISchemasDao schemasDao;
 
     @GET
-    @Path("/{name : .+}")
+    @Path("/{name}")
+    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
     public Object getSchema(@PathParam("name") String name) {
         return schemasDao.getSchema(name);
     }

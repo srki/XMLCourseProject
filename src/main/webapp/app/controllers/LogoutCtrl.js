@@ -7,10 +7,16 @@
     "use strict";
 
     angular.module('app.LogoutCtrl', [])
-        .controller('LogoutCtrl', function ($scope) {
-
+        .controller('LogoutCtrl', function ($location, Auth) {
             (function () {
-
+                Auth.logout().then(
+                    function () {
+                        $location.path('/login');
+                    },
+                    function () {
+                        $location.path('/login');
+                    }
+                )
             })();
         });
 }(angular));

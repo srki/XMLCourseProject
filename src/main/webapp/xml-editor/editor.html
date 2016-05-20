@@ -5,39 +5,17 @@
 
     <script src="lib/ace/ace.min.js"></script>
     <script src="lib/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="lib/jquery-ui.min.js"></script>
     <script src="lib/json2.min.js"></script>
     <script src="lib/cycle.min.js"></script>
     <script src="lib/jquery.autosize.min.js"></script>
     <script src="lib/xsd2json.min.js"></script>
     <script src="lib/jquery.xmleditor.min.js"></script>
+    <script src="../lib/xml2json/xml2json.min.js"></script>
+    <script src="editor.js"></script>
+
 </head>
 <body>
-
 <div id="XMLEditor"></div>
-
-<script>
-    $(function () {
-        var extractor = new Xsd2Json("users.xsd", {
-            schemaURI: "/api/schemas/",
-            rootElement: "users"
-        });
-
-        $('#XMLEditor')
-                .text('<act xlmns="http://ftn.uns.ac.rs/xml"></act>')
-                .xmlEditor({
-                    menuEntries: [],
-                    enforceOccurs: true,
-                    prependNewElements: true,
-                    schema: extractor.getSchema(),
-                    ajaxOptions: {
-                        xmlUploadPath: "/submit"
-                    }
-                });
-    });
-
-
-</script>
 </body>
 </html>

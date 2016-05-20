@@ -15,6 +15,7 @@
                 error = function (response) {
                     console.log(response)
                 };
+
             $scope.login = function () {
                 if (!$scope.user.username) {
                     $scope.alertMessage = 'Username cannot be empty.';
@@ -37,7 +38,11 @@
 
             (function () {
                 $scope.user = {};
-                Auth.isLogged().then(success, error);
+                Auth.isLogged(function (isLogged) {
+                    if (isLogged) {
+                        $location.path('/home');
+                    }
+                });
             })();
         });
 }(angular));

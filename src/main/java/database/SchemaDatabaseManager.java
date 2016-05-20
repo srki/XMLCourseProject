@@ -8,12 +8,12 @@ import javax.annotation.PreDestroy;
 import javax.ejb.Local;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.ejb.Stateless;
 
 /**
  * @author - Srđan Milaković
  */
-@Singleton
-@Startup
+@Stateless
 @Local(ISchemaDatabaseManager.class)
 public class SchemaDatabaseManager implements ISchemaDatabaseManager {
 

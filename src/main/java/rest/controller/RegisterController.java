@@ -3,8 +3,8 @@ package rest.controller;
 
 import dao.IUserDao;
 import model.User;
-import rest.requests.AuthenticationRequest;
 import rest.requests.RegistrationRequest;
+import rest.response.ResponseFactory;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
@@ -33,14 +33,13 @@ public class RegisterController {
         u.setPassword(registrationRequest.getPassword());
         u.setName(registrationRequest.getName());
         u.setLastname(registrationRequest.getLastname());
-        u.setType("citizen");
+        u.setType(User.CITIZEN);
 
         try {
             userDao.storeUser(u);
             return Response.status(200).build();
-
         } catch (Exception e) {
-            return Response.status(400).build();
+            return ResponseFactory.createErrorResponse(Response.Status.BAD_REQUEST, e.getMessage());
         }
     }
 

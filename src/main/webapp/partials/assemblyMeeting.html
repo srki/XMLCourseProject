@@ -1,0 +1,22 @@
+<div id="AssemblyMeeting" class="pl-50 pr-50 pb-50 pt-20">
+    <h2 class="mb-20">Assembly meetings</h2>
+    <button class="btn btn-primary" ng-click="getUpcoming()">Upcoming</button>
+    <button class="btn btn-primary" ng-click="getFinished()">Finished</button>
+    <button class="btn btn-success fl-right" ng-click="create()">Create</button>
+    <br/>
+    <br/>
+    <table class="table table-bordered table-striped table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Starts</th>
+            <th>Ends</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="meeting in meetings">
+            <td>{{ meeting.id }}</td>
+            <td>{{ meeting.startDate| date:'MMM d, y h:mm:ss a'}}</td>
+            <td>{{ meeting.endDate| date:'MMM d, y h:mm:ss a'}}</td>
+            <td><button class="btn btn-warning">Details</button></td>
+        </tr>
+    </table>
+</div>

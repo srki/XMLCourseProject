@@ -13,4 +13,5 @@ interface IAbstractDao {
     void deleteDocument(String documentName);
 
     Document getDocument(String documentName);
+    String getDocumentAsString(String documentName);
 }
