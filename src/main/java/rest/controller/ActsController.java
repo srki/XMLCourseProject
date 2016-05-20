@@ -1,6 +1,7 @@
 package rest.controller;
 
 import dao.IActDao;
+import rest.response.ResponseFactory;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
@@ -29,9 +30,7 @@ public class ActsController {
                     .build();
 
         } catch (Exception e) {
-            return Response
-                    .status(Response.Status.BAD_REQUEST)
-                    .build();
+            return ResponseFactory.createErrorResponse(Response.Status.BAD_REQUEST, e.getMessage());
         }
     }
 
