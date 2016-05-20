@@ -28,10 +28,19 @@ public class ActDao extends AbstractDao implements IActDao {
     }
 
     @Override
-    public String getAllActs() {
+    public String getAllActs(String text, String title, String country, String region,
+                             String establishment, String date, String city, String serial) {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
 
         call.xquery(getAllActs);
+
+        call.addVariable("text", text == null ? "" : text);
+        call.addVariable("title", title == null ? "" : title);
+        call.addVariable("country", country == null ? "" : country);
+        call.addVariable("region", region == null ? "" : region);
+        call.addVariable("establishment", establishment == null ? "" : establishment);
+        call.addVariable("city", city == null ? "" : city);
+        call.addVariable("serial", serial == null ? "" : serial);
 
         return call.evalAs(String.class);
     }
