@@ -11,7 +11,7 @@ $(function () {
         }
     }
 
-    if (params.schemaName == null || params.schemaUri || params.rootElement) {
+    if (params.schemaName == null || params.schemaUri == null || params.rootElement == null) {
         return;
     }
 
@@ -34,6 +34,10 @@ $(function () {
             schema: extractor.getSchema(),
             ajaxOptions: {
                 xmlUploadPath: params.submitPath
+            },
+            submitErrorHandler: function (jqXHR) {
+                var error = new X2JS().xml_str2json(jqXHR.responseText).error.message;
+                alert(error);
             }
         });
 });

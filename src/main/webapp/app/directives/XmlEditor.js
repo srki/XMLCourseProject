@@ -12,8 +12,7 @@
                 restrict: 'E',
                 template: '<iframe class="editor" ng-src="{{ createUrl() }}" width="100%">',
                 scope: {
-                    options: '=',
-                    height: '@'
+                    options: '='
                 },
                 link: function (scope) {
                     scope.createUrl = function () {
