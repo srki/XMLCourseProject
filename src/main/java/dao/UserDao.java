@@ -68,7 +68,7 @@ public class UserDao extends AbstractDao implements IUserDao {
         Users users = (Users) um.unmarshal(new StringReader(raw));
         Users selectedUsers = new Users();
 
-        users.getUser().stream().filter(u -> u.getType().equals(type)).forEach(selectedUsers::addUser);
+        users.getUsers().stream().filter(u -> u.getType().equals(type)).forEach(selectedUsers::addUser);
 
         return selectedUsers;
     }
