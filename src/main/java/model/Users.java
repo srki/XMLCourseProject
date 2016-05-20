@@ -6,25 +6,25 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "user"
+        "users"
 })
 @XmlRootElement(name = "users", namespace = "http://ftn.uns.ac.rs/xml")
 public class Users extends AbstractEntity<Users>{
 
-    @XmlElement(required = true, namespace = "http://ftn.uns.ac.rs/xml")
-    protected List<User> user;
+    @XmlElement(required = true, namespace = "http://ftn.uns.ac.rs/xml", name = "user")
+    protected List<User> users;
 
-    public List<User> getUser() {
-        if (user == null) {
-            user = new ArrayList<>();
+    public List<User> getUsers() {
+        if (users == null) {
+            users = new ArrayList<>();
         }
-        return user;
+        return users;
     }
 
     public void addUser(User u) {
-        if (user == null) {
-            user = new ArrayList<>();
+        if (users == null) {
+            users = new ArrayList<>();
         }
-        user.add(u);
+        users.add(u);
     }
 }

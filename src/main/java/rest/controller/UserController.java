@@ -3,6 +3,8 @@ package rest.controller;
 import dao.IUserDao;
 import model.User;
 import model.Users;
+import rest.response.UserResponse;
+import rest.response.UsersResponse;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -22,10 +24,10 @@ public class UserController {
         try {
             if(type == null || "".equals(type)) {
                 Users users = userDao.getUsers();
-                return Response.status(200).entity(users).build();
+                return Response.status(200).entity(new UsersResponse(users)).build();
             } else {
                 Users users = userDao.getUsersByType(type);
-                return Response.status(200).entity(users).build();
+                return Response.status(200).entity(new UsersResponse(users)).build();
             }
         } catch (Exception e) {
             return Response.status(400).build();
@@ -37,7 +39,7 @@ public class UserController {
     public Object getUser(@PathParam("username") String username) {
         try {
             User u = userDao.getUser(username);
-            return Response.status(200).entity(u).build();
+            return Response.status(200).entity(new UserResponse(u)).build();
         } catch (Exception e) {
             return Response.status(400).build();
         }

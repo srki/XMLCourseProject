@@ -7,13 +7,10 @@ import model.Users;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.ws.rs.core.Link;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
 
 @Stateless
 @Local(IUserDao.class)
@@ -82,7 +79,7 @@ public class UserDao extends AbstractDao implements IUserDao {
         Users users = (Users) um.unmarshal(new StringReader(raw));
         Users selectedUsers = new Users();
 
-        for(User u : users.getUser()) {
+        for(User u : users.getUsers()) {
             if(u.getType().equals(type)) {
                 selectedUsers.addUser(u);
             }
