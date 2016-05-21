@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://ftn.uns.ac.rs/xml" attributeFormDefault="unqualified"
+    xmlns="http://ftn.uns.ac.rs/xml">
+    <xs:element name="session">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:string" name="place" minOccurs="1" maxOccurs="1"> </xs:element>
+                <xs:sequence>
+                    <xs:element name="act" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="amendment" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:attribute type="xs:string" name="status"/>
+                                        <xs:attribute type="xs:string" name="ref"/>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute type="xs:string" name="status" use="required"/>
+                            <xs:attribute type="xs:string" name="ref"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+                <xs:sequence>
+                    <xs:element name="alderman" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:attribute name="ref" type="xs:string"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:sequence>
+            <xs:attribute name="beginDate">
+                <xs:simpleType>
+                    <xs:restriction base="xs:dateTime"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="endDate">
+                <xs:simpleType>
+                    <xs:restriction base="xs:dateTime"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
