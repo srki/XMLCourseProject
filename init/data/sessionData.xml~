@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session xmlns="http://ftn.uns.ac.rs/xml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" beginDate="2006-05-04T18:13:51.0" endDate="2006-05-04T18:13:51.0">
+    <place>place0</place>
+    <act status="status1" ref="ref1">
+        <amendment status="status3" ref="ref3"/>
+        <amendment status="status5" ref="ref5"/>
+        <amendment status="status7" ref="ref7"/>
+    </act>
+    <act status="status9" ref="ref9">
+        <amendment status="status11" ref="ref11"/>
+        <amendment status="status13" ref="ref13"/>
+        <amendment status="status15" ref="ref15"/>
+    </act>
+    <act status="status17" ref="ref17">
+        <amendment status="status19" ref="ref19"/>
+        <amendment status="status21" ref="ref21"/>
+        <amendment status="status23" ref="ref23"/>
+    </act>
+    <alderman ref="ref25"/>
+    <alderman ref="ref27"/>
+    <alderman ref="ref29"/>
+</session>
+

@@ -4,6 +4,7 @@ import com.marklogic.client.eval.ServerEvaluationCall;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import java.text.SimpleDateFormat;
 
 @Stateless
 @Local(IActDao.class)
@@ -32,6 +33,8 @@ public class ActDao extends AbstractDao implements IActDao {
                              String establishment, String startDate, String endDate, String city, String serial) {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
 
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
         call.xquery(getAllActs);
 
         call.addVariable("text", text == null ? "" : text);
@@ -41,6 +44,8 @@ public class ActDao extends AbstractDao implements IActDao {
         call.addVariable("establishment", establishment == null ? "" : establishment);
         call.addVariable("city", city == null ? "" : city);
         call.addVariable("serial", serial == null ? "" : serial);
+        call.addVariable("start_date", startDate == null ? "" : format.format(startDate));
+        call.addVariable("end_date", endDate == null ? "" : format.format(endDate));
 
         return call.evalAs(String.class);
     }
