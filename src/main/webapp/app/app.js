@@ -40,6 +40,10 @@
                     templateUrl: 'partials/newAct.html',
                     controller: 'NewActCtrl'
                 })
+                .when('/acts',{
+                    templateUrl: 'partials/actFilter.html',
+                    controller: 'ActFilterCtrl'
+                })
                 .otherwise('/');
 
             $locationProvider.html5Mode(true);

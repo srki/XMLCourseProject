@@ -10,5 +10,6 @@ angular.module('app.controllers', [
     'app.HomeCtrl',
     'app.UsersCtrl',
     'app.AssemblyMeetingCtrl',
-    'app.NewActCtrl'
+    'app.NewActCtrl',
+    'app.ActFilterCtrl'
 ]);

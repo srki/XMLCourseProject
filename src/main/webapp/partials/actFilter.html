@@ -1,0 +1,88 @@
+<div id="actFilter" class="pl-50 pr-50 pb-50 pt-20">
+
+    <h2 class="mb-20">Acts</h2>
+
+    <div class="mt-10 mb-10">
+        <button data-toggle="collapse" class = "btn btn-primary fl-right mb-10" data-target="#filter">Filter</button>
+        <p></p>
+    </div>
+    <table class="collapse mt-10 mb-10" id = "filter">
+        <tr>
+            <td class="col-sm-3">Title:</td>
+            <td class="col-sm-3">Country:</td>
+            <td class="col-sm-3">Region:</td>
+            <td class="col-sm-3">City:</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3">
+                <input type="text" class="form-control" id="atitle" placeholder="Enter title" ng-model="filter.title">
+            </td>
+
+            <td class="col-sm-3">
+                <input type="text" class="form-control" id="acntry" placeholder="Enter country" ng-model="filter.country">
+            </td>
+
+            <td class="col-sm-3">
+                <input type="text" class="form-control" id="argn" placeholder="Enter region" ng-model="filter.region">
+            </td>
+
+            <td class="col-sm-3">
+                <input type="text" class="form-control" id="acty" placeholder="Enter city" ng-model="filter.city">
+            </td>
+        </tr>
+        <tr>
+            <td class="col-sm-3">Establishment:</td>
+            <td class="col-sm-3">Start date:</td>
+            <td class="col-sm-3">End date:</td>
+            <td class="col-sm-3">Serial:</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3">
+                <input type="text" class="form-control" id="aest" placeholder="Enter establishment" ng-model="filter.establishment">
+            </td>
+            <td class="col-sm-3">
+                <input type="date" class="form-control" id="astd" ng-model="filter.start_date">
+            </td>
+            <td class="col-sm-3">
+                <input type="date" class="form-control" id="aend" ng-model="filter.end_date">
+            </td>
+            <td class="col-sm-3">
+                <input type="text" class="form-control" id="aser" placeholder="Enter serial" ng-model="filter.serial">
+            </td>
+        </tr>
+        <tr>
+            <td class="col-sm-3">Text:</td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+        </tr>
+        <tr>
+            <td class="col-sm-3">
+                <textarea type="text" class="form-control" id="atxt" placeholder="Enter text" ng-model="filter.text"></textarea>
+            </td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3" >
+                <input type="button" value = "Clear" class="btn btn-danger fl-right ml-10 mt-10" ng-click="clear()"/>
+                <input type="button" value = "Submit" class="btn btn-success fl-right mt-10" ng-click="get()"/>
+            </td>
+        </tr>
+    </table>
+
+
+
+
+    <div class="mt-50">
+        {{filter.title}}
+        <table class="table table-bordered table-striped table-hover">
+            <tr>
+                <th>Title</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="act in data">
+                <td>{{ act.title }}</td>
+                <td><button class="btn btn-warning">Details</button></td>
+            </tr>
+        </table>
+    </div>
+</div>

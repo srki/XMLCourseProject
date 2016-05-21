@@ -8,5 +8,6 @@ angular.module('app.services', [
     'app.Users',
     'app.ForbiddenResponseInterceptor',
     'app.ContentTypeInterceptor',
-    'app.AssemblyMeeting'
+    'app.AssemblyMeeting',
+    'app.Acts'
 ]);
