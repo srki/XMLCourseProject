@@ -30,3 +30,6 @@ sudo service MarkLogic start
 To run intellij idea go to the extracted directory /bin AND run ./idea.sh
 
 To run the server start intellij idea open the github project and configure the JBoos run configuration
+
+The terms used in the rdf triples to store the metadata are specified on
+http://udfr.org/docs/onto/

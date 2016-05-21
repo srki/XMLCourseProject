@@ -62,9 +62,20 @@ declare variable $q7 := if ($serial eq "") then $q6 else
             )
     )));
 
+declare variable $q8 := if ($start_date eq "" or $end_date eq "") then $q7 else
+    cts:and-query((
+        $q7,
+        cts:and-query((
+            cts:properties-query(
+                    cts:element-range-query(QName('', 'date'), ">", xs:date($start_date))),
+            cts:properties-query(
+                    cts:element-range-query(QName('', 'date'), "<", xs:date($end_date)))
+        ))
+    ));
+
 <acts>
     {
-        for $x in cts:uris((), (), $q7)
+        for $x in cts:uris((), (), $q8)
         return
             <act>
                 <uri>{$x}</uri>
