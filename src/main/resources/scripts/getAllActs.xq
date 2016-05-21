@@ -5,6 +5,10 @@ declare variable $establishment as xs:string external;
 declare variable $city as xs:string external;
 declare variable $serial as xs:string external;
 
+declare variable $start_date as xs:string external;
+declare variable $end_date as xs:string external;
+
+
 declare variable $q1 := cts:directory-query("/xml/acts/", "infinity");
 
 declare variable $q2 := if ($text eq "") then $q1 else

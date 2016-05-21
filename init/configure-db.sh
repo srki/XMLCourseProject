@@ -1,4 +1,4 @@
 curl -v -X PUT --anyauth -u root:root \
   --header "Content-Type:application/json" \
-  -d '{"collection-lexicon":true}' \
+  -d '{"collection-lexicon":true, "range-element-index":[{"scalar-type":"dateTime", "namespace-uri":"http://marklogic.com/xdmp/dls", "localname":"created", "collation":"", "range-value-positions":false, "invalid-values":"reject"}, {"scalar-type":"dateTime", "namespace-uri":"http://marklogic.com/xdmp/dls", "localname":"replaced", "collation":"", "range-value-positions":false, "invalid-values":"reject"}, {"scalar-type":"unsignedLong", "namespace-uri":"http://marklogic.com/xdmp/dls", "localname":"version-id", "collation":"", "range-value-positions":false, "invalid-values":"reject"}, {"scalar-type":"date", "namespace-uri":"", "localname":"date", "collation":"", "range-value-positions":true, "invalid-values":"reject"}]}' \
   http://localhost:8002/manage/v2/databases/xml-project-database/properties

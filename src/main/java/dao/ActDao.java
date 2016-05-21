@@ -23,13 +23,13 @@ public class ActDao extends AbstractDao implements IActDao {
 
         String result = call.evalAs(String.class);
 
-        if (result!= null && result.equals("NOT OK"))
+        if (result != null && result.equals("NOT OK"))
             throw new Exception("Failed to store the act");
     }
 
     @Override
     public String getAllActs(String text, String title, String country, String region,
-                             String establishment, String date, String city, String serial) {
+                             String establishment, String startDate, String endDate, String city, String serial) {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
 
         call.xquery(getAllActs);

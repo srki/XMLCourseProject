@@ -46,10 +46,11 @@ public class ActsController {
                       @QueryParam("country") String country,
                       @QueryParam("region") String region,
                       @QueryParam("establishment") String establishment,
-                      @QueryParam("date") String date,
+                      @QueryParam("start_date") String startDate,
+                      @QueryParam("end_date") String endDate,
                       @QueryParam("city") String city,
                       @QueryParam("serial") String serial) {
 
-        return actDao.getAllActs(text, title, country, region, establishment, date, city, serial);
+        return actDao.getAllActs(text, title, country, region, establishment, startDate, endDate, city, serial);
     }
 }
