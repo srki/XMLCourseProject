@@ -25,8 +25,21 @@
                         filter.end_date = $scope.filter.end_date.getTime();
 
                     Acts.get(filter).then(
+
                         function (response) {
-                            $scope.data = response.data.acts.act || [];
+
+                            if(response.data.acts.act){
+
+                                if(response.data.acts.act.length) {
+                                    $scope.data = response.data.acts.act;
+                                }else {
+                                    $scope.data = [];
+                                    $scope.data.push(response.data.acts.act);
+                                }
+                            }else{
+                                $scope.data = [];
+                            }
+
                             $scope.state = ($scope.data.length > 0) ? 'showResults' : 'noResults';
                             console.log(response);
                         },
@@ -43,7 +56,6 @@
                 };
 
                 $scope.update = function (index) {
-                    console.log(parseURI($scope.data[index].uri));
                     $location.path('/acts/' + parseURI($scope.data[index].uri));
                 };
 
