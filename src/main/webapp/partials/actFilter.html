@@ -3,10 +3,10 @@
     <h2 class="mb-20">Acts</h2>
 
     <div class="mt-10 mb-10">
-        <button data-toggle="collapse" class = "btn btn-primary fl-right mb-10" data-target="#filter">Filter</button>
+        <button type="button" class="btn btn-primary fl-right mb-10" ng-click="hide = !hide">Filter</button>
         <p></p>
     </div>
-    <table class="collapse mt-10 mb-10" id = "filter">
+    <table ng-hide="hide" class="mt-10 mb-10">
         <tr>
             <td class="col-sm-3">Title:</td>
             <td class="col-sm-3">Country:</td>
@@ -73,16 +73,20 @@
 
 
     <div class="mt-50">
-        {{filter.title}}
-        <table class="table table-bordered table-striped table-hover">
+        <table class="table table-bordered table-striped table-hover" ng-if="state === 'showResults'">
             <tr>
                 <th>Title</th>
+                <th></th>
+                <th></th>
                 <th></th>
             </tr>
             <tr ng-repeat="act in data">
                 <td>{{ act.title }}</td>
-                <td><button class="btn btn-warning">Details</button></td>
+                <td><button class="btn btn-primary" ng-click="update($index)">Update</button></td>
+                <td><button class="btn btn-warning">PDF</button></td>
+                <td><button class="btn btn-info">HTML</button></td>
             </tr>
         </table>
+        <p ng-if="state === 'noResults'"><b>No results</b></p>
     </div>
 </div>
