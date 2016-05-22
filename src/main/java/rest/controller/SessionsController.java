@@ -21,19 +21,12 @@ public class SessionsController {
     private ISessionDao sessionDao;
 
     @GET
-    public Object get(@QueryParam("req") String req) {
+    public Object get(@QueryParam("status") String status) {
         try {
             Sessions sessions;
-            if ("upcoming".equals(req)) {
-                sessions = sessionDao.getUpcomingSessions();
-                return Response.status(200).entity(sessions).build();
-            } else if ("finished".equals(req)) {
-                sessions = sessionDao.getFinishedSessions();
-                return Response.status(200).entity(sessions).build();
-            } else {
-                sessions = sessionDao.getAllSessions();
-                return Response.status(200).entity(sessions).build();
-            }
+            sessions = sessionDao.getAllSessions(status);
+
+            return Response.status(200).entity(sessions).build();
         } catch (JAXBException e){
             e.printStackTrace();
             return Response.status(400).build();

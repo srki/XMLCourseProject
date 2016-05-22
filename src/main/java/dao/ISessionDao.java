@@ -8,9 +8,6 @@ public interface ISessionDao extends IAbstractDao {
 
     void storeSession(String raw) throws Exception;
 
-    Sessions getAllSessions() throws JAXBException;
+    Sessions getAllSessions(String status) throws JAXBException;
 
-    Sessions getFinishedSessions() throws JAXBException;
-
-    Sessions getUpcomingSessions() throws JAXBException;
 }

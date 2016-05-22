@@ -38,10 +38,11 @@ public class SessionDao extends AbstractDao implements ISessionDao {
     }
 
     @Override
-    public Sessions getAllSessions() throws JAXBException {
+    public Sessions getAllSessions(String status) throws JAXBException {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
 
         call.xquery(getAllSessionsQuery);
+        call.addVariable("status", status);
 
         String raw = call.evalAs(String.class);
 
@@ -49,43 +50,5 @@ public class SessionDao extends AbstractDao implements ISessionDao {
         Unmarshaller um = context.createUnmarshaller();
 
         return (raw != null) ? (Sessions) um.unmarshal(new StringReader(raw)) : null;
-    }
-
-    @Override
-    public Sessions getFinishedSessions() throws JAXBException {
-        ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
-
-        call.xquery(getAllSessionsQuery);
-
-        String raw = call.evalAs(String.class);
-
-        JAXBContext context = JAXBContext.newInstance(Sessions.class);
-        Unmarshaller um = context.createUnmarshaller();
-
-        Sessions sessions = (Sessions) um.unmarshal(new StringReader(raw));
-        Sessions selectedSessions = new Sessions();
-
-        sessions.getSessions().stream().filter(s ->(s.getEndDate() != null && s.getEndDate().before(new Date()))).forEach(selectedSessions::addSession);
-
-        return selectedSessions;
-    }
-
-    @Override
-    public Sessions getUpcomingSessions() throws JAXBException {
-        ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
-
-        call.xquery(getAllSessionsQuery);
-
-        String raw = call.evalAs(String.class);
-
-        JAXBContext context = JAXBContext.newInstance(Sessions.class);
-        Unmarshaller um = context.createUnmarshaller();
-
-        Sessions sessions = (Sessions) um.unmarshal(new StringReader(raw));
-        Sessions selectedSessions = new Sessions();
-
-        sessions.getSessions().stream().filter(s -> s.getBeginDate().after(new Date())).forEach(selectedSessions::addSession);
-
-        return selectedSessions;
     }
 }
