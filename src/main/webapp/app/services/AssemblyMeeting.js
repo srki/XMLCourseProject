@@ -17,7 +17,7 @@
                         method: 'GET',
                         url: 'api/assemblyMeetings',
                         params: {
-                            req: 'finished'
+                            status: 'finished'
                         }
                     });
                 },
@@ -27,7 +27,7 @@
                         method: 'GET',
                         url: 'api/assemblyMeetings',
                         params: {
-                            req: 'upcoming'
+                            status: 'upcoming'
                         }
                     });
                 },
