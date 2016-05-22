@@ -46,8 +46,8 @@ public class ActsController {
                       @QueryParam("country") String country,
                       @QueryParam("region") String region,
                       @QueryParam("establishment") String establishment,
-                      @QueryParam("start_date") String startDate,
-                      @QueryParam("end_date") String endDate,
+                      @QueryParam("start_date") Long startDate,
+                      @QueryParam("end_date") Long endDate,
                       @QueryParam("city") String city,
                       @QueryParam("serial") String serial) {
 
