@@ -5,24 +5,20 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ws.rs.NotFoundException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 @Stateless
@@ -32,6 +28,8 @@ public class ActDao extends AbstractDao implements IActDao {
     private static final String addActQuery = getScriptContent("addActQuery.xq");
 
     private static final String getAllActs = getScriptContent("getAllActs.xq");
+
+    private static final String getArticle = getScriptContent("getArticle.xq");
 
     @Override
     public void storeAct(String raw) throws Exception {
@@ -88,6 +86,22 @@ public class ActDao extends AbstractDao implements IActDao {
         call.addVariable("end_date", endDate == null ? "" : format.format(new Date(endDate)));
 
         return call.evalAs(String.class);
+    }
+
+    @Override
+    public String getArticle(String uri, String id) {
+        ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
+
+        call.xquery(getArticle);
+        call.addVariable("act_uri", uri);
+        call.addVariable("article_id", id);
+
+        String val = call.evalAs(String.class);
+
+        if (val == null)
+            throw new NotFoundException();
+
+        return val;
     }
 
     @Override
