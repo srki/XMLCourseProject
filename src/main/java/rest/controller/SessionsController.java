@@ -33,6 +33,11 @@ public class SessionsController {
         }
     }
 
+    @GET
+    @Path("/{uuid}")
+    public Object getSingle(@PathParam("uuid") String uuid) {
+        return sessionDao.getDocument(uuid);
+    }
 
     @POST
     public Object post(@Context HttpServletRequest request, String sessionString) {
