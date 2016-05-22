@@ -12,6 +12,7 @@
 
                 $scope.meetings = [{id: 1, startDate: Date.now(), endDate: Date.now()}];
                 $scope.inputData = {};
+                $scope.state = 'idle';
 
                 $scope.getUpcoming = function () {
                     AssemblyMeeting.getUpcoming().then(
@@ -38,8 +39,17 @@
                 };
 
                 $scope.create = function () {
-                    
+
                 }
+
+                $scope.showForm = function () {
+                    $scope.state = 'createNew';
+                };
+
+                $scope.cancel = function () {
+                    $scope.state = 'idle';
+                    $scope.inputData = {};
+                };
             }
         ]);
 

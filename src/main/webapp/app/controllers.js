@@ -11,5 +11,6 @@ angular.module('app.controllers', [
     'app.UsersCtrl',
     'app.AssemblyMeetingCtrl',
     'app.NewActCtrl',
-    'app.ActFilterCtrl'
+    'app.ActFilterCtrl',
+    'app.EditActCtrl'
 ]);

@@ -1,19 +1,53 @@
 <div id="AssemblyMeeting" class="pl-50 pr-50 pb-50 pt-20">
     <h2 class="mb-20">Assembly meetings</h2>
+
+    <div ng-if="state==='createNew'">
+        <h4>Create new</h4>
+        <table class="table table-bordered mt-10 mb-10">
+            <tr>
+                <td class="col-sm-3">Place:</td>
+                <td class="col-sm-3">Start date:</td>
+                <td class="col-sm-3">End date:</td>
+                <td class="col-sm-3"></td>
+            </tr>
+            <tr>
+                <td class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Enter place" ng-model="inputData.place">
+                </td>
+                <td class="col-sm-3">
+                    <input type="date" class="form-control"  ng-model="inputData.start_date">
+                </td>
+                <td class="col-sm-3">
+                    <input type="date" class="form-control"  ng-model="inputData.end_date">
+                </td>
+                <td class="col-sm-3" >
+                    <input type="button" value = "Cancel" class="btn btn-danger fl-right ml-10 mt-10" ng-click="cancel()"/>
+                    <input type="button" value = "Submit" class="btn btn-success fl-right mt-10" ng-click="create()"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br/>
+    <br/>
+
     <button class="btn btn-primary" ng-click="getUpcoming()">Upcoming</button>
     <button class="btn btn-primary" ng-click="getFinished()">Finished</button>
-    <button class="btn btn-success fl-right" ng-click="create()">Create</button>
+    <button class="btn btn-success fl-right" ng-click="showForm()" ng-if = "state !== 'createNew'">Create</button>
+
     <br/>
     <br/>
     <table class="table table-bordered table-striped table-hover">
         <tr>
-            <th>ID</th>
+            <th>No.</th>
+            <th>Place</th>
             <th>Starts</th>
             <th>Ends</th>
             <th></th>
         </tr>
         <tr ng-repeat="meeting in meetings">
-            <td>{{ meeting.id }}</td>
+            <td>{{$index}}</td>
+            <td>{{ meeting.place }}</td>
             <td>{{ meeting.startDate| date:'MMM d, y h:mm:ss a'}}</td>
             <td>{{ meeting.endDate| date:'MMM d, y h:mm:ss a'}}</td>
             <td><button class="btn btn-warning">Details</button></td>
