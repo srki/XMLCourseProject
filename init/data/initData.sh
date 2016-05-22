@@ -3,3 +3,4 @@
 ./initUsers.sh
 ./initActSchema.sh
 ./initActData.sh
+./initArticleSchema.sh
