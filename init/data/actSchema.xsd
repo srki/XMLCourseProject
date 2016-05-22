@@ -88,6 +88,7 @@
                 <xs:element minOccurs="1" maxOccurs="unbounded" ref="paragraph"/>
             </xs:sequence>
             <xs:attribute name="title" type="xs:string"/>
+	    <xs:attribute name="id" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="paragraph">

@@ -1,9 +1,26 @@
 package dao;
 
 import com.marklogic.client.eval.ServerEvaluationCall;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -22,12 +39,33 @@ public class ActDao extends AbstractDao implements IActDao {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
 
         call.xquery(addActQuery);
-        call.addVariable("act_string", raw);
+        call.addVariable("act_string", generateIds(raw));
 
         String result = call.evalAs(String.class);
 
         if (result != null && result.equals("NOT OK"))
             throw new Exception("Failed to store the act");
+    }
+
+    public String generateIds(String rawString) throws Exception {
+        DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        InputSource is = new InputSource();
+        is.setCharacterStream(new StringReader(rawString));
+
+        Document doc = db.parse(is);
+
+        NodeList list = doc.getElementsByTagName("article");
+        for(int i=0; i<list.getLength(); i++) {
+            ((Element)list.item(i)).setAttribute("id", Integer.toString(i));
+        }
+
+        Transformer transformer = TransformerFactory.newInstance().newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "5");
+        StringWriter writer = new StringWriter();
+        transformer.transform(new DOMSource(doc), new StreamResult(writer));
+        return writer.getBuffer().toString().replaceAll("\n|\r", "");
     }
 
     @Override
