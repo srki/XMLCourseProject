@@ -44,6 +44,10 @@
                     templateUrl: 'partials/actFilter.html',
                     controller: 'ActFilterCtrl'
                 })
+                .when('/acts/:id', {
+                    templateUrl: 'partials/editAct.html',
+                    controller: 'EditActCtrl'
+                })
                 .otherwise('/');
 
             $locationProvider.html5Mode(true);
@@ -53,8 +57,8 @@
         })
         .run(function (Auth, $location) {
             Auth.isLogged(function (isLogged) {
-                if (isLogged) {
-                    $location.path('/');
+                if (!isLogged) {
+                    $location.path('/login');
                 }
             });
         });

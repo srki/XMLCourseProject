@@ -18,17 +18,16 @@
 
                     var filter = JSON.parse(JSON.stringify($scope.filter));
 
-                    if(filter.start_date)
+                    if (filter.start_date)
                         filter.start_date = $scope.filter.start_date.getTime();
 
-                    if(filter.end_date)
+                    if (filter.end_date)
                         filter.end_date = $scope.filter.end_date.getTime();
 
                     Acts.get(filter).then(
-
                         function (response) {
                             $scope.data = response.data.acts.act || [];
-                            $scope.state = ($scope.data.length > 0)? 'showResults':'noResults';
+                            $scope.state = ($scope.data.length > 0) ? 'showResults' : 'noResults';
                             console.log(response);
                         },
 
@@ -50,7 +49,7 @@
 
                 function parseURI(uri) {
                     var index = uri.lastIndexOf('/');
-                    return  uri.substring(index+1, uri.length).split('.')[0];
+                    return uri.substring(index + 1, uri.length);
                 }
 
                 $scope.clear();

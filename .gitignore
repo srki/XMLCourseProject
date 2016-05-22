@@ -1,4 +1,4 @@
-/Config-local.properties
+**/Config-local.properties
 /.idea/encodings.xml
 **/.idea/workspace.xml
 **/.idea/tasks.xml

@@ -8,13 +8,16 @@
 
         <ul class="nav navbar-nav navbar-left">
             <li ng-if="display == 'representative' || display == 'president'">
-                <a href="/meetings">Assembly meetings</a>
+                <a href="/meetings">Sessions</a>
             </li>
             <li ng-if="display == 'representative' || display == 'president'">
                 <a href="/users">Users</a>
             </li>
             <li ng-if="display == 'representative'">
                 <a href="/newAct">Propose an act</a>
+            </li>
+            <li ng-if="display == 'citizen' || display == 'representative' || display == 'president'">
+                <a href="/acts">Acts</a>
             </li>
         </ul>
 

@@ -23,18 +23,21 @@ $(function () {
         }),
         elementText = '<element xlmns="http://ftn.uns.ac.rs/xml"></element>'
             .split('element')
-            .join(params.rootElement);
+            .join(params.rootElement),
+        ajaxOptions = {
+            xmlUploadPath: params.submitPath
+        };
+
+    if (params.retrievalPath) {
+        ajaxOptions.xmlRetrievalPath = params.retrievalPath;
+    }
 
     $('#XMLEditor')
         .text(elementText)
         .xmlEditor({
             menuEntries: [],
-            enforceOccurs: true,
-            prependNewElements: true,
             schema: extractor.getSchema(),
-            ajaxOptions: {
-                xmlUploadPath: params.submitPath
-            },
+            ajaxOptions: ajaxOptions,
             submitErrorHandler: function (jqXHR) {
                 var error = new X2JS().xml_str2json(jqXHR.responseText).error.message;
                 alert(error);
