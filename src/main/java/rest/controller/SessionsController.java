@@ -2,8 +2,10 @@ package rest.controller;
 
 import dao.ISessionDao;
 import model.Sessions;
+import model.User;
 import rest.response.ResponseFactory;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -21,11 +23,10 @@ public class SessionsController {
     private ISessionDao sessionDao;
 
     @GET
+    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
     public Object get(@QueryParam("status") String status) {
         try {
-            Sessions sessions;
-            sessions = sessionDao.getAllSessions(status);
-
+            Sessions sessions = sessionDao.getAllSessions(status);
             return Response.status(200).entity(sessions).build();
         } catch (JAXBException e){
             e.printStackTrace();
@@ -35,20 +36,17 @@ public class SessionsController {
 
     @GET
     @Path("/{uuid}")
+    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
     public Object getSingle(@PathParam("uuid") String uuid) {
         return sessionDao.getDocument(uuid);
     }
 
     @POST
+    @RolesAllowed(User.PRESIDENT)
     public Object post(@Context HttpServletRequest request, String sessionString) {
-
         try {
             sessionDao.storeSession(sessionString);
-
-            return Response
-                    .status(Response.Status.CREATED)
-                    .build();
-
+            return Response.status(Response.Status.CREATED).build();
         } catch (Exception e) {
             return ResponseFactory.createErrorResponse(Response.Status.BAD_REQUEST, e.getMessage());
         }
