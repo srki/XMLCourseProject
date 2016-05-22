@@ -34,7 +34,7 @@ public class SessionDao extends AbstractDao implements ISessionDao {
         String result = call.evalAs(String.class);
 
         if (result != null && result.equals("NOT OK"))
-            throw new Exception("Failed to store the act");
+            throw new Exception("Failed to store the session");
     }
 
     @Override

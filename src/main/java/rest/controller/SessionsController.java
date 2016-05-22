@@ -2,9 +2,12 @@ package rest.controller;
 
 import dao.ISessionDao;
 import model.Sessions;
+import rest.response.ResponseFactory;
 
 import javax.ejb.EJB;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBException;
@@ -37,8 +40,19 @@ public class SessionsController {
         }
     }
 
+
     @POST
-    public Object post() {
-        return null;
+    public Object post(@Context HttpServletRequest request, String sessionString) {
+
+        try {
+            sessionDao.storeSession(sessionString);
+
+            return Response
+                    .status(Response.Status.CREATED)
+                    .build();
+
+        } catch (Exception e) {
+            return ResponseFactory.createErrorResponse(Response.Status.BAD_REQUEST, e.getMessage());
+        }
     }
 }
