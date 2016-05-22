@@ -43,8 +43,9 @@ public class ActsController {
     @GET
     @Path("/{uri}/articles/{id}")
     public Object getArticle(@PathParam("uri") String uri,
-                             @PathParam("id") String id) {
-        return actDao.getArticle(uri, id);
+                             @PathParam("id") String id,
+                             @QueryParam("format") String format) {
+        return actDao.getArticle(uri, id, format);
     }
 
     @GET

@@ -89,12 +89,13 @@ public class ActDao extends AbstractDao implements IActDao {
     }
 
     @Override
-    public String getArticle(String uri, String id) {
+    public String getArticle(String uri, String id, String format) {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
 
         call.xquery(getArticle);
         call.addVariable("act_uri", uri);
         call.addVariable("article_id", id);
+        call.addVariable("format", format != null ? format : "article");
 
         String val = call.evalAs(String.class);
 
