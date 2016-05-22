@@ -7,4 +7,6 @@ public interface IActDao extends IAbstractDao {
 
     String getAllActs(String text, String title, String country, String region,
                       String establishment, Long startDate, Long endDate, String city, String serial);
+
+    String getArticle(String uri, String id);
 }
