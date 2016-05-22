@@ -44,8 +44,14 @@
                 };
 
                 $scope.update = function (index) {
-                    $location.path('/acts/' + $scope.data[index].uri);
+                    console.log(parseURI($scope.data[index].uri));
+                    $location.path('/acts/' + parseURI($scope.data[index].uri));
                 };
+
+                function parseURI(uri) {
+                    var index = uri.lastIndexOf('/');
+                    return  uri.substring(index+1, uri.length).split('.')[0];
+                }
 
                 $scope.clear();
             }
