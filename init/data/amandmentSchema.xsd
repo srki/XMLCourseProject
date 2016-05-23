@@ -3,16 +3,24 @@
     targetNamespace="http://ftn.uns.ac.rs/xml" attributeFormDefault="unqualified"
     xmlns="http://ftn.uns.ac.rs/xml">
         <xs:import schemaLocation="/xml/act.xsd" namespace="http://ftn.uns.ac.rs/xml" />
-	<xs:element name="amandment">
+	<xs:element name="amendment">
 	    <xs:complexType>
 	        <xs:sequence>
                 <xs:element type="xs:string" name="description" minOccurs="1" maxOccurs="1"> </xs:element>
-		<xs:element minOccurs="1" maxOccurs="1" ref="article"/>
+		<xs:element minOccurs="0" maxOccurs="1" ref="article"/>
 	        </xs:sequence>
 		<xs:attribute name="date" type="xs:date" use="required"/>
 		<xs:attribute name="uri" type="xs:string" use="required"/>
 		<xs:attribute name="articleId" type="xs:string" use="required"/>
-		<xs:attribute name="operation" type="xs:string" use="required"/>
+		<xs:attribute name="operation" type="xs:string" use="required">
+        	<xs:simpleType>
+                <xs:restriction base="xs:token">
+                    <xs:enumeration value="insert"/>
+                    <xs:enumeration value="update"/>
+                    <xs:enumeration value="delete"/>
+                </xs:restriction>
+            </xs:simpleType>
+		</xs:attribute>
 	    </xs:complexType>
 	</xs:element>
 </xs:schema>
