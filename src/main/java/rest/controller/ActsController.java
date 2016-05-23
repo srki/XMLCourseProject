@@ -1,6 +1,7 @@
 package rest.controller;
 
 import dao.IActDao;
+import dao.IAmendmentDao;
 import rest.response.ResponseFactory;
 
 import javax.ejb.EJB;
@@ -19,6 +20,9 @@ public class ActsController {
     @EJB
     private IActDao actDao;
 
+    @EJB
+    private IAmendmentDao amendmentDao;
+
     @POST
     public Object post(@Context HttpServletRequest request, String actString) {
 
@@ -35,9 +39,15 @@ public class ActsController {
     }
 
     @GET
-    @Path("/{uuid}")
-    public Object get(@PathParam("uuid") String uuid) {
-        return actDao.getDocument(uuid);
+    @Path("/{uri}")
+    public Object get(@PathParam("uri") String uri) {
+        return actDao.getDocument(uri);
+    }
+
+    @GET
+    @Path("/{uri}/amendments")
+    public Object getAmendments(@PathParam("uri") String uri) {
+        return amendmentDao.getAllAmendments(uri);
     }
 
     @GET

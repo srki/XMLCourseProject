@@ -1,7 +1,9 @@
 import schema "http://ftn.uns.ac.rs/xml" at "/xml/amandment.xsd";
 declare namespace mlt = "http://ftn.uns.ac.rs/xml";
 
-declare variable $amendment := doc("/xml/amendmans/a1.xml");
+declare variable $amendment_string as xs:string external;
+declare variable $amendment := xdmp:unquote($amendment_string);
+
 declare variable $errors := xdmp:validate($amendment, "strict");
 
 declare variable $validation_error := if (exists($errors//error:error)) then "NOT OK" else "OK";
