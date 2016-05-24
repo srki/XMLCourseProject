@@ -9,7 +9,7 @@ import java.net.URL;
  * @author - Srđan Milaković
  */
 public class FileReader {
-    private String readFile(String path) {
+    public static String readFile(String path) {
         URL url = FileReader.class.getClassLoader().getResource(path);
 
         if (url == null) {
@@ -27,4 +27,5 @@ public class FileReader {
             return null;
         }
     }
+
 }

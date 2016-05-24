@@ -76,6 +76,19 @@
             <xsl:attribute name="id">
                 <xsl:value-of select="@id" />
             </xsl:attribute>
+
+            <!-- Add modify link -->
+            <xsl:choose>
+                <xsl:when test="@modify">
+                    <a>
+                        <xsl:attribute name="href">
+                            <xsl:value-of select="@modify"/>
+                        </xsl:attribute>
+                        Modify
+                    </a>
+                </xsl:when>
+            </xsl:choose>
+
             <h5>
                 Član <xsl:value-of select="@id+1"/>
             </h5>

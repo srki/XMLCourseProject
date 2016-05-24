@@ -1,12 +1,28 @@
 package rest.controller;
 
+import com.marklogic.client.ResourceNotFoundException;
+import dao.IActDao;
 import model.User;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.net.URL;
 
 /**
  * @author - Srđan Milaković
@@ -14,28 +30,60 @@ import javax.ws.rs.core.MediaType;
 @Path("/export")
 public class ExportController {
 
+    private static final String ACT_XSL_PATH = "xsl/acts.xsl";
+    private static final String ARTICLE_TAG_NAME = "article";
+    private static final String ID_ATTIBUTE_NAME = "id";
+    private static final String MODIFY_ATTRIBUTE_NAME = "modify";
+    private static final String URL_FORMAT = "/acts/%s/%s";
+
+    @EJB
+    private IActDao actDao;
+
     @GET
-    @Path("/html")
+    @Path("/html/{uuid}")
     @Produces(MediaType.TEXT_HTML)
-    @RolesAllowed({User.CITIZEN, User.REPRESENTATIVE, User.PRESIDENT})
-    public Object getHtml() {
-        return null;
+    //@RolesAllowed({User.CITIZEN, User.REPRESENTATIVE, User.PRESIDENT})
+    public Object getHtml(@PathParam("uuid") String uuid) throws IOException, TransformerException {
+        return exportDocumentToHtml(actDao.getDocument(uuid), ACT_XSL_PATH);
     }
 
     @GET
-    @Path("/html-edit")
+    @Path("/html-edit/{uuid}")
     @Produces(MediaType.TEXT_HTML)
-    @RolesAllowed({User.REPRESENTATIVE})
-    public Object getEditableHtml() {
-        return null;
+    //@RolesAllowed({User.REPRESENTATIVE})
+    public Object getEditableHtml(@PathParam("uuid") String uuid) throws IOException, TransformerException {
+        Document document = actDao.getDocument(uuid);
+
+        NodeList articles = document.getElementsByTagName(ARTICLE_TAG_NAME);
+        for (int i = 0; i < articles.getLength(); i++) {
+            Element article = ((Element) articles.item(i));
+            String href = String.format(URL_FORMAT, uuid, article.getAttribute(ID_ATTIBUTE_NAME));
+            article.setAttribute(MODIFY_ATTRIBUTE_NAME, href);
+        }
+
+        return exportDocumentToHtml(document, ACT_XSL_PATH);
     }
 
     @GET
-    @Path("/pdf")
+    @Path("/pdf/{uuid}")
     @Produces("application/pdf")
     @RolesAllowed({User.CITIZEN, User.REPRESENTATIVE, User.PRESIDENT})
-    public Object getPdf() {
+    public Object getPdf(@PathParam("uuid") String uuid) {
         return null;
+    }
+
+    private String exportDocumentToHtml(Document document, String xslPath) throws IOException, TransformerException {
+        URL url = ExportController.class.getClassLoader().getResource(xslPath);
+        if (url == null) {
+            throw new ResourceNotFoundException("Can not find xsl file");
+        }
+
+        StreamSource streamSource = new StreamSource(url.openStream());
+        Transformer transformer = TransformerFactory.newInstance().newTransformer(streamSource);
+        StringWriter writer = new StringWriter();
+        transformer.transform(new DOMSource(document), new StreamResult(writer));
+
+        return writer.getBuffer().toString();
     }
 
 }
