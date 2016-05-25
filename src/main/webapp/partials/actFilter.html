@@ -51,17 +51,13 @@
             </td>
         </tr>
         <tr>
-            <td class="col-sm-3">Text:</td>
-            <td class="col-sm-3"></td>
-            <td class="col-sm-3"></td>
-            <td class="col-sm-3"></td>
+            <td colspan="3" class="col-sm-3">Text:</td>
         </tr>
         <tr>
-            <td class="col-sm-3">
-                <textarea type="text" class="form-control" id="atxt" placeholder="Enter text" ng-model="filter.text"></textarea>
+            <td class="col-sm-3" colspan="3">
+                <textarea type="text" class="form-control" id="atxt" placeholder="Enter text" ng-model="filter.text"
+                style="resize: none"></textarea>
             </td>
-            <td class="col-sm-3"></td>
-            <td class="col-sm-3"></td>
             <td class="col-sm-3" >
                 <input type="button" value = "Clear" class="btn btn-danger fl-right ml-10 mt-10" ng-click="clear()"/>
                 <input type="button" value = "Submit" class="btn btn-success fl-right mt-10" ng-click="get()"/>
