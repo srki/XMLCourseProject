@@ -23,4 +23,8 @@ declare variable $result := if ($validation_error eq 'OK' and $article_exists eq
   }
 else 'NOT OK';
 
-$result
+declare variable $props := xdmp:document-add-properties($document_uri,(
+  <status>{'proposed'}</status>
+));
+
+if (empty($props)) then $result else "NOT OK"

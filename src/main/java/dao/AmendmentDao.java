@@ -1,13 +1,9 @@
 package dao;
 
 import com.marklogic.client.eval.ServerEvaluationCall;
-import model.Sessions;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
-import java.io.StringReader;
 
 @Stateless
 @Local(IAmendmentDao.class)
@@ -35,11 +31,12 @@ public class AmendmentDao extends AbstractDao implements IAmendmentDao {
     }
 
     @Override
-    public String getAllAmendments(String actUri) {
+    public String getAllAmendments(String actUri, String status) {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
 
         call.xquery(getAllAmendmentsQuery);
-        call.addVariable("act_uri", actUri);
+        call.addVariable("act_uri", actUri == null ? "" : actUri);
+        call.addVariable("status", status == null ? "" : status);
 
         return call.evalAs(String.class);
     }

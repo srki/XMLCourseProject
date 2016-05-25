@@ -67,8 +67,8 @@ public class ActDao extends AbstractDao implements IActDao {
     }
 
     @Override
-    public String getAllActs(String text, String title, String country, String region,
-                             String establishment, Long startDate, Long endDate, String city, String serial) {
+    public String getAllActs(String text, String title, String country, String region, String establishment,
+                             Long startDate, Long endDate, String city, String serial, String status) {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -84,6 +84,7 @@ public class ActDao extends AbstractDao implements IActDao {
         call.addVariable("serial", serial == null ? "" : serial);
         call.addVariable("start_date", startDate == null ? "" : format.format(new Date(startDate)));
         call.addVariable("end_date", endDate == null ? "" : format.format(new Date(endDate)));
+        call.addVariable("status", status == null ? "" : status);
 
         return call.evalAs(String.class);
     }

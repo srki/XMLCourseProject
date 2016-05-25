@@ -25,7 +25,8 @@ declare variable $props := xdmp:document-add-properties($document_uri,(
   <establishment>{data($act/mlt:act/@establishment)}</establishment>,
   <serial>{data($act/mlt:act/@serial)}</serial>,
   <date>{data($act/mlt:act/@date)}</date>,
-  <city>{data($act/mlt:act/@city)}</city>
+  <city>{data($act/mlt:act/@city)}</city>,
+  <status>{'proposed'}</status>
 ));
 
 if (empty($props)) then $result else "NOT OK"

@@ -46,8 +46,8 @@ public class ActsController {
 
     @GET
     @Path("/{uri}/amendments")
-    public Object getAmendments(@PathParam("uri") String uri) {
-        return amendmentDao.getAllAmendments(uri);
+    public Object getAmendments(@PathParam("uri") String uri, @QueryParam("status") String status) {
+        return amendmentDao.getAllAmendments(uri, status);
     }
 
     @GET
@@ -67,8 +67,9 @@ public class ActsController {
                       @QueryParam("start_date") Long startDate,
                       @QueryParam("end_date") Long endDate,
                       @QueryParam("city") String city,
-                      @QueryParam("serial") String serial) {
+                      @QueryParam("serial") String serial,
+                      @QueryParam("status") String status) {
 
-        return actDao.getAllActs(text, title, country, region, establishment, startDate, endDate, city, serial);
+        return actDao.getAllActs(text, title, country, region, establishment, startDate, endDate, city, serial, status);
     }
 }

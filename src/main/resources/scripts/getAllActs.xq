@@ -4,6 +4,7 @@ declare variable $region as xs:string external;
 declare variable $establishment as xs:string external;
 declare variable $city as xs:string external;
 declare variable $serial as xs:string external;
+declare variable $status as xs:string external;
 
 declare variable $start_date as xs:string external;
 declare variable $end_date as xs:string external;
@@ -32,7 +33,7 @@ declare variable $q4 := if ($region eq "") then $q3 else
     cts:properties-query(
             cts:element-word-query(
                     QName('', 'region'),
-                    tokenize($title, '\s')
+                    tokenize($region, '\s')
             )
     )));
 
@@ -40,7 +41,7 @@ declare variable $q5 := if ($establishment eq "") then $q4 else
     cts:and-query(($q4, cts:properties-query(
             cts:element-word-query(
                     QName('', 'establishment'),
-                    tokenize($title, '\s')
+                    tokenize($establishment, '\s')
             )
     )));
 
@@ -49,7 +50,7 @@ declare variable $q6 := if ($city eq "") then $q5 else
     cts:properties-query(
             cts:element-word-query(
                     QName('', 'city'),
-                    tokenize($title, '\s')
+                    tokenize($city, '\s')
             )
     )));
 
@@ -58,7 +59,7 @@ declare variable $q7 := if ($serial eq "") then $q6 else
     cts:properties-query(
             cts:element-word-query(
                     QName('', 'serial'),
-                    tokenize($title, '\s')
+                    tokenize($serial, '\s')
             )
     )));
 
@@ -73,13 +74,23 @@ declare variable $q8 := if ($start_date eq "" or $end_date eq "") then $q7 else
         ))
     ));
 
+declare variable $q9 := if ($status eq "") then $q8 else
+    cts:and-query(($q8, cts:properties-query(
+            cts:element-word-query(
+                    QName('', 'status'),
+                    tokenize($status, '\s')
+            )
+    )));
+
+
 <acts>
     {
-        for $x in cts:uris((), (), $q8)
+        for $x in cts:uris((), (), $q9)
         return
             <act>
                 <uri>{$x}</uri>
                 <title>{data(xdmp:document-get-properties($x, QName('', 'title')))}</title>
+                <status>{data(xdmp:document-get-properties($x, QName('', 'status')))}</status>
             </act>
     }
 </acts>

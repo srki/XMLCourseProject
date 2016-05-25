@@ -1,7 +1,6 @@
 package rest.controller;
 
 import dao.ISessionDao;
-import model.Sessions;
 import model.User;
 import rest.response.ResponseFactory;
 
@@ -51,4 +50,5 @@ public class SessionsController {
             return ResponseFactory.createErrorResponse(Response.Status.BAD_REQUEST, e.getMessage());
         }
     }
+
 }

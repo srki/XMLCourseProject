@@ -31,7 +31,7 @@ public class AmendmentController {
     }
 
     @GET
-    public Object get() {
-        return amendmentDao.getAllAmendments("");
+    public Object get(@QueryParam("status") String status) {
+        return amendmentDao.getAllAmendments("", status);
     }
 }

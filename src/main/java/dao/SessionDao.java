@@ -1,16 +1,11 @@
 package dao;
 
 import com.marklogic.client.eval.ServerEvaluationCall;
-import model.Sessions;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ws.rs.NotFoundException;
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import java.io.StringReader;
-import java.util.Date;
 
 @Stateless
 @Local(ISessionDao.class)
