@@ -34,8 +34,8 @@
                             schemaName: 'amendment.xsd',
                             rootElement: 'amendment',
                             submitPath: '/api/amendments',
-                            retrievalPath: '/api/acts/' + $routeParams.actId + '/'
-                            + $routeParams.articleId + '?format="amendment"'
+                            retrievalPath: '/api/acts/' + $routeParams.actId + '/articles/'
+                            + $routeParams.articleId + '/amendment'
                         };
                     }
                 }());

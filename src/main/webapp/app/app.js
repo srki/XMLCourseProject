@@ -6,7 +6,7 @@
 (function (angular) {
     "use strict";
     angular.module('app', ['app.controllers', 'app.services', 'app.directives', 'app.constants',
-        'ngRoute', 'ngAnimate', 'ui.bootstrap'])
+        'ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap'])
         .config(function ($routeProvider, $locationProvider, $httpProvider) {
             $routeProvider
                 .when('/', {
@@ -45,7 +45,7 @@
                     controller: 'ActFilterCtrl'
                 })
                 .when('/acts/:id', {
-                    templateUrl: 'partials/editAct.html',
+                    templateUrl: 'partials/showAct.html',
                     controller: 'EditActCtrl'
                 })
                 .when('/acts/:actId/:articleId', {

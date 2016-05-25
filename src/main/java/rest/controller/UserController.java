@@ -21,7 +21,7 @@ public class UserController {
     IUserDao userDao;
 
     @GET
-    @RolesAllowed({User.REPRESENTATIVE, User.CITIZEN})
+    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
     public Object getUsers(@QueryParam("type") String type) {
         try {
             if(type == null || "".equals(type)) {
@@ -38,7 +38,7 @@ public class UserController {
 
     @GET
     @Path("/{username}")
-    @RolesAllowed({User.REPRESENTATIVE, User.CITIZEN})
+    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
     public Object getUser(@PathParam("username") String username) {
         try {
             User u = userDao.getUser(username);

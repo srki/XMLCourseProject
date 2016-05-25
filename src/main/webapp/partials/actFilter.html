@@ -84,7 +84,7 @@
                 <td>{{ act.title }}</td>
                 <td><button class="btn btn-primary" ng-click="update($index)">Update</button></td>
                 <td><button class="btn btn-warning">PDF</button></td>
-                <td><button class="btn btn-info">HTML</button></td>
+                <td><button class="btn btn-info" ng-click="showHtml($index)">HTML</button></td>
             </tr>
         </table>
         <p ng-if="state === 'noResults'"><b>No results</b></p>

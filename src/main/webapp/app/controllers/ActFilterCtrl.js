@@ -57,6 +57,11 @@
 
                 $scope.update = function (index) {
                     $location.path('/acts/' + parseURI($scope.data[index].uri));
+                    $location.search('edit', 'true');
+                };
+
+                $scope.showHtml = function (index) {
+                    $location.path('/acts/' + parseURI($scope.data[index].uri));
                 };
 
                 function parseURI(uri) {
