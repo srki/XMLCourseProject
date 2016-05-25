@@ -30,7 +30,7 @@
                         }
                     }else{
                         $scope.options = {
-                            schemaUri: '/api/schemas/',
+                            schemaUri: '/xml/',
                             schemaName: 'amendment.xsd',
                             rootElement: 'amendment',
                             submitPath: '/api/amendments',
