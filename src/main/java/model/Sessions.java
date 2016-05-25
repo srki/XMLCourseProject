@@ -12,16 +12,16 @@ import java.util.List;
 public class Sessions {
 
     @XmlElement(required = true, name = "session")
-    protected List<Session> sessions;
+    protected List<String> sessions;
 
-    public List<Session> getSessions() {
+    public List<String> getSessions() {
         if (sessions == null) {
             sessions = new ArrayList<>();
         }
         return sessions;
     }
 
-    public void addSession(Session u) {
+    public void addSession(String u) {
         if (sessions == null) {
             sessions = new ArrayList<>();
         }

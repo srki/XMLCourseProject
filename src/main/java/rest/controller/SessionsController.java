@@ -26,7 +26,7 @@ public class SessionsController {
     @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
     public Object get(@QueryParam("status") String status) {
         try {
-            Sessions sessions = sessionDao.getAllSessions(status);
+            String sessions = sessionDao.getAllSessions(status);
             return Response.status(200).entity(sessions).build();
         } catch (JAXBException e){
             e.printStackTrace();

@@ -5,6 +5,7 @@ import model.Sessions;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ws.rs.NotFoundException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -38,7 +39,7 @@ public class SessionDao extends AbstractDao implements ISessionDao {
     }
 
     @Override
-    public Sessions getAllSessions(String status) throws JAXBException {
+    public String getAllSessions(String status) throws JAXBException {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
 
         call.xquery(getAllSessionsQuery);
@@ -46,9 +47,9 @@ public class SessionDao extends AbstractDao implements ISessionDao {
 
         String raw = call.evalAs(String.class);
 
-        JAXBContext context = JAXBContext.newInstance(Sessions.class);
-        Unmarshaller um = context.createUnmarshaller();
+        if (raw == null)
+            throw new NotFoundException();
 
-        return (raw != null) ? (Sessions) um.unmarshal(new StringReader(raw)) : null;
+        return raw;
     }
 }
