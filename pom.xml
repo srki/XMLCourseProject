@@ -68,6 +68,21 @@
 
         <!-- ApacheCommons Client end -->
 
+        <!-- http://mvnrepository.com/artifact/net.sf.saxon/Saxon-HE -->
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+            <version>9.4</version>
+        </dependency>
+
+        <!-- http://mvnrepository.com/artifact/org.apache.xmlgraphics/fop -->
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>fop</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
