@@ -9,5 +9,6 @@ angular.module('app.services', [
     'app.ForbiddenResponseInterceptor',
     'app.ContentTypeInterceptor',
     'app.AssemblyMeeting',
-    'app.Acts'
+    'app.Acts',
+    'app.Articles'
 ]);

@@ -12,13 +12,13 @@
             </tr>
             <tr>
                 <td class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Enter place" ng-model="inputData.place">
+                    <input type="text" class="form-control" placeholder="Enter place" ng-model="inputData.place" required>
                 </td>
                 <td class="col-sm-3">
-                    <input type="date" class="form-control"  ng-model="inputData.start_date">
+                    <input type="datetime-local" class="form-control"  ng-model="inputData.start_date" required>
                 </td>
                 <td class="col-sm-3">
-                    <input type="date" class="form-control"  ng-model="inputData.end_date">
+                    <input type="datetime-local" class="form-control"  ng-model="inputData.end_date" required>
                 </td>
                 <td class="col-sm-3" >
                     <input type="button" value = "Cancel" class="btn btn-danger fl-right ml-10 mt-10" ng-click="cancel()"/>

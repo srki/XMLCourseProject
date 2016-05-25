@@ -20,4 +20,4 @@ declare variable $result := if ($validation_error eq 'OK' and $is_not_session_er
     }
 else 'NOT OK';
 
-$validation_error
+$result

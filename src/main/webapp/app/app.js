@@ -48,6 +48,10 @@
                     templateUrl: 'partials/editAct.html',
                     controller: 'EditActCtrl'
                 })
+                .when('/acts/:actId/:articleId', {
+                    templateUrl: 'partials/editAct.html',
+                    controller: 'EditArticleCtrl'
+                })
                 .otherwise('/');
 
             $locationProvider.html5Mode(true);

@@ -16,8 +16,9 @@
 
                 $scope.getUpcoming = function () {
                     AssemblyMeeting.getUpcoming().then(
+
                         function (response) {
-                          console.log(response);
+                            console.log(response);
                         },
 
                         function (error) {
@@ -28,6 +29,7 @@
 
                 $scope.getFinished = function () {
                     AssemblyMeeting.getFinished().then(
+
                         function (response) {
                             console.log(response);
                         },
@@ -40,7 +42,20 @@
 
                 $scope.create = function () {
 
-                }
+                    $scope.state = 'idle';
+                    AssemblyMeeting.create($scope.inputData).then(
+
+                        function (response) {
+                            $scope.inputData = {};
+                            console.log(response);
+                        },
+
+                        function (error) {
+                            $scope.inputData = {};
+                            console.log(error);
+                        }
+                    );
+                };
 
                 $scope.showForm = function () {
                     $scope.state = 'createNew';
