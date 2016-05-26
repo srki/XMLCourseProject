@@ -109,7 +109,7 @@ public class ExportController {
         }
 
         // Initialize FOP factory object
-        FopFactory fopFactory = FopFactory.newInstance(new File(urlConf.getFile()));
+        FopFactory fopFactory = FopFactory.newInstance(urlConf.toURI());
 
         // Setup the XSLT transformer factory
         TransformerFactory transformerFactory = new TransformerFactoryImpl();
