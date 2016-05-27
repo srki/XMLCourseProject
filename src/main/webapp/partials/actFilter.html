@@ -56,7 +56,7 @@
         <tr>
             <td class="col-sm-3" colspan="3">
                 <textarea type="text" class="form-control" id="atxt" placeholder="Enter text" ng-model="filter.text"
-                style="resize: none"></textarea>
+                          style="resize: none"></textarea>
             </td>
             <td class="col-sm-3" >
                 <input type="button" value = "Clear" class="btn btn-danger fl-right ml-10 mt-10" ng-click="clear()"/>
@@ -72,13 +72,13 @@
         <table class="table table-bordered table-striped table-hover" ng-if="state === 'showResults'">
             <tr>
                 <th>Title</th>
-                <th></th>
+                <th  ng-if="display==='representative'"></th>
                 <th></th>
                 <th></th>
             </tr>
             <tr ng-repeat="act in data">
                 <td>{{ act.title }}</td>
-                <td><button class="btn btn-primary" ng-click="update($index)">Update</button></td>
+                <td  ng-if="display==='representative'" ><button class="btn btn-primary" ng-click="update($index)">Update</button></td>
                 <td><button class="btn btn-warning">PDF</button></td>
                 <td><button class="btn btn-info" ng-click="showHtml($index)">HTML</button></td>
             </tr>

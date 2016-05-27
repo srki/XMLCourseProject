@@ -7,14 +7,16 @@
 
     angular.module('app.ActFilterCtrl', [])
 
-        .controller('ActFilterCtrl', ['$scope', 'Acts', '$location',
+        .controller('ActFilterCtrl', ['$scope', 'Acts', '$location', '$routeParams',
 
-            function ($scope, Acts, $location) {
+            function ($scope, Acts, $location, $routeParams) {
 
                 $scope.data = [];
                 $scope.state = 'idle';
 
                 $scope.get = function () {
+
+                    $location.search('query', 'true');
 
                     var filter = JSON.parse(JSON.stringify($scope.filter));
 
@@ -53,6 +55,7 @@
                 $scope.clear = function () {
 
                     $scope.filter = {};
+                    $routeParams.filter = {};
                 };
 
                 $scope.update = function (index) {
@@ -70,10 +73,14 @@
                 }
 
                 $scope.clear();
+
+                if($routeParams.query) {
+                    $scope.get();
+                }
             }
         ]);
 
-}(angular));
 
+}(angular));
 
 

@@ -7,10 +7,10 @@
 
     angular.module('app.AssemblyMeetingCtrl', [])
 
-        .controller('AssemblyMeetingCtrl', ['$scope', 'AssemblyMeeting',
-            function ($scope, AssemblyMeeting) {
+        .controller('AssemblyMeetingCtrl', ['$scope', 'AssemblyMeeting', '$location',
+            function ($scope, AssemblyMeeting, $location) {
 
-                $scope.meetings = [{id: 1, startDate: Date.now(), endDate: Date.now()}];
+                $scope.meetings = [];
                 $scope.inputData = {};
                 $scope.state = 'idle';
 
@@ -18,10 +18,12 @@
                     AssemblyMeeting.getUpcoming().then(
 
                         function (response) {
-                            console.log(response);
+                            processResponse(response);
+                            $scope.title = 'Upcoming';
                         },
 
                         function (error) {
+                            $scope.data = [];
                             console.log(error);
                         }
                     );
@@ -31,10 +33,12 @@
                     AssemblyMeeting.getFinished().then(
 
                         function (response) {
-                            console.log(response);
+                            processResponse(response);
+                            $scope.title = 'Finished';
                         },
 
                         function (error) {
+                            $scope.data = [];
                             console.log(error);
                         }
                     );
@@ -47,6 +51,7 @@
 
                         function (response) {
                             $scope.inputData = {};
+                            $scope.getUpcoming();
                             console.log(response);
                         },
 
@@ -65,6 +70,29 @@
                     $scope.state = 'idle';
                     $scope.inputData = {};
                 };
+
+                $scope.addResults = function () {
+                    //$location.path('/sessionResults/');
+                };
+
+                function processResponse(response) {
+
+                    if(response.data.sessions.session){
+
+                        if(response.data.sessions.session.length) {
+                            $scope.data = response.data.sessions.session;
+                        }else {
+                            $scope.data = [];
+                            $scope.data.push(response.data.sessions.session);
+                        }
+                    }else{
+                        $scope.data = [];
+                    }
+
+                    console.log(response);
+                }
+
+                $scope.getUpcoming();
             }
         ]);
 

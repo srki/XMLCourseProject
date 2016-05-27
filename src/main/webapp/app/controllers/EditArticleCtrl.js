@@ -7,7 +7,7 @@
     "use strict";
 
     angular.module('app.EditArticleCtrl', [])
-        
+
         .controller('EditArticleCtrl', [
             '$scope', '$routeParams', '$location', 'Auth',
 
