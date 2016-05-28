@@ -7,10 +7,13 @@ declare variable $amendment := xdmp:unquote($amendment_string);
 declare variable $errors := xdmp:validate($amendment, "strict");
 
 declare variable $validation_error := if (exists($errors//error:error)) then "NOT OK" else "OK";
+
 declare variable $article_exists := if (
-empty(doc("/xml/acts/" || $amendment/mlt:amendment/@uri)//mlt:article[@id=$amendment/mlt:amendment/@articleId]) and 
-$amendment/mlt:amendment/@operation eq not("delete")) then "NOT OK" else "OK";
-declare variable $same_article_id := if($amendment/mlt:amendment/@articleId eq $amendment/mlt:amendment/mlt:article/@id) then "OK" else "NOT OK";
+empty(doc("/xml/acts/" || $amendment/mlt:amendment/@uri)//mlt:article[@id=$amendment/mlt:amendment/@articleId]) and not(
+$amendment/mlt:amendment/@operation eq "delete")) then "NOT OK" else "OK";
+
+declare variable $same_article_id := if($amendment/mlt:amendment/@articleId eq $amendment/mlt:amendment/mlt:article/@id
+        or $amendment/mlt:amendment/@operation eq "delete") then "OK" else "NOT OK";
 
 declare variable $document_uri := "/xml/amendments/" || sem:uuid-string() || ".xml";
 
