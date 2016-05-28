@@ -7,7 +7,7 @@
                 encoding="UTF-8" indent="yes"/>
 
     <xsl:template match="/">
-        <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+        <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="Athena, Theano">
 
             <fo:layout-master-set>
                 <fo:simple-page-master master-name="act">
@@ -17,15 +17,21 @@
 
             <fo:page-sequence master-reference="act">
                 <fo:flow flow-name="xsl-region-body">
-                    <fo:block font-family="Calibri" font-size="9px" font-weight="bold" padding="30px">
+                    <fo:block text-align="center">
+                        <fo:external-graphic src="images/novi-sad-logo.png" content-height="scale-to-fit" height="100px" content-width="100px"/>
+                    </fo:block>
+                    <fo:block text-align="center">
+                        GRAD NOVI SAD
+                    </fo:block>
+                    <fo:block font-size="9px" font-weight="bold" padding="30px">
                         <xsl:value-of select="//b:preamble"/>
                     </fo:block>
-                    <fo:block text-indent="24px" font-family="Arial, Helventica">
-                        <fo:inline font-weight="bold">
+                    <fo:block text-indent="24px">
+                        <fo:inline font-weight="bold" text-align="center">
                             <xsl:value-of select="b:act/@title"/>
                         </fo:inline>
                     </fo:block>
-                    <fo:block font-family="Times-Roman, Courier, Times, Symbol">
+                    <fo:block font-family="Athena, Theano">
                         <xsl:apply-templates select="b:act/*[not(self::b:preamble)] "/>
                     </fo:block>
 
@@ -42,8 +48,8 @@
         </fo:block>
     </xsl:template>
     <xsl:template match="b:part">
-        <fo:block margin-top="25px" text-indent="22px">
-            <xsl:value-of select="@title"/>
+        <fo:block margin-top="25px" text-align="center">
+            <xsl:value-of select="@title" />
         </fo:block>
         <xsl:choose>
             <xsl:when test="count(b:head) &gt; 0">
@@ -57,7 +63,7 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="b:head">
-        <fo:block margin-top="20px" text-indent="18px">
+        <fo:block margin-top="20px" text-align="center">
             <xsl:value-of select="@title"/>
         </fo:block>
         <xsl:choose>
@@ -74,7 +80,7 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="b:section">
-        <fo:block margin-top="16px" text-indent="16px">
+        <fo:block margin-top="16px" text-align="center">
             <xsl:value-of select="@title"/>
         </fo:block>
         <xsl:choose>
@@ -87,7 +93,7 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="b:subsection">
-        <fo:block margin-top="12px" text-indent="14px">
+        <fo:block margin-top="12px" text-align="center">
             <xsl:value-of select="@title"/>
         </fo:block>
         <xsl:apply-templates select="b:article"/>
@@ -95,7 +101,7 @@
     <xsl:template match="b:article">
         <fo:block>
 
-            <fo:block margin-top="10px" text-indent="12px">
+            <fo:block margin-top="10px" margin-bottom="10px" text-align="center">
                 &#269;lan <xsl:value-of select="@id+1"/>
             </fo:block>
             <fo:block font-size="12px">
@@ -104,17 +110,16 @@
                         <xsl:apply-templates select="b:paragraph"/>
                     </xsl:when>
                     <xsl:otherwise>
-
-                        <xsl:value-of select="."/>
-
-
+                        <fo:block text-align="justify">
+                            <xsl:value-of select="."/>
+                        </fo:block>
                     </xsl:otherwise>
                 </xsl:choose>
             </fo:block>
         </fo:block>
     </xsl:template>
     <xsl:template match="b:paragraph">
-        <fo:block text-indent="8px"><xsl:value-of select="b:text"/></fo:block>
+        <fo:block  text-indent="24px" text-align="justify"><xsl:value-of select="b:text"/></fo:block>
         <xsl:choose>
             <xsl:when test="count(b:item) &gt; 0">
                 <fo:block>
@@ -135,7 +140,7 @@
                     <!--<fo:list-item>-->
 
                     <!--<fo:list-item-label>-->
-                    <fo:block><xsl:value-of select="position()"/>)<xsl:value-of select="."/></fo:block>
+                    <fo:block  text-indent="24px" text-align="justify"><xsl:value-of select="position()"/>)<xsl:value-of select="."/></fo:block>
                     <!--</fo:list-item-body>-->
                     <!--</fo:list-item>-->
 
@@ -152,7 +157,7 @@
             </xsl:when>
             <xsl:otherwise>
                 <fo:block>
-                    <fo:block>(<xsl:value-of select="position()"/>)<xsl:value-of select="."/></fo:block>
+                    <fo:block text-align="justify">(<xsl:value-of select="position()"/>)<xsl:value-of select="."/></fo:block>
                 </fo:block>
             </xsl:otherwise>
         </xsl:choose>
