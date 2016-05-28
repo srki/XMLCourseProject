@@ -6,9 +6,9 @@
 (function (angular) {
     'use strict';
 
-    angular.module('app.AssemblyMeeting', [])
+    angular.module('app.Sessions', [])
 
-        .factory('AssemblyMeeting', ['$http', function ($http) {
+        .factory('Sessions', ['$http', function ($http) {
 
             return {
 

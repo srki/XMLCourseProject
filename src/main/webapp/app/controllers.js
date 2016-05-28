@@ -9,7 +9,7 @@ angular.module('app.controllers', [
     'app.LogoutCtrl',
     'app.HomeCtrl',
     'app.UsersCtrl',
-    'app.AssemblyMeetingCtrl',
+    'app.SessionsCtrl',
     'app.NewActCtrl',
     'app.ActFilterCtrl',
     'app.EditActCtrl',

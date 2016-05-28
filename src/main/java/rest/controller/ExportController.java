@@ -43,7 +43,7 @@ public class ExportController {
     private static final String ACT_XSL_FO_PATH = "xsl/acts-fo.xsl";
     private static final String FOP_CFG = "fop.xconf";
     private static final String ARTICLE_TAG_NAME = "article";
-    private static final String ID_ATTIBUTE_NAME = "id";
+    private static final String ID_ATTRIBUTE_NAME = "id";
     private static final String MODIFY_ATTRIBUTE_NAME = "modify";
     private static final String URL_FORMAT = "/acts/%s/%s";
 
@@ -68,7 +68,7 @@ public class ExportController {
         NodeList articles = document.getElementsByTagName(ARTICLE_TAG_NAME);
         for (int i = 0; i < articles.getLength(); i++) {
             Element article = ((Element) articles.item(i));
-            String href = String.format(URL_FORMAT, uuid, article.getAttribute(ID_ATTIBUTE_NAME));
+            String href = String.format(URL_FORMAT, uuid, article.getAttribute(ID_ATTRIBUTE_NAME));
             article.setAttribute(MODIFY_ATTRIBUTE_NAME, href);
         }
 

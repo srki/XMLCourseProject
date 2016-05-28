@@ -31,7 +31,7 @@ declare variable $q3 := if ($status eq "finished") then
             <session>
                 <uri>{$x}</uri>
                 <beginDate>{data(doc($x)/mlt:session/@beginDate)}</beginDate>
-                <endDate>{data(doc($x)/mlt:session/@beginDate)}</endDate>
+                <endDate>{data(doc($x)/mlt:session/@endDate)}</endDate>
                 <place>{data(doc($x)/mlt:session/mlt:place)}</place>
             </session>
     }
