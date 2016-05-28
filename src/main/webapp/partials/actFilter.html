@@ -78,9 +78,9 @@
             </tr>
             <tr ng-repeat="act in data">
                 <td>{{ act.title }}</td>
-                <td  ng-if="display==='representative'" ><button class="btn btn-primary" ng-click="update($index)">Update</button></td>
-                <td><button class="btn btn-warning">PDF</button></td>
-                <td><button class="btn btn-info" ng-click="showHtml($index)">HTML</button></td>
+                <td><button class="btn btn-warning" ng-click="openPdf(act.uri)">PDF</button></td>
+                <td><button class="btn btn-info" ng-click="showHtml(act.uri)">HTML</button></td>
+                <td  ng-if="display==='representative'" ><button class="btn btn-primary" ng-click="update(act.uri)">Update</button></td>
             </tr>
         </table>
         <p ng-if="state === 'noResults'"><b>No results</b></p>

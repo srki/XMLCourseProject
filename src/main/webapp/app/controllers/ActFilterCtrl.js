@@ -7,9 +7,9 @@
 
     angular.module('app.ActFilterCtrl', [])
 
-        .controller('ActFilterCtrl', ['$scope', 'Acts', '$location', '$routeParams',
+        .controller('ActFilterCtrl', ['$scope', 'Acts', '$location', '$routeParams', '$window',
 
-            function ($scope, Acts, $location, $routeParams) {
+            function ($scope, Acts, $location, $routeParams, $window) {
 
                 $scope.data = [];
                 $scope.state = 'idle';
@@ -58,13 +58,17 @@
                     $routeParams.filter = {};
                 };
 
-                $scope.update = function (index) {
-                    $location.path('/acts/' + parseURI($scope.data[index].uri));
+                $scope.update = function (uri) {
+                    $location.path('/acts/' + parseURI(uri));
                     $location.search('edit', 'true');
                 };
 
-                $scope.showHtml = function (index) {
-                    $location.path('/acts/' + parseURI($scope.data[index].uri));
+                $scope.showHtml = function (uri) {
+                    $location.path('/acts/' + parseURI(uri));
+                };
+
+                $scope.openPdf = function (uri) {
+                    $window.open('/api/export/pdf/' + parseURI(uri));
                 };
 
                 function parseURI(uri) {
