@@ -2,20 +2,25 @@
  * Created by Aleksandar Lukić on 19.5.16..
  */
 
-
+/*global angular*/
 (function (angular) {
+    var hour = 60 * 60 * 1000,
+        day = hour * 24;
 
-    angular.module('app.AssemblyMeetingCtrl', [])
+    angular.module('app.SessionsCtrl', [])
 
-        .controller('AssemblyMeetingCtrl', ['$scope', 'AssemblyMeeting', '$location',
-            function ($scope, AssemblyMeeting, $location) {
+        .controller('SessionsCtrl', ['$scope', 'Sessions', '$location',
+            function ($scope, Sessions) {
 
-                $scope.meetings = [];
-                $scope.inputData = {};
+                $scope.sessions = [];
+                $scope.inputData = {
+                    beginDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day),
+                    endDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day)
+                };
                 $scope.state = 'idle';
 
                 $scope.getUpcoming = function () {
-                    AssemblyMeeting.getUpcoming().then(
+                    Sessions.getUpcoming().then(
 
                         function (response) {
                             processResponse(response);
@@ -30,7 +35,7 @@
                 };
 
                 $scope.getFinished = function () {
-                    AssemblyMeeting.getFinished().then(
+                    Sessions.getFinished().then(
 
                         function (response) {
                             processResponse(response);
@@ -47,16 +52,22 @@
                 $scope.create = function () {
 
                     $scope.state = 'idle';
-                    AssemblyMeeting.create($scope.inputData).then(
+                    Sessions.create($scope.inputData).then(
 
                         function (response) {
-                            $scope.inputData = {};
+                            $scope.inputData = {
+                                beginDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day),
+                                endDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day)
+                            };
                             $scope.getUpcoming();
                             console.log(response);
                         },
 
                         function (error) {
-                            $scope.inputData = {};
+                            $scope.inputData = {
+                                beginDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day),
+                                endDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day)
+                            };
                             console.log(error);
                         }
                     );
@@ -68,7 +79,10 @@
 
                 $scope.cancel = function () {
                     $scope.state = 'idle';
-                    $scope.inputData = {};
+                    $scope.inputData = {
+                        beginDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day),
+                        endDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day)
+                    };
                 };
 
                 $scope.addResults = function () {

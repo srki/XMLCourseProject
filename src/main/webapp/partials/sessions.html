@@ -1,4 +1,4 @@
-<div id="AssemblyMeeting" class="pl-50 pr-50 pb-50 pt-20">
+<div id="Sessions" class="pl-50 pr-50 pb-50 pt-20">
     <h2 class="mb-10">Assembly sessions</h2>
 
     <div ng-if="state==='createNew'">
@@ -47,16 +47,18 @@
             <th>Place</th>
             <th>Starts</th>
             <th>Ends</th>
-            <th></th>
-            <th ng-if="display==='president'"></th>
+            <th class="ta-mid"></th>
+            <th class="ta-mid" ng-if="display === 'president'"></th>
         </tr>
-        <tr ng-repeat="meeting in data">
+        <tr ng-repeat="session in data">
             <td>{{$index + 1}}</td>
-            <td>{{ meeting.place }}</td>
-            <td>{{ meeting.beginDate| date:'medium':'UTC'}}</td>
-            <td>{{ meeting.endDate| date:'medium':'UTC'}}</td>
-            <td><button class="btn btn-warning">Details</button></td>
-            <td ng-if="display==='president'"><button class="btn btn-primary" ng-click="addResults()">Add results</button></td>
+            <td>{{ session.place }}</td>
+            <td>{{ session.beginDate| date:'medium':'UTC'}}</td>
+            <td>{{ session.endDate| date:'medium':'UTC'}}</td>
+            <td class="ta-mid"><button class="btn btn-warning">Details</button></td>
+            <td  class="ta-mid" ng-if="display==='president'">
+                <button class="btn btn-primary" ng-click="addResults()">Add results</button>
+            </td>
         </tr>
     </table>
     <p ng-if="data.length === 0"><b>No results</b></p>

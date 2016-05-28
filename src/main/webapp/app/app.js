@@ -32,9 +32,9 @@
                     templateUrl: 'partials/users.html',
                     controller: 'UsersCtrl'
                 })
-                .when('/meetings', {
-                    templateUrl: 'partials/assemblyMeeting.html',
-                    controller: 'AssemblyMeetingCtrl'
+                .when('/sessions', {
+                    templateUrl: 'partials/sessions.html',
+                    controller: 'SessionsCtrl'
                 })
                 .when('/newAct', {
                     templateUrl: 'partials/newAct.html',
