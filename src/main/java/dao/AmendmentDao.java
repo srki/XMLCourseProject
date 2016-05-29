@@ -14,7 +14,7 @@ public class AmendmentDao extends AbstractDao implements IAmendmentDao {
 
     @Override
     public String getDirectoryName() {
-        return "/xml/amendment/";
+        return "/xml/amendments/";
     }
 
     @Override
