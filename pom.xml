@@ -68,20 +68,19 @@
 
         <!-- ApacheCommons Client end -->
 
-        <!-- http://mvnrepository.com/artifact/net.sf.saxon/Saxon-HE -->
+        <!-- ITextPDF begin -->
         <dependency>
-            <groupId>net.sf.saxon</groupId>
-            <artifactId>Saxon-HE</artifactId>
-            <version>9.7.0-1</version>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.9</version>
         </dependency>
 
-        <!-- http://mvnrepository.com/artifact/org.apache.xmlgraphics/fop -->
         <dependency>
-            <groupId>org.apache.xmlgraphics</groupId>
-            <artifactId>fop</artifactId>
-            <version>2.1</version>
+            <groupId>com.itextpdf.tool</groupId>
+            <artifactId>xmlworker</artifactId>
+            <version>5.5.9</version>
         </dependency>
-
+        <!-- ITextPDF end -->
 
     </dependencies>
 

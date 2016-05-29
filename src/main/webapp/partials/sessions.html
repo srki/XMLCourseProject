@@ -57,7 +57,7 @@
             <td>{{ session.endDate| date:'medium':'UTC'}}</td>
             <td class="ta-mid"><button class="btn btn-warning">Details</button></td>
             <td  class="ta-mid" ng-if="display==='president'">
-                <button class="btn btn-primary" ng-click="addResults()">Add results</button>
+                <button class="btn btn-primary" ng-click="addResults(session.uri)">Add results</button>
             </td>
         </tr>
     </table>

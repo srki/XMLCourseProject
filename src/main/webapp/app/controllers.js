@@ -13,6 +13,6 @@ angular.module('app.controllers', [
     'app.NewActCtrl',
     'app.ActFilterCtrl',
     'app.EditActCtrl',
-    'app.EditArticleCtrl'
-
+    'app.EditArticleCtrl',
+    'app.SessionResultCtrl'
 ]);
