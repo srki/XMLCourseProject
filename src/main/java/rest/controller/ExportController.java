@@ -94,7 +94,7 @@ public class ExportController {
         PdfWriter pdfWriter = PdfWriter.getInstance(document, outStream);
         document.open();
 
-        FontFactory.register("/fonts/Calibri.ttf");
+        //FontFactory.register("/fonts/Calibri.ttf");
         InputStream stream = new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8));
         XMLWorkerHelper.getInstance().parseXHtml(pdfWriter, document, stream, StandardCharsets.UTF_8);
 

@@ -107,7 +107,7 @@
             </xsl:choose>
 
             <h3 style="text-align: center">
-                Član<xsl:value-of select="@id+1"/>
+                Član <xsl:value-of select="@id+1"/>
             </h3>
             <xsl:choose>
                 <xsl:when test="count(b:paragraph) &gt; 0">
@@ -127,9 +127,9 @@
         </p>
         <xsl:choose>
             <xsl:when test="count(b:item) &gt; 0">
-                <ul>
+                <ol>
                     <xsl:apply-templates select="b:item"/>
-                </ul>
+                </ol>
             </xsl:when>
             <xsl:otherwise>
             </xsl:otherwise>
@@ -154,14 +154,14 @@
     <xsl:template match="b:subitem">
         <xsl:choose>
             <xsl:when test="count(b:ident) &gt; 0">
-                <ul>
+                <ol>
                     <xsl:apply-templates select="b:ident"/>
-                </ul>
+                </ol>
             </xsl:when>
             <xsl:otherwise>
-                <ul>
+                <ol>
                     <xsl:value-of select="."/>
-                </ul>
+                </ol>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
