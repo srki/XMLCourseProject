@@ -51,4 +51,15 @@ public class SessionsController {
         }
     }
 
+    @PUT
+    @Path("/{uuid}")
+    public Object put(String sessionString, @PathParam("uuid") String uri) {
+        try {
+            sessionDao.storeSessionResults(sessionString, uri);
+            return Response.status(Response.Status.CREATED).build();
+        } catch (Exception e) {
+            return ResponseFactory.createErrorResponse(Response.Status.BAD_REQUEST, e.getMessage());
+        }
+    }
+
 }
