@@ -38,14 +38,11 @@ public class SessionDao extends AbstractDao implements ISessionDao {
         Document session = getDocumentFromString(sessionRaw);
 
         XPath xPath = getXPathWithNamespace("http://ftn.uns.ac.rs/xml");
-
         NodeList nodes = (NodeList)xPath.evaluate("//mlt:act", session, XPathConstants.NODESET);
 
         for(int i = 0; i < nodes.getLength(); ++i) {
             Element act = (Element) nodes.item(i);
-
-            if (act.getAttribute("status").equals("approved_as_whole"))
-            {
+            if (act.getAttribute("status").equals("approved_as_whole")) {
                 retVal.add(getPurifiedAct(act, xPath));
             }
         }
@@ -54,16 +51,12 @@ public class SessionDao extends AbstractDao implements ISessionDao {
     }
 
     private Document getPurifiedAct(Element e, XPath xPath) throws Exception {
-
         Document act = actDao.getDocument(e.getAttribute("ref"));
-
         NodeList amendments = (NodeList)xPath.evaluate("//mlt:amendment", e, XPathConstants.NODESET);
 
         for(int i = 0; i < amendments.getLength(); ++i) {
             Element amendmentInfo = (Element)amendments.item(i);
-
             if(amendmentInfo.getAttribute("status").equals("approved")) {
-
                 Element amendment = amendmentDao.getDocument(amendmentInfo.getAttribute("ref")).getDocumentElement();
                 executeAmendmentOperation(act, amendment, xPath);
             }
@@ -72,22 +65,13 @@ public class SessionDao extends AbstractDao implements ISessionDao {
         return act;
     }
 
-    private void executeAmendmentOperation(Document act,
-                                           Element amendment,
-                                           XPath xPath) throws Exception {
-
+    private void executeAmendmentOperation(Document act, Element amendment, XPath xPath) throws Exception {
         String articleId = amendment.getAttribute("articleId");
+        Element article = (Element)xPath.evaluate("//mlt:article[@id='" + articleId + "']", act, XPathConstants.NODE);
 
-        Element article = (Element)xPath.evaluate("//mlt:article[@id='" + articleId + "']",
-                act,
-                XPathConstants.NODE);
-
-        if(amendment.getAttribute("operation").equals("delete"))
-        {
+        if(amendment.getAttribute("operation").equals("delete")) {
             article.getParentNode().removeChild(article);
-        }
-        else {
-
+        } else {
             Element newArticle = (Element)xPath.evaluate("//mlt:article[@id='" + articleId + "']",
                     amendment,
                     XPathConstants.NODE);
@@ -107,7 +91,6 @@ public class SessionDao extends AbstractDao implements ISessionDao {
         NodeList ids = (NodeList)xPath.evaluate("//mlt:article/@id", act, XPathConstants.NODESET);
 
         Integer index = 0;
-
         for (int i = 0; i < ids.getLength(); ++i) {
             Integer value = Integer.parseInt(ids.item(i).getNodeValue());
             index =  value > index ? value : index;
@@ -124,32 +107,27 @@ public class SessionDao extends AbstractDao implements ISessionDao {
     @Override
     public void storeSession(String raw) throws Exception {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
-
         call.xquery(addSessionQuery);
         call.addVariable("session_string", raw);
 
         String result = call.evalAs(String.class);
-
-        if (result != null && result.equals("NOT OK"))
+        if (result != null && result.equals("NOT OK")) {
             throw new Exception("Failed to store the session");
+        }
     }
 
     @Override
     public void storeSessionResults(String raw, String uri) throws Exception {
         Transaction t = this.databaseManager.getDatabaseClient().openTransaction();
-
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
-
         call.xquery(validateSessionQuery);
         call.addVariable("session_string", raw);
 
         String result = call.evalAs(String.class);
-
         if ((result != null && result.equals("NOT OK")) || result == null) {
             t.rollback();
             throw new BadRequestException();
-        }
-        else if(result.equals("OK")) {
+        } else if(result.equals("OK")) {
             List<Document> purifiedActs = getPurifiedActs(raw);
         }
 
@@ -159,14 +137,13 @@ public class SessionDao extends AbstractDao implements ISessionDao {
     @Override
     public String getAllSessions(String status) throws JAXBException {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
-
         call.xquery(getAllSessionsQuery);
         call.addVariable("status", status);
 
         String raw = call.evalAs(String.class);
-
-        if (raw == null)
+        if (raw == null) {
             throw new NotFoundException();
+        }
 
         return raw;
     }
