@@ -7,10 +7,15 @@
     var hour = 60 * 60 * 1000,
         day = hour * 24;
 
+    var parseUri = function (uri) {
+        var index = uri.lastIndexOf('/');
+        return uri.substring(index + 1, uri.length);
+    };
+
     angular.module('app.SessionsCtrl', [])
 
         .controller('SessionsCtrl', ['$scope', 'Sessions', '$location',
-            function ($scope, Sessions) {
+            function ($scope, Sessions, $location) {
 
                 $scope.sessions = [];
                 $scope.inputData = {
@@ -21,7 +26,6 @@
 
                 $scope.getUpcoming = function () {
                     Sessions.getUpcoming().then(
-
                         function (response) {
                             processResponse(response);
                             $scope.title = 'Upcoming';
@@ -36,7 +40,6 @@
 
                 $scope.getFinished = function () {
                     Sessions.getFinished().then(
-
                         function (response) {
                             processResponse(response);
                             $scope.title = 'Finished';
@@ -53,7 +56,6 @@
 
                     $scope.state = 'idle';
                     Sessions.create($scope.inputData).then(
-
                         function (response) {
                             $scope.inputData = {
                                 beginDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day),
@@ -85,21 +87,19 @@
                     };
                 };
 
-                $scope.addResults = function () {
-                    //$location.path('/sessionResults/');
+                $scope.addResults = function (uri) {
+                    $location.path('/session-result/' + parseUri(uri));
                 };
 
                 function processResponse(response) {
-
-                    if(response.data.sessions.session){
-
-                        if(response.data.sessions.session.length) {
+                    if (response.data.sessions.session) {
+                        if (response.data.sessions.session.length) {
                             $scope.data = response.data.sessions.session;
-                        }else {
+                        } else {
                             $scope.data = [];
                             $scope.data.push(response.data.sessions.session);
                         }
-                    }else{
+                    } else {
                         $scope.data = [];
                     }
 

@@ -36,6 +36,10 @@
                     templateUrl: 'partials/sessions.html',
                     controller: 'SessionsCtrl'
                 })
+                .when('/session-result/:id',{
+                    templateUrl: 'partials/sessionResult.html',
+                    controller: 'SessionResultCtrl'
+                })
                 .when('/newAct', {
                     templateUrl: 'partials/newAct.html',
                     controller: 'NewActCtrl'

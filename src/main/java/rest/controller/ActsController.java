@@ -25,14 +25,9 @@ public class ActsController {
 
     @POST
     public Object post(@Context HttpServletRequest request, String actString) {
-
         try {
             actDao.storeAct(actString);
-
-            return Response
-                    .status(Response.Status.CREATED)
-                    .build();
-
+            return Response.status(Response.Status.CREATED).build();
         } catch (Exception e) {
             return ResponseFactory.createErrorResponse(Response.Status.BAD_REQUEST, e.getMessage());
         }
