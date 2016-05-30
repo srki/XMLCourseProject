@@ -53,8 +53,8 @@
         <tr ng-repeat="session in data">
             <td>{{$index + 1}}</td>
             <td>{{ session.place }}</td>
-            <td>{{ session.beginDate| date:'medium':'UTC'}}</td>
-            <td>{{ session.endDate| date:'medium':'UTC'}}</td>
+            <td>{{ session.beginDate| date:'medium'}}</td>
+            <td>{{ session.endDate| date:'medium'}}</td>
             <td class="ta-mid"><button class="btn btn-warning">Details</button></td>
             <td  class="ta-mid" ng-if="display==='president'">
                 <button class="btn btn-primary" ng-click="addResults(session.uri)">Add results</button>

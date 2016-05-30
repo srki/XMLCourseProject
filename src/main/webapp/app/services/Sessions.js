@@ -34,12 +34,9 @@
 
                 create: function (data) {
 
-                    var startDate =  new Date(data.beginDate.getTime() + 2*60*60*1000);
-                    startDate = startDate.toISOString();
-
-                    var endDate =  new Date(data.endDate.getTime() + 2*60*60*1000);
-                    endDate = endDate.toISOString();
-
+                    var startDate =  data.beginDate.toISOString();
+                    var endDate =  data.endDate.toISOString();
+                    
                     return $http({
                         method: 'POST',
                         url: 'api/sessions',
