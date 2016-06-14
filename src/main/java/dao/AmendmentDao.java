@@ -4,6 +4,8 @@ import com.marklogic.client.eval.ServerEvaluationCall;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ws.rs.NotFoundException;
+import javax.xml.soap.SAAJResult;
 
 @Stateless
 @Local(IAmendmentDao.class)
@@ -11,6 +13,7 @@ public class AmendmentDao extends AbstractDao implements IAmendmentDao {
 
     private static final String addAmendmentQuery = getScriptContent("addAmendment.xq");
     private static final String getAllAmendmentsQuery = getScriptContent("getAllAmendments.xq");
+    private static final String removeAmendment = getScriptContent("removeAmendment");
 
     @Override
     public String getDirectoryName() {
@@ -44,8 +47,18 @@ public class AmendmentDao extends AbstractDao implements IAmendmentDao {
     }
 
     @Override
-    public void deleteAmendments(String uri, String username) {
+    public void deleteAmendment(String uri, String username) {
+        ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
 
+        call.xquery(removeAmendment);
+
+        call.addVariable("document_uri", uri);
+        call.addVariable("username", username);
+
+        String val = call.evalAs(String.class);
+
+        if (val == null || val.equals("NOT OK"))
+            throw new NotFoundException();
     }
 
 }
