@@ -15,7 +15,7 @@ var sequelize = new Sequelize('db', '', '', {
 
 exports.init = function () {
     var db = {
-        Act: sequelize.import(__dirname + '\\act-model.js')
+        Act: sequelize.import(__dirname + '/act-model.js')
     };
 
     db.Act.sync();
