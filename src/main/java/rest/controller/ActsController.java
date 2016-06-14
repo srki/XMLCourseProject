@@ -42,8 +42,9 @@ public class ActsController {
 
     @GET
     @Path("/{uri}/amendments")
-    public Object getAmendments(@PathParam("uri") String uri, @QueryParam("status") String status) {
-        return amendmentDao.getAllAmendments(uri, status);
+    public Object getAmendments(@PathParam("uri") String uri, @QueryParam("status") String status,
+                                @QueryParam("username") String username) {
+        return amendmentDao.getAllAmendments(uri, status, username);
     }
 
     @GET

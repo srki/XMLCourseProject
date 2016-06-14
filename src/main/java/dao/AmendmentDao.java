@@ -18,11 +18,12 @@ public class AmendmentDao extends AbstractDao implements IAmendmentDao {
     }
 
     @Override
-    public void storeAmendment(String raw) throws Exception {
+    public void storeAmendment(String raw, String username) throws Exception {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
 
         call.xquery(addAmendmentQuery);
         call.addVariable("amendment_string", raw);
+        call.addVariable("username", username);
 
         String result = call.evalAs(String.class);
 
@@ -31,12 +32,13 @@ public class AmendmentDao extends AbstractDao implements IAmendmentDao {
     }
 
     @Override
-    public String getAllAmendments(String actUri, String status) {
+    public String getAllAmendments(String actUri, String status, String username) {
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
 
         call.xquery(getAllAmendmentsQuery);
         call.addVariable("act_uri", actUri == null ? "" : actUri);
         call.addVariable("status", status == null ? "" : status);
+        call.addVariable("username", username == null ? "" : username);
 
         return call.evalAs(String.class);
     }

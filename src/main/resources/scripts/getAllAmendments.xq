@@ -2,6 +2,7 @@ declare namespace mlt = "http://ftn.uns.ac.rs/xml";
 
 declare variable $act_uri as xs:string external;
 declare variable $status as xs:string external;
+declare variable $username as xs:string external;
 
 declare variable $q1 := cts:directory-query("/xml/amendments/", "infinity");
 
@@ -11,17 +12,25 @@ cts:and-query((
   cts:element-attribute-value-query(QName("http://ftn.uns.ac.rs/xml","amendment"), QName("","uri"), $act_uri)
 ));
 
-declare variable $q3 := if ($status eq "") then $q3 else
-    cts:and-query(($q3, cts:properties-query(
+declare variable $q3 := if ($status eq "") then $q2 else
+    cts:and-query(($q2, cts:properties-query(
             cts:element-word-query(
                     QName('', 'status'),
                     tokenize($status, '\s')
             )
     )));
 
+declare variable $q4 := if ($status eq "") then $q3 else
+    cts:and-query(($q3, cts:properties-query(
+            cts:element-word-query(
+                    QName('', 'username'),
+                    tokenize($username, '\s')
+            )
+    )));
+
 <amendments>
     {
-        for $x in cts:uris((), (), $q3)
+        for $x in cts:uris((), (), $q4)
         return
             <amendment>
                 <uri>{$x}</uri>

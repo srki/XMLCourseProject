@@ -1,6 +1,8 @@
 import schema "http://ftn.uns.ac.rs/xml" at "/xml/amendment.xsd";
 declare namespace mlt = "http://ftn.uns.ac.rs/xml";
 
+declare variable $username as xs:string external;
+
 declare variable $amendment_string as xs:string external;
 declare variable $amendment := xdmp:unquote($amendment_string);
 
@@ -28,6 +30,7 @@ else 'NOT OK';
 
 declare variable $props := xdmp:document-add-properties($document_uri,(
   <status>{'proposed'}</status>
+  <username>{$username}</username>
 ));
 
 if (empty($props)) then $result else "NOT OK"

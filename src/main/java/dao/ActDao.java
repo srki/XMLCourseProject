@@ -86,7 +86,7 @@ public class ActDao extends AbstractDao implements IActDao {
         call.addVariable("start_date", startDate == null ? "" : format.format(new Date(startDate)));
         call.addVariable("end_date", endDate == null ? "" : format.format(new Date(endDate)));
         call.addVariable("status", status == null ? "" : status);
-        call.addVariable("username", status == null ? "" : status);
+        call.addVariable("username", username == null ? "" : username);
 
         return call.evalAs(String.class);
     }
