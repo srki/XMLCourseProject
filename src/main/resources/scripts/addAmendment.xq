@@ -1,4 +1,4 @@
-import schema "http://ftn.uns.ac.rs/xml" at "/xml/amandment.xsd";
+import schema "http://ftn.uns.ac.rs/xml" at "/xml/amendment.xsd";
 declare namespace mlt = "http://ftn.uns.ac.rs/xml";
 
 declare variable $amendment_string as xs:string external;
