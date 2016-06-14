@@ -2,7 +2,6 @@
 ./initUserSchema.sh
 ./initUsers.sh
 ./initActSchema.sh
-./initActData.sh
 ./initSessionSchema.sh
 ./initSessions.sh
 ./initAmendmentSchema.sh

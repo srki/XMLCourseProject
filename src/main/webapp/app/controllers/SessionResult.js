@@ -11,7 +11,6 @@
             function ($scope, Acts, Amendments, SessionResultModal) {
 
                 $scope.acts = [];
-                $scope.amendments = [];
 
                 (function () {
 
@@ -31,10 +30,10 @@
                                 $scope.acts = [];
                             }
 
-                            for (var i = 0; i < acts.length; i++){
+                            for (var i = 0; i < $scope.acts.length; i++){
 
-                                acts[i] = {
-                                    act: acts[i],
+                                $scope.acts[i] = {
+                                    act: $scope.acts[i],
                                     amendments: [],
                                     dirty: false
                                 }
@@ -45,15 +44,34 @@
                             console.log(err);
                         });
                     
-                    $scope.getAmendments = function (act) {
+                    $scope.getAmendments = function (actModel) {
 
-                        if(act.amendments.length > 0)
+                        if(actModel.amendments.length > 0)
                             return;
 
-                        Amendments.getByActURI(parseURI(act.uri)).then(
+                        Amendments.getByActURI(parseURI(actModel.act.uri)).then(
 
                             function (response) {
-                                console.log(response);
+
+                                if(response.data.amendments.amendment){
+
+                                    if(response.data.amendments.amendment.length) {
+                                        actModel.amendments = response.data.amendments.amendment;
+                                    }else {
+                                        actModel.amendments = [];
+                                        actModel.amendments.push(response.data.amendments.amendment);
+                                    }
+                                }else{
+                                    actModel.amendments = [];
+                                }
+
+                                for (var i = 0; i < actModel.amendments.length; i++){
+
+                                    actModel.amendments[i] = {
+                                        amendment: actModel.amendments[i],
+                                        dirty: false
+                                    }
+                                }
                             },
                             function (err) {
                                 console.log(err);

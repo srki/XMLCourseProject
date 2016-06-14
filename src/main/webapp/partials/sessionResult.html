@@ -65,8 +65,8 @@
     </table>
     <div class="mt-20">
         <uib-accordion>
-            <uib-accordion-group ng-repeat="act in acts">
-                <uib-accordion-heading>{{ ($index+1) + ") " + act.title}}</uib-accordion-heading>
+            <uib-accordion-group ng-repeat="actModel in acts" ng-click="getAmendments(actModel)">
+                <uib-accordion-heading>{{ ($index+1) + ") " + actModel.act.title}}</uib-accordion-heading>
                 <div>
                     <button class="btn btn-primary" ng-click="dialog()">Add result</button>
                 </div>
