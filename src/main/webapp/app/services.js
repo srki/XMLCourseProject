@@ -10,5 +10,6 @@ angular.module('app.services', [
     'app.ContentTypeInterceptor',
     'app.Sessions',
     'app.Acts',
-    'app.Articles'
+    'app.Articles',
+    'app.SystemStatus'
 ]);

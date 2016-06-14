@@ -14,5 +14,6 @@ angular.module('app.controllers', [
     'app.ActFilterCtrl',
     'app.EditActCtrl',
     'app.EditArticleCtrl',
-    'app.SessionResultCtrl'
+    'app.SessionResultCtrl',
+    'app.ManageSessionCtrl',
 ]);
