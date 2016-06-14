@@ -3,7 +3,6 @@
  */
 
 
-
 (function (angular) {
     'use strict';
 
@@ -12,11 +11,19 @@
         .factory('Amendments', ['$http', function ($http) {
 
             return {
-
-                get: function (amendmentId) {
+                
+                getByActURI: function (actURI) {
+                    return $http({
+                       method: 'GET',
+                        url: 'api/amendments/' + actURI
+                    });  
+                },
+                
+                get: function (status) {
                     return  $http({
                         method: 'GET',
-                        url: 'api/amendments/' + amendmentId
+                        url: 'api/amendments/',
+                        params: status
                     });
                 },
 

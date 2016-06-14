@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h3 class="modal-title">srmc.act.title</h3>
+</div>
+<div class="modal-body">
+    <label for="agentName">Runtime name for the new {{armc.agentClass}} agent?</label>
+    <input id="agentName" ng-model="armc" ng-keyup="armc.keyFn($event)">
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="srmc.confirm()">Confirm</button>
+    <button class="btn btn-warning" ng-click="srmc.cancel()">Cancel</button>
+</div>
