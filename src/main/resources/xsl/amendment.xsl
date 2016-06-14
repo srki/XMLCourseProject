@@ -8,83 +8,42 @@
                 <meta charset="UTF-8"/>
             </head>
             <body style="font-family: Calibri">
-                <div style="text-align: center; margin-bottom: 15px">
-                    <img src="http://localhost:8080/img/novi-sad-logo.png" height="96" width="96"/>
-                </div>
+                <h3 style="text-align: center">
+                    Amandman
+                    <xsl:value-of select="b:amendment/@name"/>
+                    za akt
+                    <br/>
+                    <span>ACT_NAME</span>
+                </h3>
 
-                <xsl:apply-templates select="//b:preamble"/>
                 <h2 style="text-align: center">
-                    <xsl:value-of select="b:act/@title"/>
+                    <xsl:choose>
+                        <xsl:when test="/b:amendment[@operation='delete']">
+                            Brise se
+                        </xsl:when>
+                        <xsl:when test="/b:amendment[@operation='update']">
+                            Menja se
+                        </xsl:when>
+                        <xsl:when test="/b:amendment[@operation='insert']">
+                            Ubacuje se posle
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="b:amendment/@operation"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </h2>
-                <xsl:apply-templates select="b:act/*[not(self::b:preamble)] "/>
+
+                <xsl:apply-templates select="//b:description"/>
+                <xsl:apply-templates select="//b:article"/>
             </body>
         </html>
     </xsl:template>
 
-    <!-- Preamble -->
-    <xsl:template match="b:preamble">
+    <!-- Description -->
+    <xsl:template match="b:description">
         <p>
             <xsl:value-of select="."/>
         </p>
-    </xsl:template>
-
-    <!-- Part -->
-    <xsl:template match="b:part">
-        <h3 style="text-align: center">
-            <xsl:value-of select="@title"/>
-        </h3>
-        <xsl:choose>
-            <xsl:when test="count(b:head) &gt; 0">
-                <ol>
-                    <xsl:apply-templates select="b:head"/>
-                </ol>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:apply-templates select="b:article"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-    <!-- Head -->
-    <xsl:template match="b:head">
-        <h3 style="text-align: center">
-            <xsl:value-of select="@title"/>
-        </h3>
-        <xsl:choose>
-            <xsl:when test="count(b:section) &gt; 0">
-                <xsl:apply-templates select="b:section"/>
-            </xsl:when>
-            <xsl:when test="count(b:subsection) &gt; 0">
-                <xsl:apply-templates select="b:subsection"/>
-            </xsl:when>
-            <xsl:when test="count(b:article) &gt; 0">
-                <xsl:apply-templates select="b:article"/>
-            </xsl:when>
-            <xsl:otherwise/>
-        </xsl:choose>
-    </xsl:template>
-
-    <!-- Section -->
-    <xsl:template match="b:section">
-        <h3 style="text-align: center">
-            <xsl:value-of select="@title"/>
-        </h3>
-        <xsl:choose>
-            <xsl:when test="count(b:subsection) &gt; 0">
-                <xsl:apply-templates select="b:subsection"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:apply-templates select="b:article"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-    <!-- Subsection -->
-    <xsl:template match="b:subsection">
-        <h3 style="text-align: center">
-            <xsl:value-of select="@title"/>
-        </h3>
-        <xsl:apply-templates select="b:article"/>
     </xsl:template>
 
     <!-- Article -->
@@ -107,7 +66,8 @@
             </xsl:choose>
 
             <h3 style="text-align: center">
-                Član <xsl:value-of select="@id+1"/>.
+                Član
+                <xsl:value-of select="@id+1"/>.
             </h3>
             <xsl:choose>
                 <xsl:when test="count(b:paragraph) &gt; 0">
@@ -172,5 +132,5 @@
             <xsl:value-of select="."/>
         </li>
     </xsl:template>
-</xsl:stylesheet>
 
+</xsl:stylesheet>
