@@ -2,26 +2,26 @@
  * Created by ragnar on 14.6.16..
  */
 (function (angular) {
-    angular.module('app.MyActsCtrl', [])
-        .controller('MyActsCtrl', ['$scope', 'Acts', '$rootScope', '$uibModal',
-            function ($scope, Acts, $rootScope, $uibModal) {
+    angular.module('app.MyAmendmentsCtrl', [])
+        .controller('MyAmendmentsCtrl', ['$scope', 'Amendments', '$rootScope', '$uibModal',
+            function ($scope, Amendments, $rootScope, $uibModal) {
                 $scope.data = [];
 
                 $scope.init = function() {
-                    $scope.data = [];
-                    Acts.get({username: $rootScope.username}).then(
+                    Amendments.getAllFor($rootScope.username).then(
                         function (response) {
-                            if (response.data.acts.act){
-                                if(response.data.acts.act.length) {
-                                    $scope.data = response.data.acts.act;
-                                }else {
+                            if (response.data.amendments){
+                                if(response.data.amendments.amendment.length) {
+                                    $scope.data = response.data.amendments.amendment;
+                                } else {
                                     $scope.data = [];
-                                    $scope.data.push(response.data.acts.act);
+                                    $scope.data.push(response.data.amendments.amendment);
                                 }
                             } else {
                                 $scope.data = [];
                             }
                             console.log(response);
+                            console.log($scope.data);
                         },
                         function (error) {
                             console.log(error);
@@ -42,7 +42,7 @@
 
                     modalInstance.result.then(function () {
                         console.log("Deleted " + uri);
-                        Acts.remove(parseURI(uri)).then(function (response) {
+                        Amendments.remove(parseURI(uri)).then(function (response) {
                                 console.log(response);
                                 $scope.init();
                             },

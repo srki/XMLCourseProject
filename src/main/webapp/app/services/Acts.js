@@ -35,6 +35,12 @@
                         method: 'GET',
                         url: 'api/export/html-edit/' + id
                     });
+                },
+                remove: function (actId) {
+                    return  $http({
+                        method: 'DELETE',
+                        url: 'api/acts/' + actId
+                    });
                 }
             };
         }]);

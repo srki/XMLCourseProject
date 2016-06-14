@@ -120,7 +120,7 @@ public class ActDao extends AbstractDao implements IActDao {
 
         String val = call.evalAs(String.class);
 
-        if (val == null || val.equals("NOT OK"))
+        if (val != null && val.equals("NOT OK"))
             throw new NotFoundException();
     }
 

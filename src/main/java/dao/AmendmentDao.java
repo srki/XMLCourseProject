@@ -13,7 +13,7 @@ public class AmendmentDao extends AbstractDao implements IAmendmentDao {
 
     private static final String addAmendmentQuery = getScriptContent("addAmendment.xq");
     private static final String getAllAmendmentsQuery = getScriptContent("getAllAmendments.xq");
-    private static final String removeAmendment = getScriptContent("removeAmendment");
+    private static final String removeAmendment = getScriptContent("removeAmendment.xq");
 
     @Override
     public String getDirectoryName() {
@@ -57,7 +57,7 @@ public class AmendmentDao extends AbstractDao implements IAmendmentDao {
 
         String val = call.evalAs(String.class);
 
-        if (val == null || val.equals("NOT OK"))
+        if (val != null && val.equals("NOT OK"))
             throw new NotFoundException();
     }
 

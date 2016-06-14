@@ -18,7 +18,14 @@
                         url: 'api/amendments/' + actURI
                     });  
                 },
-                
+
+                getAllFor: function (username) {
+                    return  $http({
+                        method: 'GET',
+                        url: 'api/amendments/?username=' + username
+                    });
+                },
+
                 get: function (status) {
                     return  $http({
                         method: 'GET',

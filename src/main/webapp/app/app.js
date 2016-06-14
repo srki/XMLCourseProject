@@ -68,6 +68,10 @@
                     templateUrl: 'partials/myActs.html',
                     controller: 'MyActsCtrl'
                 })
+                .when('/myAmendments',{
+                    templateUrl: 'partials/myAmendments.html',
+                    controller: 'MyAmendmentsCtrl'
+                })
                 .otherwise('/');
 
             $locationProvider.html5Mode(true);

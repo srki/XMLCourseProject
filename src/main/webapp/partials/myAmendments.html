@@ -1,0 +1,18 @@
+<div class="pl-50 pr-50 pb-50 pt-20">
+    <div class="mt-50">
+        <table class="table table-bordered table-striped table-hover" ng-if="data.length">
+            <tr>
+                <th>Title</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="amendment in data">
+                <td>{{ amendment.uri }}</td>
+                <td><button class="btn btn-danger" ng-click="delete(amendment.uri)">Delete</button></td>
+            </tr>
+        </table>
+        <div ng-if="!data.length">
+            <b>No acts</b>
+        </div>
+    </div>
+
+</div>
