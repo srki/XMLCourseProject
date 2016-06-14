@@ -4,7 +4,9 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 import com.marklogic.client.ResourceNotFoundException;
+import com.sun.jndi.toolkit.url.Uri;
 import dao.IActDao;
+import dao.IAmendmentDao;
 import model.User;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -12,6 +14,7 @@ import org.w3c.dom.NodeList;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
+import javax.print.Doc;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -34,6 +37,7 @@ import java.nio.charset.StandardCharsets;
 public class ExportController {
 
     private static final String ACT_XSL_PATH = "xsl/acts.xsl";
+    private static final String AMENDMENT_XSL_PATH = "xsl/amendment.xsl";
     private static final String ARTICLE_TAG_NAME = "article";
     private static final String ID_ATTRIBUTE_NAME = "id";
     private static final String MODIFY_ATTRIBUTE_NAME = "modify";
@@ -41,6 +45,8 @@ public class ExportController {
 
     @EJB
     private IActDao actDao;
+    @EJB
+    private IAmendmentDao amendmentDao;
 
     @GET
     @Path("/html/{uuid}")
@@ -80,7 +86,7 @@ public class ExportController {
     @Produces(MediaType.TEXT_HTML)
     //@RolesAllowed({User.CITIZEN, User.REPRESENTATIVE, User.PRESIDENT})
     public Object getAmendmentHtml(@PathParam("uuid") String uuid) throws IOException, TransformerException {
-        return documentToHtml(actDao.getDocument(uuid), ACT_XSL_PATH);
+        return amendmentToHtml(amendmentDao.getDocument(uuid), AMENDMENT_XSL_PATH);
     }
 
     @GET
@@ -88,7 +94,16 @@ public class ExportController {
     @Produces("application/pdf")
     //@RolesAllowed({User.CITIZEN, User.REPRESENTATIVE, User.PRESIDENT})
     public Object getAmendmentPdf(@PathParam("uuid") String uuid) throws Exception {
-        return htmlToPdf(documentToHtml(actDao.getDocument(uuid), ACT_XSL_PATH));
+        return htmlToPdf(amendmentToHtml(amendmentDao.getDocument(uuid), AMENDMENT_XSL_PATH));
+    }
+
+    private String amendmentToHtml(Document document, String xslPath) throws IOException, TransformerException {
+        String uri = ((Element) document.getElementsByTagName("amendment").item(0)).getAttribute("uri");
+        Document act = actDao.getDocument(uri);
+        String name = ((Element) act.getElementsByTagName("act").item(0)).getAttribute("title");
+        String html = documentToHtml(document, xslPath);
+
+        return html.replace("<span>ACT_NAME</span>", name);
     }
 
     private String documentToHtml(Document document, String xslPath) throws IOException, TransformerException {
