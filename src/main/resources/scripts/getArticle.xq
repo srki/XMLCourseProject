@@ -6,7 +6,7 @@ declare variable $article_id as xs:string external;
 declare variable $format as xs:string external;
 
 if ($format eq "amendment") then
-    (<amendment date="" articleId="{$article_id}" uri="{$act_uri}" operation="" xmlns="http://ftn.uns.ac.rs/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    (<amendment date="" articleId="{$article_id}" uri="{$act_uri}" name="" operation="" xmlns="http://ftn.uns.ac.rs/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <description></description>
         {doc("/xml/acts/" || $act_uri)//mlt:article[@id=$article_id]}
     </amendment>)
