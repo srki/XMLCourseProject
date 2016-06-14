@@ -16,7 +16,7 @@ angular.module('app.controllers', [
     'app.EditArticleCtrl',
     'app.SessionResultCtrl',
     'app.ManageSessionCtrl',
-    'app.SessionResultModalCtrl'
+    'app.SessionResultModalCtrl',
     'app.MyActsCtrl',
     'app.ConfirmDeleteCtrl',
     'app.SemanticSearchCtrl'

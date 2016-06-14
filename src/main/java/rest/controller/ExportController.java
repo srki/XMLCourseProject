@@ -1,15 +1,16 @@
 package rest.controller;
 
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 import com.marklogic.client.ResourceNotFoundException;
 import dao.IActDao;
+import model.User;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -44,7 +45,7 @@ public class ExportController {
     @GET
     @Path("/html/{uuid}")
     @Produces(MediaType.TEXT_HTML)
-    //@RolesAllowed({User.CITIZEN, User.REPRESENTATIVE, User.PRESIDENT})
+    @RolesAllowed({User.CITIZEN, User.REPRESENTATIVE, User.PRESIDENT})
     public Object getHtml(@PathParam("uuid") String uuid) throws IOException, TransformerException {
         return documentToHtml(actDao.getDocument(uuid), ACT_XSL_PATH);
     }
@@ -52,7 +53,7 @@ public class ExportController {
     @GET
     @Path("/html-edit/{uuid}")
     @Produces(MediaType.TEXT_HTML)
-    //@RolesAllowed({User.REPRESENTATIVE})
+    @RolesAllowed({User.REPRESENTATIVE})
     public Object getEditableHtml(@PathParam("uuid") String uuid) throws IOException, TransformerException {
         Document document = actDao.getDocument(uuid);
 
@@ -71,6 +72,22 @@ public class ExportController {
     @Produces("application/pdf")
     //@RolesAllowed({User.CITIZEN, User.REPRESENTATIVE, User.PRESIDENT})
     public Object getPdf(@PathParam("uuid") String uuid) throws Exception {
+        return htmlToPdf(documentToHtml(actDao.getDocument(uuid), ACT_XSL_PATH));
+    }
+
+    @GET
+    @Path("/amendment/html/{uuid}")
+    @Produces(MediaType.TEXT_HTML)
+    //@RolesAllowed({User.CITIZEN, User.REPRESENTATIVE, User.PRESIDENT})
+    public Object getAmendmentHtml(@PathParam("uuid") String uuid) throws IOException, TransformerException {
+        return documentToHtml(actDao.getDocument(uuid), ACT_XSL_PATH);
+    }
+
+    @GET
+    @Path("/amendment/pdf/{uuid}")
+    @Produces("application/pdf")
+    //@RolesAllowed({User.CITIZEN, User.REPRESENTATIVE, User.PRESIDENT})
+    public Object getAmendmentPdf(@PathParam("uuid") String uuid) throws Exception {
         return htmlToPdf(documentToHtml(actDao.getDocument(uuid), ACT_XSL_PATH));
     }
 
