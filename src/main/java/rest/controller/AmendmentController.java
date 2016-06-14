@@ -23,6 +23,7 @@ public class AmendmentController {
     @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
     public Object post(String raw, @Context User user) {
         try {
+            System.out.println("asd");
             amendmentDao.storeAmendment(raw, user.getUsername());
 
             return Response
