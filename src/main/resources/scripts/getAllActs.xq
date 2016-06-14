@@ -5,6 +5,7 @@ declare variable $establishment as xs:string external;
 declare variable $city as xs:string external;
 declare variable $serial as xs:string external;
 declare variable $status as xs:string external;
+declare variable $username as xs:string external;
 
 declare variable $start_date as xs:string external;
 declare variable $end_date as xs:string external;
@@ -82,10 +83,17 @@ declare variable $q9 := if ($status eq "") then $q8 else
             )
     )));
 
+declare variable $q10 := if ($username eq "") then $q9 else
+    cts:and-query(($q9, cts:properties-query(
+            cts:element-word-query(
+                    QName('', 'username'),
+                    tokenize($username, '\s')
+            )
+    )));
 
 <acts>
     {
-        for $x in cts:uris((), (), $q9)
+        for $x in cts:uris((), (), $q10)
         return
             <act>
                 <uri>{$x}</uri>

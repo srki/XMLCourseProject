@@ -2,6 +2,7 @@ package rest.controller;
 
 import dao.IActDao;
 import dao.IAmendmentDao;
+import model.User;
 import rest.response.ResponseFactory;
 
 import javax.ejb.EJB;
@@ -24,9 +25,9 @@ public class ActsController {
     private IAmendmentDao amendmentDao;
 
     @POST
-    public Object post(@Context HttpServletRequest request, String actString) {
+    public Object post(@Context HttpServletRequest request, String actString, @Context User user) {
         try {
-            actDao.storeAct(actString);
+            actDao.storeAct(actString, user.getUsername());
             return Response.status(Response.Status.CREATED).build();
         } catch (Exception e) {
             return ResponseFactory.createErrorResponse(Response.Status.BAD_REQUEST, e.getMessage());
@@ -63,8 +64,10 @@ public class ActsController {
                       @QueryParam("end_date") Long endDate,
                       @QueryParam("city") String city,
                       @QueryParam("serial") String serial,
-                      @QueryParam("status") String status) {
+                      @QueryParam("status") String status,
+                      @QueryParam("username") String username) {
 
-        return actDao.getAllActs(text, title, country, region, establishment, startDate, endDate, city, serial, status);
+        return actDao.getAllActs(text, title, country, region, establishment, startDate,
+                                 endDate, city, serial, status, username);
     }
 }

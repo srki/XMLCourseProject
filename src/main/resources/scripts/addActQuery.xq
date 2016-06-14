@@ -2,6 +2,8 @@ import schema "http://ftn.uns.ac.rs/xml" at "/xml/act.xsd";
 declare namespace mlt = "http://ftn.uns.ac.rs/xml";
 
 declare variable $act_string as xs:string external;
+declare variable $username as xs:string external;
+
 declare variable $act := xdmp:unquote($act_string);
 declare variable $errors := xdmp:validate($act, "strict");
 declare variable $validation_error := if (exists($errors//error:error)) then "NOT OK" else "OK";
@@ -26,7 +28,8 @@ declare variable $props := xdmp:document-add-properties($document_uri,(
   <serial>{data($act/mlt:act/@serial)}</serial>,
   <date>{data($act/mlt:act/@date)}</date>,
   <city>{data($act/mlt:act/@city)}</city>,
-  <status>{'proposed'}</status>
+  <status>{'proposed'}</status>,
+  <username>{$username}</username>
 ));
 
 if (empty($props)) then $result else "NOT OK"
