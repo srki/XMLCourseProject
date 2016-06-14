@@ -4,6 +4,7 @@ import dao.IAmendmentDao;
 import model.User;
 import rest.response.ResponseFactory;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -19,6 +20,7 @@ public class AmendmentController {
     IAmendmentDao amendmentDao;
 
     @POST
+    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
     public Object post(String raw, @Context User user) {
         try {
             amendmentDao.storeAmendment(raw, user.getUsername());

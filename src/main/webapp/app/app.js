@@ -60,6 +60,14 @@
                     templateUrl: 'partials/manageSession.html',
                     controller: 'ManageSessionCtrl'
                 })
+                .when('/semanticSearch',{
+                    templateUrl: 'partials/semanticSearch.html',
+                    controller: 'SemanticSearchCtrl'
+                })
+                .when('/myActs',{
+                    templateUrl: 'partials/myActs.html',
+                    controller: 'MyActsCtrl'
+                })
                 .otherwise('/');
 
             $locationProvider.html5Mode(true);
