@@ -42,4 +42,10 @@ public class AmendmentDao extends AbstractDao implements IAmendmentDao {
 
         return call.evalAs(String.class);
     }
+
+    @Override
+    public void deleteAmendments(String uri, String username) {
+
+    }
+
 }

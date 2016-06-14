@@ -9,4 +9,6 @@ public interface IActDao extends IAbstractDao {
                       Long startDate, Long endDate, String city, String serial, String status, String username);
 
     String getArticle(String uri, String id, String format);
+
+    void deleteAct(String uri, String username);
 }

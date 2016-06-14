@@ -31,6 +31,8 @@ public class ActDao extends AbstractDao implements IActDao {
 
     private static final String getArticle = getScriptContent("getArticle.xq");
 
+    private static final String removeAct = getScriptContent("removeAct.xq");
+
     @Override
     public void storeAct(String raw, String username) throws Exception {
 
@@ -106,6 +108,20 @@ public class ActDao extends AbstractDao implements IActDao {
             throw new NotFoundException();
 
         return val;
+    }
+
+    @Override
+    public void deleteAct(String uri, String username) {
+        ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
+
+        call.xquery(removeAct);
+        call.addVariable("uri", uri);
+        call.addVariable("username", username);
+
+        String val = call.evalAs(String.class);
+
+        if (val == null || val.equals("NOT OK"))
+            throw new NotFoundException();
     }
 
     @Override

@@ -40,9 +40,4 @@ public class AmendmentController {
         return amendmentDao.getAllAmendments("", status, username);
     }
 
-    @GET
-    @Path("/{actUri}")
-    public Object get(@PathParam("actUri") String actUri, @QueryParam("status") String status) {
-        return amendmentDao.getAllAmendments(actUri, status);
-    }
 }

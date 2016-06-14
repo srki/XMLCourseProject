@@ -73,4 +73,16 @@ public class ActsController {
         return actDao.getAllActs(text, title, country, region, establishment, startDate,
                                  endDate, city, serial, status, username);
     }
+
+    @DELETE
+    @Path("/{uri}")
+    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
+    public Object delete(@PathParam("uri") String uri, @Context User user){
+        try {
+            actDao.deleteAct(uri, user.getUsername());
+            return Response.status(Response.Status.CREATED).build();
+        } catch (Exception e) {
+            return ResponseFactory.createErrorResponse(Response.Status.BAD_REQUEST, e.getMessage());
+        }
+    }
 }
