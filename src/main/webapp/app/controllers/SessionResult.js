@@ -80,8 +80,8 @@
 
                     };
 
-                    $scope.dialog = function (act) {
-                        SessionResultModal.open(act);
+                    $scope.dialog = function (document) {
+                        SessionResultModal.open(document);
                     }
 
                 }());

@@ -68,8 +68,21 @@
             <uib-accordion-group ng-repeat="actModel in acts" ng-click="getAmendments(actModel)">
                 <uib-accordion-heading>{{ ($index+1) + ") " + actModel.act.title}}</uib-accordion-heading>
                 <div>
-                    <button class="btn btn-primary" ng-click="dialog()">Add result</button>
+                    <button class="btn btn-primary" ng-click="dialog(actModel)">Add result</button>
                 </div>
+
+                <h4>Amendments</h4>
+                <table class="table table-bordered mt-10 mb-10">
+                    <tr>
+                        <th>Title</th>
+                        <th></th>
+                    </tr>
+                    <tr ng-repeat="amendmentModel in actModel.amendments">
+                        <td class="col-sm-12">{{amendmentModel.amendment.name}}</td>
+                        <td class="col-sm-3"><button class="btn btn-primary" ng-click="dialog(amendmentModel)">Add result</button></td>
+                    </tr>
+                </table>
+
             </uib-accordion-group>
         </uib-accordion>
     </div>

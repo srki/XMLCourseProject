@@ -20,7 +20,7 @@ declare variable $q3 := if ($status eq "") then $q2 else
             )
     )));
 
-declare variable $q4 := if ($status eq "") then $q3 else
+declare variable $q4 := if ($username eq "") then $q3 else
     cts:and-query(($q3, cts:properties-query(
             cts:element-word-query(
                     QName('', 'username'),
@@ -34,7 +34,8 @@ declare variable $q4 := if ($status eq "") then $q3 else
         return
             <amendment>
                 <uri>{$x}</uri>
-                <date>{doc($x)/mlt:amendment/@date}</date>
+                <date>{data(doc($x)/mlt:amendment/@date)}</date>
+                <name>{data(doc($x)/mlt:amendment/@name)}</name>
             </amendment>
     }
 </amendments>

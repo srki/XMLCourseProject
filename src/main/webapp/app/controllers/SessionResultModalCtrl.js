@@ -8,14 +8,15 @@
 
     angular.module('app.SessionResultModalCtrl', [])
 
-        .controller('SessionResultModalCtrl', ['$uibModalInstance', 'act',
+        .controller('SessionResultModalCtrl', ['$uibModalInstance', 'document',
 
-            function($modalInstance, act) {
+            function($modalInstance, document) {
                 var self = this;
 
-                self.act = act;
-                self.for = 0;
-                self.against = 0;
+                self.document = document;
+                self.for;
+                self.against;
+                self.restrained;
 
                 self.confirm = function () {
                     return;
