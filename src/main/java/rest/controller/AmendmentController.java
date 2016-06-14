@@ -40,4 +40,15 @@ public class AmendmentController {
         return amendmentDao.getAllAmendments("", status, username);
     }
 
+    @DELETE
+    @Path("/{uri}")
+    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
+    public Object delete(@PathParam("uri") String uri, @Context User user){
+        try {
+            amendmentDao.deleteAmendment(uri, user.getUsername());
+            return Response.status(Response.Status.CREATED).build();
+        } catch (Exception e) {
+            return ResponseFactory.createErrorResponse(Response.Status.BAD_REQUEST, e.getMessage());
+        }
+    }
 }
