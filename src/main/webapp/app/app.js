@@ -56,6 +56,10 @@
                     templateUrl: 'partials/editAct.html',
                     controller: 'EditArticleCtrl'
                 })
+                .when('/manageSession',{
+                    templateUrl: 'partials/manageSession.html',
+                    controller: 'ManageSessionCtrl'
+                })
                 .otherwise('/');
 
             $locationProvider.html5Mode(true);
