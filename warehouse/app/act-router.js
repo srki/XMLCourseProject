@@ -9,7 +9,7 @@ module.exports = function (db) {
 
     router.get('/', function (req, res, next) {
         return db.act.query().then(function (data) {
-            res.json(JSON.stringify(data));
+            res.json(data);
         });
     });
 
