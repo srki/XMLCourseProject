@@ -7,8 +7,9 @@
     "use strict";
 
     angular.module('app.LoginCtrl', [])
-        .controller('LoginCtrl', function ($scope, $location, Auth) {
+        .controller('LoginCtrl', function ($scope, $location, Auth, $rootScope) {
             var success = function (response) {
+                    $rootScope.username = $scope.user.username;
                     console.log(response);
                     $location.path('/home');
                 },

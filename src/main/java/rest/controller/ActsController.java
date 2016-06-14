@@ -5,6 +5,7 @@ import dao.IAmendmentDao;
 import model.User;
 import rest.response.ResponseFactory;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -25,6 +26,7 @@ public class ActsController {
     private IAmendmentDao amendmentDao;
 
     @POST
+    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
     public Object post(@Context HttpServletRequest request, String actString, @Context User user) {
         try {
             actDao.storeAct(actString, user.getUsername());
