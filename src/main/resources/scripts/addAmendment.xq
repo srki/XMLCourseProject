@@ -29,7 +29,7 @@ declare variable $result := if ($validation_error eq 'OK' and $article_exists eq
 else 'NOT OK';
 
 declare variable $props := xdmp:document-add-properties($document_uri,(
-  <status>{'proposed'}</status>
+  <status>{'proposed'}</status>,
   <username>{$username}</username>
 ));
 
