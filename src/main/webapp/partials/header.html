@@ -22,6 +22,12 @@
             <li ng-if="display == 'president'">
                 <a href="/manageSession">Manage session</a>
             </li>
+            <li ng-if="display == 'representative' || display == 'president'">
+                <a href="/myActs">My acts</a>
+            </li>
+            <li ng-if="display == 'citizen' || display == 'representative' || display == 'president'">
+                <a href="/semanticSearch">Semantic search</a>
+            </li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

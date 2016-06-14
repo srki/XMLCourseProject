@@ -11,5 +11,7 @@ angular.module('app.services', [
     'app.Sessions',
     'app.Acts',
     'app.Articles',
+    'app.Amendments',
+    'app.sessionResultModal',
     'app.SystemStatus'
 ]);

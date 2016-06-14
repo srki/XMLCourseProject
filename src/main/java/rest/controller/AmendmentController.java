@@ -4,6 +4,7 @@ import dao.IAmendmentDao;
 import model.User;
 import rest.response.ResponseFactory;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -19,8 +20,10 @@ public class AmendmentController {
     IAmendmentDao amendmentDao;
 
     @POST
+    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
     public Object post(String raw, @Context User user) {
         try {
+            System.out.println("asd");
             amendmentDao.storeAmendment(raw, user.getUsername());
 
             return Response
@@ -35,5 +38,11 @@ public class AmendmentController {
     @GET
     public Object get(@QueryParam("status") String status, @QueryParam("username") String username) {
         return amendmentDao.getAllAmendments("", status, username);
+    }
+
+    @GET
+    @Path("/{actUri}")
+    public Object get(@PathParam("actUri") String actUri, @QueryParam("status") String status) {
+        return amendmentDao.getAllAmendments(actUri, status);
     }
 }
