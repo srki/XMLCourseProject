@@ -1,12 +1,4 @@
+/.idea
 **/Config-local.properties
-/.idea/encodings.xml
-**/.idea/workspace.xml
-**/.idea/tasks.xml
-**/.idea/libraries
-**/.idea/dictionaries
-**/.idea/inspectionProfiles
-**/.idea/jsLibraryMappings.xml
-**/.idea/artifacts
 /target
 /XMLCourseProject.iml
-**/.idea/misc.xml
