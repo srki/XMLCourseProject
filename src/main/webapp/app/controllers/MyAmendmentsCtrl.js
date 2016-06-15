@@ -8,6 +8,7 @@
                 $scope.data = [];
 
                 $scope.init = function() {
+                    $rootScope.loadCurrentStatus();
                     Amendments.getAllFor($rootScope.username).then(
                         function (response) {
                             if (response.data.amendments){
@@ -20,8 +21,6 @@
                             } else {
                                 $scope.data = [];
                             }
-                            console.log(response);
-                            console.log($scope.data);
                         },
                         function (error) {
                             console.log(error);
@@ -43,7 +42,6 @@
                     modalInstance.result.then(function () {
                         console.log("Deleted " + uri);
                         Amendments.remove(parseURI(uri)).then(function (response) {
-                                console.log(response);
                                 $scope.init();
                             },
                             function (error) {

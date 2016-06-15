@@ -7,7 +7,7 @@
             </tr>
             <tr ng-repeat="amendment in data">
                 <td>{{ amendment.uri }}</td>
-                <td><button class="btn btn-danger" ng-click="delete(amendment.uri)">Delete</button></td>
+                <td><button class="btn btn-danger" ng-click="delete(amendment.uri)" ng-disabled="currentStatus != 'amendment'">Delete</button></td>
             </tr>
         </table>
         <div ng-if="!data.length">

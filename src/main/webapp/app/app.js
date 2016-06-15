@@ -79,11 +79,18 @@
             $httpProvider.interceptors.push('ForbiddenResponseInterceptor');
             $httpProvider.interceptors.push('ContentTypeInterceptor');
         })
-        .run(function (Auth, $location) {
+        .run(function (Auth, $location, $rootScope, SystemStatus) {
             Auth.isLogged(function (isLogged) {
                 if (!isLogged) {
                     $location.path('/login');
                 }
             });
+
+            $rootScope.currentStatus = 'idle';
+            $rootScope.loadCurrentStatus = function () {
+                SystemStatus.getStatus().then(function(response) {
+                    $rootScope.currentStatus = response.data.systemStatus.status;
+                });
+            };
         });
 }(angular));

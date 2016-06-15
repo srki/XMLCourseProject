@@ -8,6 +8,7 @@
                 $scope.data = [];
 
                 $scope.init = function() {
+                    $rootScope.loadCurrentStatus();
                     $scope.data = [];
                     Acts.get({username: $rootScope.username}).then(
                         function (response) {
@@ -21,7 +22,6 @@
                             } else {
                                 $scope.data = [];
                             }
-                            console.log(response);
                         },
                         function (error) {
                             console.log(error);
@@ -43,7 +43,6 @@
                     modalInstance.result.then(function () {
                         console.log("Deleted " + uri);
                         Acts.remove(parseURI(uri)).then(function (response) {
-                                console.log(response);
                                 $scope.init();
                             },
                             function (error) {
