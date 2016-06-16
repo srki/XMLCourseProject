@@ -17,7 +17,6 @@
                 $scope.attended = [];
                 $scope.aldermen = [];
 
-
                 console.log($scope.currentStatus);
 
                 $scope.get = function () {
@@ -44,9 +43,12 @@
                                 $scope.acts[i].votedAgainst = 0;
                                 $scope.acts[i].notVoted = 0;
                             }
+
+                            $scope.state = 'searched';
                         },
 
                         function (error) {
+                            $scope.state = 'searched';
                             console.log(error);
                         }
                     );
@@ -54,6 +56,7 @@
 
                 $scope.clear = function () {
                     $scope.filter = {};
+                    $scope.state = 'idle';
                 };
 
                 $scope.getAmendments = function (act) {
@@ -70,6 +73,7 @@
                             for (var i = 0; i < act.amendments.length; i++){
 
                                 act.amendments[i].dirty = false;
+                                act.amendments[i].origStatus = act.amendments[i].status;
                                 act.amendments[i].votedFor = 0;
                                 act.amendments[i].votedAgainst = 0;
                                 act.amendments[i].notVoted = 0;
@@ -98,8 +102,6 @@
 
                                         for (var i = 0; i < $scope.aldermen.length; i++)
                                             $scope.aldermen[i].attended = false;
-
-                                        $scope.state = 'aldermanState';
                                     },
 
                                     function (err) {
@@ -112,15 +114,13 @@
                                 console.log(err);
                             }
                         );
-                    }else {
-                        $scope.state = 'aldermanState';
                     }
-
                 };
 
                 $scope.dialog = function (act, index) {
+
                     SessionResultModal.open(act, index).result.then(
-                        
+
                         function (act) {
 
                             for(var i = 0; i < $scope.dirty.length; i++){
@@ -157,13 +157,12 @@
 
                             $scope.dirty.push(act);
                         },
-                        
+
                         function (err) {
                             console.log(err);
                         }
-                        
+
                     );
-                    
                 };
 
                 $scope.finish = function () {
@@ -217,6 +216,32 @@
                 };
 
 
+                $scope.discard = function (act, index, event) {
+
+                    if(event)
+                        event.preventDefault();
+                    if(index < 0){
+
+                        for(var i = 0; i < $scope.dirty.length; i++){
+
+                            if(act.uri === $scope.dirty[i].uri){
+                                $scope.dirty.splice(i, 1);
+                            }
+                        }
+
+                    }else{
+
+                        act.amendments[index].dirty = false;
+                        act.amendments[index].votedFor = 0;
+                        act.amendments[index].votedAgainst = 0;
+                        act.amendments[index].notVoted = 0;
+                        act.amendments[index].status = act.amendments[index].origStatus;
+                    }
+
+                };
+
+
+
                 function parseURI(uri) {
                     var index = uri.lastIndexOf('/');
                     return uri.substring(index + 1, uri.length);
@@ -265,6 +290,7 @@
 
                     $rootScope.loadCurrentStatus();
                     $scope.clear();
+                    $scope.getAldermen();
                 }());
                 
         }]);

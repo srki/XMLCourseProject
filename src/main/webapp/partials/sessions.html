@@ -4,7 +4,7 @@
         <h4 class="mb-10">Here you can find the a listing of Assembly Sessions</h4>
 
         <div ng-if="state==='createNew'">
-            <h4>Create new</h4>
+            <h4 class="mt-20">Create new</h4>
             <table class="table table-bordered mt-10 mb-10">
                 <tr>
                     <td class="col-sm-3">Place:</td>
@@ -32,11 +32,11 @@
 
         <br/>
         <br/>
-
-        <button class="btn btn-primary" ng-click="getUpcoming()">Upcoming</button>
-        <button class="btn btn-primary" ng-click="getFinished()">Finished</button>
         <button class="btn btn-success fl-right" ng-click="showForm()" ng-if = "state !== 'createNew' && display == 'president'">Create</button>
-
+        <ul class="nav nav-tabs">
+            <li><span class="btn btn-default" ng-click="getUpcoming()">Upcoming</span></li>
+            <li><span class="btn btn-default" ng-click="getFinished()">Finished</span></li>
+        </ul>
 
         <div class="pt-30">
             <h3>{{title}}</h3>

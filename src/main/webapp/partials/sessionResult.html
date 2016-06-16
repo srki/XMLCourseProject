@@ -1,132 +1,215 @@
 <div id="searchResult" class="pl-50 pr-50 pb-50 pt-20">
     <h2 class="mb-20">Add Session results</h2>
-    <div ng-hide="currentStatus !== 'voting'">
-        <div>
-            <button class="btn btn-default" ng-click="getAldermen()">Aldermen</button>
-            <button class="btn btn-default" ng-click="state='actState'">Acts</button>
-            <button class="btn btn-warning fl-right" ng-click="finish()">Finish</button>
-        </div>
-        <hr>
-        <div ng-if="state==='actState'" class="mt-10 mb-10">
+    <uib-tabset ng-hide="currentStatus !== 'voting'">
 
-            <h3>Acts</h3>
+        <uib-tab index="0" heading="Aldermen" ng-click="getAldermen()">
             <div class="mt-10 mb-10">
-                <button type="button" class="btn btn-primary fl-right mb-10" ng-click="hide = !hide">Filter</button>
-                <p></p>
+                <h5>Here you can add all aldermen who attended the session.</h5>
+
+                <table class="table mt-50 mb-10">
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th></th>
+                    </tr>
+                    <tr ng-repeat="alderman in aldermen">
+                        <td class="col-sm-5">{{ alderman.name }}</td>
+                        <td class="col-sm-5">{{ alderman.lastname }}</td>
+                        <td class="col-sm-3" ng-if="!alderman.attended"><button class="btn btn-success" ng-click="alderman.attended=true">+</button></td>
+                        <td class="col-sm-3" ng-if="alderman.attended"><button class="btn btn-danger" ng-click="alderman.attended=false">-</button></td>
+                    </tr>
+                </table>
+
             </div>
-            <table ng-hide="hide" class="mt-10 mb-10">
-                <tr>
-                    <td class="col-sm-3">Title:</td>
-                    <td class="col-sm-3">Country:</td>
-                    <td class="col-sm-3">Region:</td>
-                    <td class="col-sm-3">City:</td>
-                </tr>
-                <tr>
-                    <td class="col-sm-3">
-                        <input type="text" class="form-control" id="atitle" placeholder="Enter title" ng-model="filter.title">
-                    </td>
+        </uib-tab>
 
-                    <td class="col-sm-3">
-                        <input type="text" class="form-control" id="acntry" placeholder="Enter country" ng-model="filter.country">
-                    </td>
+        <uib-tab index="1" heading="Acts">
 
-                    <td class="col-sm-3">
-                        <input type="text" class="form-control" id="argn" placeholder="Enter region" ng-model="filter.region">
-                    </td>
+            <div class="mt-10 mb-10">
+                <h5 class="mb-10">Here you can update data about acts and its amendments.</h5>
+                <h3>Search Acts</h3>
 
-                    <td class="col-sm-3">
-                        <input type="text" class="form-control" id="acty" placeholder="Enter city" ng-model="filter.city">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-sm-3">Establishment:</td>
-                    <td class="col-sm-3">Start date:</td>
-                    <td class="col-sm-3">End date:</td>
-                    <td class="col-sm-3">Serial:</td>
-                </tr>
-                <tr>
-                    <td class="col-sm-3">
-                        <input type="text" class="form-control" id="aest" placeholder="Enter establishment" ng-model="filter.establishment">
-                    </td>
-                    <td class="col-sm-3">
-                        <input type="date" class="form-control" id="astd" ng-model="filter.start_date">
-                    </td>
-                    <td class="col-sm-3">
-                        <input type="date" class="form-control" id="aend" ng-model="filter.end_date">
-                    </td>
-                    <td class="col-sm-3">
-                        <input type="text" class="form-control" id="aser" placeholder="Enter serial" ng-model="filter.serial">
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="col-sm-3">Text:</td>
-                </tr>
-                <tr>
-                    <td class="col-sm-3" colspan="3">
+                <table ng-hide="hide" class="mt-10 mb-10">
+                    <tr>
+                        <td class="col-sm-3">Title:</td>
+                        <td class="col-sm-3">Country:</td>
+                        <td class="col-sm-3">Region:</td>
+                        <td class="col-sm-3">City:</td>
+                    </tr>
+                    <tr>
+                        <td class="col-sm-3">
+                            <input type="text" class="form-control" id="atitle" placeholder="Enter title" ng-model="filter.title">
+                        </td>
+
+                        <td class="col-sm-3">
+                            <input type="text" class="form-control" id="acntry" placeholder="Enter country" ng-model="filter.country">
+                        </td>
+
+                        <td class="col-sm-3">
+                            <input type="text" class="form-control" id="argn" placeholder="Enter region" ng-model="filter.region">
+                        </td>
+
+                        <td class="col-sm-3">
+                            <input type="text" class="form-control" id="acty" placeholder="Enter city" ng-model="filter.city">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-sm-3">Establishment:</td>
+                        <td class="col-sm-3">Start date:</td>
+                        <td class="col-sm-3">End date:</td>
+                        <td class="col-sm-3">Serial:</td>
+                    </tr>
+                    <tr>
+                        <td class="col-sm-3">
+                            <input type="text" class="form-control" id="aest" placeholder="Enter establishment" ng-model="filter.establishment">
+                        </td>
+                        <td class="col-sm-3">
+                            <input type="date" class="form-control" id="astd" ng-model="filter.start_date">
+                        </td>
+                        <td class="col-sm-3">
+                            <input type="date" class="form-control" id="aend" ng-model="filter.end_date">
+                        </td>
+                        <td class="col-sm-3">
+                            <input type="text" class="form-control" id="aser" placeholder="Enter serial" ng-model="filter.serial">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="col-sm-3">Text:</td>
+                    </tr>
+                    <tr>
+                        <td class="col-sm-3" colspan="3">
                         <textarea type="text" class="form-control" id="atxt" placeholder="Enter text" ng-model="filter.text"
                                   style="resize: none"></textarea>
-                    </td>
-                    <td class="col-sm-3" >
-                        <input type="button" value = "Clear" class="btn btn-danger fl-right ml-10 mt-10" ng-click="clear()"/>
-                        <input type="button" value = "Submit" class="btn btn-success fl-right mt-10" ng-click="get()"/>
-                    </td>
-                </tr>
-            </table>
-            <br>
-            <br>
-            <br>
+                        </td>
+                        <td class="col-sm-3" >
+                            <input type="button" value = "Clear" class="btn btn-danger fl-right ml-10 mt-10" ng-click="clear()"/>
+                            <input type="button" value = "Search" class="btn btn-success fl-right mt-10" ng-click="get()"/>
+                        </td>
+                    </tr>
+                </table>
 
-            <div class="mt-20" ng-if="acts.length > 0">
-                <uib-accordion>
-                    <uib-accordion-group ng-repeat="act in acts" ng-click="getAmendments(act)">
-                        <uib-accordion-heading>
-                            <table>
+                <div class="mt-20 mb-20" ng-if="acts.length > 0">
+                    <uib-accordion>
+                        <uib-accordion-group ng-repeat="act in acts" ng-click="getAmendments(act)">
+                            <uib-accordion-heading>
+                                <table>
+                                    <tr>
+                                        <td class="col-sm-12"> {{ ($index+1) + ") " + act.title}} </td>
+                                        <td class="col-sm-3"> <button class="btn btn-success" ng-click="dialog(act, -1)">+</button> </td>
+                                    </tr>
+                                </table>
+                            </uib-accordion-heading>
+
+                            <h4>Amendments</h4>
+                            <table class="table table-bordered mt-10 mb-10">
                                 <tr>
-                                    <td class="col-sm-12"> {{ ($index+1) + ") " + act.title}} </td>
-                                    <td class="col-sm-3"> <button class="btn btn-success" ng-click="dialog(act, -1)">+</button> </td>
+                                    <th>No.</th>
+                                    <th>Title</th>
+                                    <th></th>
+                                </tr>
+                                <tr ng-repeat="amendment in act.amendments">
+                                    <td class="col-sm-1">{{$index + 1}})</td>
+                                    <td class="col-sm-11">{{amendment.name}}</td>
+                                    <td class="col-sm-2"><button class="btn btn-success" ng-click="dialog(act, $index)">+</button></td>
                                 </tr>
                             </table>
-                        </uib-accordion-heading>
+                        </uib-accordion-group>
+                    </uib-accordion>
+                </div>
+                <br>
+                <br>
+                <span ng-if="acts.length === 0 && state==='searched'" class="alert alert-info mt-20"><b>No results for a given search!</b></span>
 
-                        <h4>Amendments</h4>
-                        <table class="table table-bordered mt-10 mb-10">
-                            <tr>
-                                <th>No.</th>
-                                <th>Title</th>
-                                <th></th>
-                            </tr>
-                            <tr ng-repeat="amendment in act.amendments">
-                                <td class="col-sm-1">{{$index + 1}})</td>
-                                <td class="col-sm-11">{{amendment.name}}</td>
-                                <td class="col-sm-2"><button class="btn btn-success" ng-click="dialog(act, $index)">+</button></td>
-                            </tr>
-                        </table>
-                    </uib-accordion-group>
-                </uib-accordion>
             </div>
-        </div>
-
-        <div ng-if="state==='aldermanState'" class="mt-10 mb-10">
-            <h3>Aldermen</h3>
-
-            <table class="table mt-10 mb-10">
-                <tr>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th></th>
-                </tr>
-                <tr ng-repeat="alderman in aldermen">
-                    <td class="col-sm-5">{{ alderman.name }}</td>
-                    <td class="col-sm-5">{{ alderman.lastname }}</td>
-                    <td class="col-sm-3" ng-if="!alderman.attended"><button class="btn btn-success" ng-click="alderman.attended=true">+</button></td>
-                    <td class="col-sm-3" ng-if="alderman.attended"><button class="btn btn-danger" ng-click="alderman.attended=false">-</button></td>
-                </tr>
-            </table>
-
-        </div>
-
-    </div>
+        </uib-tab>
 
 
-    <h5 ng-if="currentStatus !== 'voting'"><b>Currently unavailable due to state of the session!</b></h5>
+        <uib-tab index="2" heading="Changes">
+            <div>
+                <h5>Here you can see all the changes you made to acts and amendments in this current session.</h5>
+                <button ng-disabled="dirty.length===0" class="btn btn-primary fl-right mb-50" ng-click="finish()">Finish</button>
+
+                <div class="mt-50" ng-if="dirty.length > 0">
+                    <uib-accordion>
+                        <uib-accordion-group ng-repeat="act in dirty">
+                            <uib-accordion-heading>
+                                <table>
+                                    <tr>
+                                        <td class="col-sm-12"> {{ ($index+1) + ") " + act.title}} </td>
+                                        <td class="col-sm-3"> <button class="btn btn-danger" ng-click="discard(act, -1, $event)">-</button> </td>
+                                    </tr>
+                                </table>
+                            </uib-accordion-heading>
+
+                            <table class="table table-bordered mt-10 mb-20">
+                                <tr>
+                                    <td>Status:</td>
+                                    <td>{{act.status}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Voted for:</td>
+                                    <td>{{act.votedFor}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Voted against:</td>
+                                    <td>{{act.votedAgainst}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Not Voted:</td>
+                                    <td>{{act.notVoted}}</td>
+                                </tr>
+                            </table>
+
+                            <h4>Amendments</h4>
+                            <table class="table table-bordered mt-10 mb-10">
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Title</th>
+                                    <th>Stats</th>
+                                    <th></th>
+                                </tr>
+                                <tr ng-repeat="amendment in act.amendments">
+                                    <td class="col-sm-1">{{$index + 1}})</td>
+                                    <td class="col-sm-4">{{amendment.name}}</td>
+                                    <td class="col-sm-7">
+                                        <table class="table table-bordered mt-10 mb-20">
+                                            <tr>
+                                                <td>Status:</td>
+                                                <td>{{amendment.status}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Voted for:</td>
+                                                <td>{{amendment.votedFor}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Voted against:</td>
+                                                <td>{{amendment.votedAgainst}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Not Voted:</td>
+                                                <td>{{amendment.notVoted}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="col-sm-2" ng-if="!amendment.dirty" >
+                                        <button class="btn btn-success" ng-click="dialog(act, $index)">+</button>
+                                    </td>
+                                    <td class="col-sm-2" ng-if="amendment.dirty">
+                                        <button class="btn btn-danger"  ng-click="discard(act, $index)">-</button>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </uib-accordion-group>
+                    </uib-accordion>
+                </div>
+
+                <h5 ng-if="dirty.length === 0" class="alert alert-warning col-sm-5"><b><b>No changes!</b> You haven't made any changes yet.</b></h5>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+
+
+    <h5 ng-if="currentStatus !== 'voting'" class="alert alert-danger"><b>Currently unavailable due to state of the session!</b>
+        This option is only available if session state is voting!</h5>
 </div>
