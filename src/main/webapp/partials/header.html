@@ -7,29 +7,49 @@
         </div>
 
         <ul class="nav navbar-nav navbar-left">
-            <li ng-if="display == 'representative' || display == 'president'">
-                <a href="/sessions">Sessions</a>
+
+            <!--Sessions-->
+            <li uib-dropdown on-toggle="toggled(open)" ng-if="display == 'representative' || display == 'president'">
+                <a href id="simple-dropdown" uib-dropdown-toggle>Sessions</a>
+                <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                    <li ng-if="display == 'representative' || display == 'president'">
+                        <a href="/sessions">Sessions</a>
+                    </li>
+                    <li ng-if="display == 'president'">
+                        <a href="/manageSession">Manage Session</a>
+                    </li>
+                </ul>
             </li>
+
+            <!--Acts menu -->
+            <li uib-dropdown on-toggle="toggled(open)" ng-if="display == 'citizen' || display == 'representative' || display == 'president'">
+                <a href id="simple-dropdown" uib-dropdown-toggle>Acts</a>
+                <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                    <li ng-if="display == 'representative' || display == 'president'">
+                        <a href="/myActs">My Acts</a>
+                    </li>
+                    <li ng-if="display == 'representative'">
+                        <a href="/newAct">Propose an act</a>
+                    </li>
+                    <li ng-if="display == 'citizen' || display == 'representative' || display == 'president'">
+                        <a href="/acts">Search Acts</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!--Users menu-->
             <li ng-if="display == 'representative' || display == 'president'">
                 <a href="/users">Users</a>
             </li>
-            <li ng-if="display == 'representative'">
-                <a href="/newAct">Propose an act</a>
-            </li>
-            <li ng-if="display == 'citizen' || display == 'representative' || display == 'president'">
-                <a href="/acts">Acts</a>
-            </li>
-            <li ng-if="display == 'president'">
-                <a href="/manageSession">Manage session</a>
-            </li>
+
+            <!-- -->
             <li ng-if="display == 'representative' || display == 'president'">
-                <a href="/myActs">My acts</a>
+                <a href="/myAmendments">My Amendments</a>
             </li>
-            <li ng-if="display == 'representative' || display == 'president'">
-                <a href="/myAmendments">My amendments</a>
-            </li>
+
+            <!--Semantic search-->
             <li ng-if="display == 'citizen' || display == 'representative' || display == 'president'">
-                <a href="/semanticSearch">Semantic search</a>
+                <a href="/semanticSearch">Semantic Search</a>
             </li>
         </ul>
 

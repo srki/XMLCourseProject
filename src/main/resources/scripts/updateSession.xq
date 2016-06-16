@@ -19,4 +19,7 @@ catch($exception){
 declare variable $amendments := $session//mlt:amendment;
 declare variable $amendmentProperies := (for $i in $amendments return xdmp:document-set-property("/xml/amendments/" || $i/@ref, <status>{$i/@status}</status>));
 
-if (empty($amendmentProperies)) then $result else "NOT OK"
+declare variable $acts := $session//mlt:act;
+declare variable $actProperies := (for $i in $amendments return xdmp:document-set-property("/xml/acts/" || $i/@ref, <status>{$i/@status}</status>));
+
+if (empty($amendmentProperies) and empty($actProperies)) then $result else "NOT OK"

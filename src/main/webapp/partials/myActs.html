@@ -1,9 +1,11 @@
 <div class="pl-50 pr-50 pb-50 pt-20">
     <div class="mt-50">
+        <h1>My Acts</h1>
+        <h4>A list of all the acts you've created!</h4>
         <table class="table table-bordered table-striped table-hover" ng-if="data.length">
             <tr>
-                <th>Title</th>
-                <th></th>
+                <th class="text-center">Title</th>
+                <th class="text-center">Operation</th>
             </tr>
             <tr ng-repeat="act in data">
                 <td>{{ act.title }}</td>
@@ -11,7 +13,7 @@
             </tr>
         </table>
         <div ng-if="!data.length">
-            <b>No acts</b>
+            <div class="alert alert-warning" role="alert"><b>Currently you have no, you can propose new acts on the "Propose Act" tab</b></div>
         </div>
     </div>
 
