@@ -59,7 +59,7 @@ public class ExportController {
     @GET
     @Path("/html-edit/{uuid}")
     @Produces(MediaType.TEXT_HTML)
-    @RolesAllowed({User.REPRESENTATIVE})
+    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
     public Object getEditableHtml(@PathParam("uuid") String uuid) throws IOException, TransformerException {
         Document document = actDao.getDocument(uuid);
 

@@ -88,12 +88,24 @@
                         Users.query({type: 'representative'}).then(
 
                             function (response) {
+
                                 parseResponse(response, 'users', 'user', $scope, 'aldermen');
 
-                                for (var i = 0; i < $scope.aldermen.length; i++)
-                                    $scope.aldermen[i].attended = false;
+                                Users.query({type: 'president'}).then(
 
-                                $scope.state = 'aldermanState';
+                                    function (response) {
+                                        parseResponse(response, 'users', 'user', $scope, 'aldermen', true);
+
+                                        for (var i = 0; i < $scope.aldermen.length; i++)
+                                            $scope.aldermen[i].attended = false;
+
+                                        $scope.state = 'aldermanState';
+                                    },
+
+                                    function (err) {
+                                        console.log(err);
+                                    }
+                                );
                             },
 
                             function (err) {
@@ -210,18 +222,27 @@
                     return uri.substring(index + 1, uri.length);
                 }
 
-                function parseResponse(response, collection, item, obj, prop) {
+                function parseResponse(response, collection, item, obj, prop, append) {
 
                     if(response.data[collection][item]){
 
                         if(response.data[collection][item].length) {
-                            obj[prop] = response.data[collection][item];
+
+                            if(!append)
+                                obj[prop] = response.data[collection][item];
+                            else
+                                obj[prop].concat(response.data[collection][item]);
                         }else {
-                            obj[prop] = [];
+
+                            if(!append)
+                                obj[prop] = [];
+
                             obj[prop].push(response.data[collection][item]);
                         }
                     }else{
-                        obj[prop] = [];
+
+                        if(!append)
+                            obj[prop] = [];
                     }
 
                     console.log(response);
@@ -245,7 +266,6 @@
                     $rootScope.loadCurrentStatus();
                     $scope.clear();
                 }());
-
-
+                
         }]);
 }(angular));

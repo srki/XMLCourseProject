@@ -7,9 +7,9 @@
 
     angular.module('app.ActFilterCtrl', [])
 
-        .controller('ActFilterCtrl', ['$scope', 'Acts', '$location', '$routeParams', '$window',
+        .controller('ActFilterCtrl', ['$scope', 'Acts', '$location', '$routeParams', '$window', '$rootScope',
 
-            function ($scope, Acts, $location, $routeParams, $window) {
+            function ($scope, Acts, $location, $routeParams, $window, $rootScope) {
 
                 $scope.data = [];
                 $scope.state = 'idle';
@@ -77,7 +77,8 @@
                 }
 
                 $scope.clear();
-
+                $rootScope.loadCurrentStatus();
+                
                 if($routeParams.query) {
                     $scope.get();
                 }

@@ -1,6 +1,6 @@
 <div id="searchResult" class="pl-50 pr-50 pb-50 pt-20">
     <h2 class="mb-20">Add Session results</h2>
-    <div >
+    <div ng-hide="currentStatus !== 'voting'">
         <div>
             <button class="btn btn-default" ng-click="getAldermen()">Aldermen</button>
             <button class="btn btn-default" ng-click="state='actState'">Acts</button>
