@@ -10,4 +10,6 @@ public interface ISessionDao extends IAbstractDao {
 
     String getAllSessions(String status) throws JAXBException;
 
+    String getSessionResults(String uri);
+
 }

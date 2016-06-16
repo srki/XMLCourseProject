@@ -31,6 +31,8 @@ public class SessionDao extends AbstractDao implements ISessionDao {
 
     private static final String updateSession = getScriptContent("updateSession.xq");
 
+    private static final String getSession = getScriptContent("getSession.xq");
+
     @EJB
     private IActDao actDao;
 
@@ -192,6 +194,21 @@ public class SessionDao extends AbstractDao implements ISessionDao {
 
         call.xquery(getAllSessionsQuery);
         call.addVariable("status", status);
+
+        String raw = call.evalAs(String.class);
+
+        if (raw == null)
+            throw new NotFoundException();
+
+        return raw;
+    }
+
+    @Override
+    public String getSessionResults(String uri) {
+        ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
+
+        call.xquery(getSession);
+        call.addVariable("session_uri", uri);
 
         String raw = call.evalAs(String.class);
 

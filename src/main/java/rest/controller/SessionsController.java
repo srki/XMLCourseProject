@@ -33,13 +33,6 @@ public class SessionsController {
         }
     }
 
-    @GET
-    @Path("/{uuid}")
-    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
-    public Object getSingle(@PathParam("uuid") String uuid) {
-        return sessionDao.getDocument(uuid);
-    }
-
     @POST
     @RolesAllowed(User.PRESIDENT)
     public Object post(@Context HttpServletRequest request, String sessionString) {
@@ -60,6 +53,13 @@ public class SessionsController {
         } catch (Exception e) {
             return ResponseFactory.createErrorResponse(Response.Status.BAD_REQUEST, e.getMessage());
         }
+    }
+
+    @GET
+    @Path("/{uri}")
+    @RolesAllowed({User.REPRESENTATIVE, User.PRESIDENT})
+    public Object getSingle(@PathParam("uri") String uri) {
+        return sessionDao.getSessionResults(uri);
     }
 
 }

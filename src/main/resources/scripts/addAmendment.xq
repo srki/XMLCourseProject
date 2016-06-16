@@ -30,7 +30,8 @@ else 'NOT OK';
 
 declare variable $props := xdmp:document-add-properties($document_uri,(
   <status>{'proposed'}</status>,
-  <username>{$username}</username>
+  <username>{$username}</username>,
+  <title>{$amendment/mlt:amendment/@name}</title>
 ));
 
 if (empty($props)) then $result else "NOT OK"
