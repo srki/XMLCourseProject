@@ -1,17 +1,19 @@
 <div class="pl-50 pr-50 pb-50 pt-20">
     <div class="mt-50">
+        <h1>My Amendments</h1>
+        <h4>A list of all the amendments you've created!</h4>
         <table class="table table-bordered table-striped table-hover" ng-if="data.length">
             <tr>
                 <th>Title</th>
-                <th></th>
+                <th>Operation</th>
             </tr>
             <tr ng-repeat="amendment in data">
-                <td>{{ amendment.uri }}</td>
+                <td>{{ amendment.name }}</td>
                 <td><button class="btn btn-danger" ng-click="delete(amendment.uri)" ng-disabled="currentStatus != 'amendment'">Delete</button></td>
             </tr>
         </table>
         <div ng-if="!data.length">
-            <b>No acts</b>
+            <div class="alert alert-warning" role="alert"><b>Currently you have no, you can propose an Amendment by updating an Act</b></div>
         </div>
     </div>
 
