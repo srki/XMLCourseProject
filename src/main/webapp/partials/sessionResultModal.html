@@ -1,9 +1,19 @@
 <div class="modal-header">
-    <h3 class="modal-title">srmc.act.title</h3>
+    <h3 class="modal-title">{{srmc.document.title || srmc.document.name}}</h3>
 </div>
 <div class="modal-body">
-    <label for="agentName">Runtime name for the new {{armc.agentClass}} agent?</label>
-    <input id="agentName" ng-model="armc" ng-keyup="armc.keyFn($event)">
+
+    <label for="status">Status:</label>
+    <select id="status" class="form-control" ng-options="doc for doc in srmc.documentOptions" ng-model="srmc.document.status"></select>
+
+    <label for="votedFor">Voted for:</label>
+    <input id="votedFor" class="form-control" ng-model="srmc.document.votedFor" ng-keyup="srmc.keyFn($event)">
+
+    <label for="votedAgainst">Voted against:</label>
+    <input id="votedAgainst" class="form-control" ng-model="srmc.document.votedAgainst" ng-keyup="srmc.keyFn($event)">
+
+    <label for="notVoted">Not voted:</label>
+    <input id="notVoted"  class="form-control" ng-model="srmc.document.notVoted" ng-keyup="srmc.keyFn($event)">
 </div>
 <div class="modal-footer">
     <button class="btn btn-success" ng-click="srmc.confirm()">Confirm</button>

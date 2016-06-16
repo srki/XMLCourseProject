@@ -12,6 +12,14 @@
 
             return {
 
+
+                getById: function (sessionId) {
+                    return  $http({
+                        method: 'GET',
+                        url: 'api/sessions/' + sessionId
+                    });
+                },
+
                 getFinished: function () {
                     return  $http({
                         method: 'GET',
@@ -36,7 +44,7 @@
 
                     var startDate =  data.beginDate.toISOString();
                     var endDate =  data.endDate.toISOString();
-                    
+
                     return $http({
                         method: 'POST',
                         url: 'api/sessions',
@@ -47,6 +55,25 @@
                                 _beginDate : startDate,
                                 _endDate : endDate,
                                 place: data.place
+                            }
+                        }
+                    });
+                },
+
+                update: function (sessionId, data) {
+
+                    return $http({
+                        method: 'PUT',
+                        url: 'api/sessions/' + sessionId,
+                        data: {
+                            session: {
+                               _xmlns : "http://ftn.uns.ac.rs/xml",
+                                '_xmlns:xsi': "http://www.w3.org/2001/XMLSchema-instance",
+                                _beginDate : data.beginDate,
+                                _endDate : data.endDate,
+                                place: data.place,
+                                act: data.acts,
+                                alderman: data.aldermen
                             }
                         }
                     });

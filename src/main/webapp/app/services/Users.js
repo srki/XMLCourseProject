@@ -12,10 +12,11 @@
                 get: function (id) {
 
                 },
-                query: function () {
+                query: function (type) {
                     return $http({
                         method: 'GET',
-                        url: 'api/users'
+                        url: 'api/users',
+                        params: type
                     })
                 }
             };

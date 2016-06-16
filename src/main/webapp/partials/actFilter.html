@@ -66,8 +66,6 @@
     </table>
 
 
-
-
     <div class="mt-50">
         <table class="table table-bordered table-striped table-hover" ng-if="state === 'showResults'">
             <tr>
@@ -80,7 +78,7 @@
                 <td>{{ act.title }}</td>
                 <td><button class="btn btn-warning" ng-click="openPdf(act.uri)">PDF</button></td>
                 <td><button class="btn btn-info" ng-click="showHtml(act.uri)">HTML</button></td>
-                <td  ng-if="display==='representative'" ><button class="btn btn-primary" ng-click="update(act.uri)">Update</button></td>
+                <td  ng-if="display!=='citizen'" ><button class="btn btn-primary" ng-click="update(act.uri)">Update</button></td>
             </tr>
         </table>
         <p ng-if="state === 'noResults'"><b>No results</b></p>

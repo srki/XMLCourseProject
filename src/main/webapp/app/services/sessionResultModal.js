@@ -10,15 +10,18 @@
         .factory('SessionResultModal', ['$uibModal',  function($uibModal) {
 
             return {
-                open:  function(act) {
+                open:  function(act, index) {
                     var modalInstance = $uibModal.open({
                         templateUrl: 'partials/sessionResultModal.html',
                         controller: 'SessionResultModalCtrl',
                         controllerAs: 'srmc',
-                        size: 'sm',
+                        size: 'md',
                         resolve: {
                             act: function () {
                                 return act;
+                            },
+                            index: function () {
+                                return index;
                             }
                         }
                     });
