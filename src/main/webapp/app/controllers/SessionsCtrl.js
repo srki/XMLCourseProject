@@ -18,21 +18,23 @@
             function ($scope, Sessions, $location) {
 
                 $scope.sessions = [];
+                $scope.activeTab = 0;
                 $scope.inputData = {
                     beginDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day),
                     endDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day)
                 };
-                $scope.state = 'idle';
-
+              
                 $scope.getUpcoming = function () {
                     Sessions.getUpcoming().then(
                         function (response) {
                             processResponse(response);
                             $scope.title = 'Upcoming';
+                            $scope.activeTab = 0;
                         },
 
                         function (error) {
                             $scope.data = [];
+                            $scope.activeTab = 0;
                             console.log(error);
                         }
                     );
@@ -43,10 +45,12 @@
                         function (response) {
                             processResponse(response);
                             $scope.title = 'Finished';
+                            $scope.activeTab = 1;
                         },
 
                         function (error) {
                             $scope.data = [];
+                            $scope.activeTab = 1;
                             console.log(error);
                         }
                     );
@@ -54,7 +58,6 @@
 
                 $scope.create = function () {
 
-                    $scope.state = 'idle';
                     Sessions.create($scope.inputData).then(
                         function (response) {
                             $scope.inputData = {
@@ -62,6 +65,7 @@
                                 endDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day)
                             };
                             $scope.getUpcoming();
+                            $scope.activeTab = 0;
                             console.log(response);
                         },
 
@@ -76,11 +80,11 @@
                 };
 
                 $scope.showForm = function () {
-                    $scope.state = 'createNew';
+                    $scope.activeTab = 2;
                 };
 
                 $scope.cancel = function () {
-                    $scope.state = 'idle';
+
                     $scope.inputData = {
                         beginDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day),
                         endDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day)

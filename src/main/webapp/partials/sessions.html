@@ -1,68 +1,99 @@
 <div id="Sessions" class="pl-50 pr-50 pb-50 pt-20">
     <div class="mt-50">
         <h1 class="mb-10">Assembly sessions</h1>
-        <h4 class="mb-10">Here you can find the a listing of Assembly Sessions</h4>
+        <h4 class="mb-20">Here you can find the a listing of Assembly Sessions</h4>
 
-        <div ng-if="state==='createNew'">
-            <h4 class="mt-20">Create new</h4>
-            <table class="table table-bordered mt-10 mb-10">
-                <tr>
-                    <td class="col-sm-3">Place:</td>
-                    <td class="col-sm-3">Start date:</td>
-                    <td class="col-sm-3">End date:</td>
-                    <td class="col-sm-3"></td>
-                </tr>
-                <tr>
-                    <td class="col-sm-3">
-                        <input type="text" class="form-control" placeholder="Enter place" ng-model="inputData.place" required>
-                    </td>
-                    <td class="col-sm-3">
-                        <input type="datetime-local" class="form-control"  ng-model="inputData.beginDate" required>
-                    </td>
-                    <td class="col-sm-3">
-                        <input type="datetime-local" class="form-control"  ng-model="inputData.endDate" required>
-                    </td>
-                    <td class="col-sm-3" >
-                        <input type="button" value = "Cancel" class="btn btn-danger fl-right ml-10 mt-10" ng-click="cancel()"/>
-                        <input type="button" value = "Submit" class="btn btn-success fl-right mt-10" ng-click="create()"/>
-                    </td>
-                </tr>
-            </table>
-        </div>
+        <uib-tabset>
 
-        <br/>
-        <br/>
-        <button class="btn btn-success fl-right" ng-click="showForm()" ng-if = "state !== 'createNew' && display == 'president'">Create</button>
-        <ul class="nav nav-tabs">
-            <li><span class="btn btn-default" ng-click="getUpcoming()">Upcoming</span></li>
-            <li><span class="btn btn-default" ng-click="getFinished()">Finished</span></li>
-        </ul>
+            <uib-tab index="0" active="activeTab === 0" heading ="Upcoming" ng-click="getUpcoming()">
 
-        <div class="pt-30">
-            <h3>{{title}}</h3>
-        </div>
+                <h5 class="mb-5 mt-20">Here is the list of upcoming assembly sessions.</h5>
 
+                <table class="table table-bordered table-striped table-hover mt-50" ng-if="data.length > 0">
+                    <tr>
+                        <th>No.</th>
+                        <th>Place</th>
+                        <th>Starts</th>
+                        <th>Ends</th>
+                        <th class="ta-mid"></th>
+                        <th class="ta-mid" ng-if="display === 'president' && title==='Finished'"></th>
+                    </tr>
+                    <tr ng-repeat="session in data">
+                        <td>{{$index + 1}}</td>
+                        <td>{{ session.place }}</td>
+                        <td>{{ session.beginDate| date:'medium'}}</td>
+                        <td>{{ session.endDate| date:'medium'}}</td>
+                        <td class="ta-mid"><button class="btn btn-warning">Details</button></td>
+                        <td  class="ta-mid" ng-if="display==='president' && title==='Finished'">
+                            <button class="btn btn-primary" ng-click="addResults(session.uri)">Add results</button>
+                        </td>
+                    </tr>
+                </table>
+                <p ng-if="data.length === 0" class="alert alert-warning"><b>Currently there is no upcoming sessions!</b></p>
 
-        <table class="table table-bordered table-striped table-hover" ng-if="data.length > 0">
-            <tr>
-                <th>No.</th>
-                <th>Place</th>
-                <th>Starts</th>
-                <th>Ends</th>
-                <th class="ta-mid"></th>
-                <th class="ta-mid" ng-if="display === 'president' && title==='Finished'"></th>
-            </tr>
-            <tr ng-repeat="session in data">
-                <td>{{$index + 1}}</td>
-                <td>{{ session.place }}</td>
-                <td>{{ session.beginDate| date:'medium'}}</td>
-                <td>{{ session.endDate| date:'medium'}}</td>
-                <td class="ta-mid"><button class="btn btn-warning">Details</button></td>
-                <td  class="ta-mid" ng-if="display==='president' && title==='Finished'">
-                    <button class="btn btn-primary" ng-click="addResults(session.uri)">Add results</button>
-                </td>
-            </tr>
-        </table>
-        <p ng-if="data.length === 0"><b>No results</b></p>
+            </uib-tab>
+
+            <uib-tab index="1" active="activeTab === 1" heading ="Finished" ng-click="getFinished()">
+
+                <h5 class="mb-5 mt-20">Here is the list of finished assembly sessions.</h5>
+
+                <table class="table table-bordered table-striped table-hover mt-50" ng-if="data.length > 0">
+                    <tr>
+                        <th>No.</th>
+                        <th>Place</th>
+                        <th>Starts</th>
+                        <th>Ends</th>
+                        <th class="ta-mid"></th>
+                        <th class="ta-mid" ng-if="display === 'president' && title==='Finished'"></th>
+                    </tr>
+                    <tr ng-repeat="session in data">
+                        <td>{{$index + 1}}</td>
+                        <td>{{ session.place }}</td>
+                        <td>{{ session.beginDate| date:'medium'}}</td>
+                        <td>{{ session.endDate| date:'medium'}}</td>
+                        <td class="ta-mid"><button class="btn btn-warning">Details</button></td>
+                        <td  class="ta-mid" ng-if="display==='president' && title==='Finished'">
+                            <button class="btn btn-primary" ng-click="addResults(session.uri)">Add results</button>
+                        </td>
+                    </tr>
+                </table>
+                <p ng-if="data.length === 0" class="alert alert-warning"><b>Currently there is no finished sessions!</b></p>
+            </uib-tab>
+
+            <uib-tab index="2" active="activeTab === 2" heading ="Create new" ng-click="showForm()" ng-if = "display === 'president'">
+                <div>
+
+                    <h5 class="mb-10 mt-20">Here you can create a new assembly session.</h5>
+
+                    <h4 class="mb-5 mt-20">Create new</h4>
+
+                    <table class="table table-bordered mt-10 mb-10">
+                        <tr>
+                            <td class="col-sm-3">Place:</td>
+                            <td class="col-sm-3">Start date:</td>
+                            <td class="col-sm-3">End date:</td>
+                            <td class="col-sm-3"></td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-3">
+                                <input type="text" class="form-control" placeholder="Enter place" ng-model="inputData.place" required>
+                            </td>
+                            <td class="col-sm-3">
+                                <input type="datetime-local" class="form-control"  ng-model="inputData.beginDate" required>
+                            </td>
+                            <td class="col-sm-3">
+                                <input type="datetime-local" class="form-control"  ng-model="inputData.endDate" required>
+                            </td>
+                            <td class="col-sm-3" >
+                                <input type="button" value = "Cancel" class="btn btn-danger fl-right ml-10 mt-10" ng-click="cancel()"/>
+                                <input type="button" value = "Submit" class="btn btn-success fl-right mt-10" ng-click="create()"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </uib-tab>
+
+        </uib-tabset>
+
     </div>
 </div>
