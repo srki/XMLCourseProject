@@ -42,6 +42,9 @@ $(function () {
                 var error = new X2JS().xml_str2json(jqXHR.responseText).error.message;
                 console.log(error);
                 alert("Failed to store the act:\nCheck act structure again.")
+            },
+            submitResponseHandler: function () {
+                window.parent.postMessage(params.rootElement, '*');
             }
         });
 });
