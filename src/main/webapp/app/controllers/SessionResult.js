@@ -8,9 +8,11 @@
 
     angular.module('app.SessionResultCtrl', [])
         .controller('SessionResultCtrl', ['$scope', 'Acts', 'Amendments', 'SessionResultModal',
-            'Users', 'Sessions', '$rootScope', '$routeParams',
+            'Users', 'Sessions', '$rootScope', '$routeParams', '$location',
             function ($scope, Acts, Amendments, SessionResultModal,
-                      Users, Sessions, $rootScope, $routeParams) {
+                      Users, Sessions, $rootScope, $routeParams, $location) {
+
+                $scope.error = true;
 
                 $scope.acts = [];
                 $scope.dirty = [];
@@ -179,16 +181,19 @@
                         preparedData.aldermen.push({_username: $scope.aldermen[i].username});
 
 
-                    for(var i = 0; i < $scope.dirty.length; i++) {
+                    for(i = 0; i < $scope.dirty.length; i++) {
 
                         var act = {
                             _status: $scope.dirty[i].status,
-                           /* _votedFor: $scope.dirty[i].votedFor,
+                            _votedFor: $scope.dirty[i].votedFor,
                             _votedAgainst: $scope.dirty[i].votedAgainst,
-                            _notVoted: $scope.dirty[i].notVoted,*/
-                            _ref: parseURI($scope.dirty[i].uri),
-                            amendment: []
+                            _notVoted: $scope.dirty[i].notVoted,
+                            _ref: parseURI($scope.dirty[i].uri)
                         };
+
+                        if ($scope.dirty[i].amendments.length != 0) {
+                            act['amendment'] = [];
+                        }
 
                         for(var j = 0; j < $scope.dirty[i].amendments.length; j++){
 
@@ -196,9 +201,9 @@
 
                                 act.amendment.push({
                                     _status: $scope.dirty[i].amendments[j].status,
-                                  /*  _votedFor: $scope.dirty[i].amendments[j].votedFor,
+                                    _votedFor: $scope.dirty[i].amendments[j].votedFor,
                                     _votedAgainst: $scope.dirty[i].amendments[j].votedAgainst,
-                                    _notVoted: $scope.dirty[i].amendments[j].notVoted,*/
+                                    _notVoted: $scope.dirty[i].amendments[j].notVoted,
                                     _ref: parseURI( $scope.dirty[i].amendments[j].uri)
                                 });
                             }
@@ -213,10 +218,12 @@
 
                         function (response) {
                             console.log(response);
+                            $location.url('/sessions');
                         },
 
                         function (err) {
                             console.log(err);
+                            $scope.error = false;
                         }
                     );
                 };
@@ -226,7 +233,7 @@
 
                     if(event)
                         event.preventDefault();
-                    if(index < 0){
+                    if(index < 0) {
 
                         for(var i = 0; i < $scope.dirty.length; i++){
 
@@ -235,7 +242,7 @@
                             }
                         }
 
-                    }else{
+                    }else {
 
                         act.amendments[index].dirty = false;
                         act.amendments[index].votedFor = 0;

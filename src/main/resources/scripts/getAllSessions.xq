@@ -27,12 +27,14 @@ declare variable $q3 := if ($status eq "finished") then
 <sessions>
     {
         for $x in cts:uris((), (), $q3)
+        let $session := doc($x)/mlt:session
         return
             <session>
                 <uri>{$x}</uri>
-                <beginDate>{data(doc($x)/mlt:session/@beginDate)}</beginDate>
-                <endDate>{data(doc($x)/mlt:session/@endDate)}</endDate>
-                <place>{data(doc($x)/mlt:session/mlt:place)}</place>
+                <beginDate>{data($session/@beginDate)}</beginDate>
+                <endDate>{data($session/@endDate)}</endDate>
+                <place>{data($session/mlt:place)}</place>
+                <status>{if (empty($session//mlt:alderman) and empty($session//mlt:act)) then "NOT RESOLVED" else "RESOLVED"}</status>
             </session>
     }
 </sessions>

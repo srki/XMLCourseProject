@@ -50,7 +50,7 @@ try {
                 data(xdmp:document-get-properties("/xml/amendments/" || $i/@ref, QName("", "status"))),
                 $i/@status))
 
-    let $amendmentCheck := if ($amendmentProperies = false() or empty($amendmentProperies))
+    let $amendmentCheck := if ($amendmentProperies = false() or (empty($amendmentProperies) and not(empty($amendments))))
     then "NOT OK"
     else "OK"
 

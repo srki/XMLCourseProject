@@ -47,7 +47,7 @@
                         <td>{{ session.endDate| date:'medium'}}</td>
                         <td class="ta-mid"><button class="btn btn-warning" ng-click="showDetails(session.uri)">Details</button></td>
                         <td  class="ta-mid" ng-if="display==='president'">
-                            <button ng-disabled="currentStatus !=='voting'" class="btn btn-primary" ng-click="addResults(session.uri)">Add results</button>
+                            <button ng-disabled="currentStatus !=='voting' || session.status == 'RESOLVED'" class="btn btn-primary" ng-click="addResults(session.uri)">Add results</button>
                         </td>
                     </tr>
                 </table>

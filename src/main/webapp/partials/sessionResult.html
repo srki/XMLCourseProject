@@ -2,6 +2,10 @@
     <h2 class="mb-20">Add Session results</h2>
     <uib-tabset ng-hide="currentStatus !== 'voting'">
 
+        <div ng-hide="error" class="alert alert-danger">
+            <strong>Failed!</strong> Was not able to save the results of this Session.
+        </div>
+
         <uib-tab index="0" heading="Aldermen" ng-click="getAldermen()">
 
             <div class="mt-10 mb-10">

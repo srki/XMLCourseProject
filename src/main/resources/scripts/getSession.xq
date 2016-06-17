@@ -18,12 +18,17 @@ declare variable $endDate := data($session/mlt:session/@beginDate);
             <act title="{data(xdmp:document-get-properties('/xml/acts/' || $act/@ref, QName('', 'title')))}">
                 {$act/@status}
                 {$act/@ref}
-
+                {$act/@votedFor}
+                {$act/@votedAgainst}
+                {$act/@notVoted}
                 {
                     for $amendment in $act//mlt:amendment return
                         <amendment title="{data(xdmp:document-get-properties('/xml/amendments/' || $amendment/@ref, QName('', 'title')))}">
                             {$amendment/@status}
                             {$amendment/@ref}
+                            {$amendment/@votedFor}
+                            {$amendment/@votedAgainst}
+                            {$amendment/@notVoted}
                         </amendment>
                 }
             </act>

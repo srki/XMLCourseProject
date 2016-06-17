@@ -10,15 +10,21 @@
                     <xs:element name="act" maxOccurs="unbounded">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="amendment" maxOccurs="unbounded">
+                                <xs:element name="amendment" minOccurs="0" maxOccurs="unbounded">
                                     <xs:complexType>
-                                        <xs:attribute type="xs:string" name="status"/>
-                                        <xs:attribute type="xs:string" name="ref"/>
+                                        <xs:attribute type="xs:string" name="status" use="required"/>
+                                        <xs:attribute type="xs:string" name="ref" use="required"/>
+                                        <xs:attribute type="xs:integer" name="votedFor" use="required"/>
+                                        <xs:attribute type="xs:integer" name="votedAgainst" use="required"/>
+                                        <xs:attribute type="xs:integer" name="notVoted" use="required"/>
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
                             <xs:attribute type="xs:string" name="status" use="required"/>
-                            <xs:attribute type="xs:string" name="ref"/>
+                            <xs:attribute type="xs:string" name="ref" use="required"/>
+                            <xs:attribute type="xs:integer" name="votedFor" use="required"/>
+                            <xs:attribute type="xs:integer" name="votedAgainst" use="required"/>
+                            <xs:attribute type="xs:integer" name="notVoted" use="required"/>
                         </xs:complexType>
                     </xs:element>
                 </xs:sequence>
