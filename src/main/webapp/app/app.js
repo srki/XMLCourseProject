@@ -99,11 +99,22 @@
                 }
             });
 
-            $rootScope.currentStatus = 'idle';
+            $rootScope.currentStatus = '*';
             $rootScope.loadCurrentStatus = function () {
                 SystemStatus.getStatus().then(function(response) {
                     $rootScope.currentStatus = response.data.systemStatus.status;
                 });
             };
+
+            window.addEventListener("message", function (event) {
+                if (event.data == 'act') {
+                    $location.path('/myActs');
+                } else if (event.data == 'amendment') {
+                    $location.path('/myAmendments');
+                } else {
+                    $location.path('/');
+                }
+                $rootScope.$apply();
+            }, false);
         });
 }(angular));

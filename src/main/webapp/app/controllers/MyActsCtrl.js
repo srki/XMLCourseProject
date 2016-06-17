@@ -37,7 +37,7 @@
                 $scope.delete = function (uri) {
                     var modalInstance = $uibModal.open({
                         templateUrl: 'partials/confirmDelete.html',
-                        controller: 'ConfirmDeleteCtrl',
+                        controller: 'ConfirmDeleteCtrl'
                     });
 
                     modalInstance.result.then(function () {
@@ -55,6 +55,7 @@
 
                 $scope.showHtml = function (uri) {
                     $location.path('/acts/' + parseURI(uri));
+                    $location.search('edit', 'true');
                 };
 
                 $scope.openPdf = function (uri) {

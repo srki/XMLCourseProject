@@ -107,8 +107,10 @@
             </xsl:choose>
 
             <h3 style="text-align: center">
+                <xsl:attribute name="ng-click">scroll(<xsl:value-of select="@id"/>)</xsl:attribute>
                 Član <xsl:value-of select="@id+1"/>.
             </h3>
+
             <xsl:choose>
                 <xsl:when test="count(b:paragraph) &gt; 0">
                     <xsl:apply-templates select="b:paragraph"/>
