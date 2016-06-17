@@ -74,7 +74,7 @@
                 </tr>
                 <tr ng-repeat="act in data">
                     <td>{{ act.title }}</td>
-                    <td>{{ act.status }}</td>
+                    <td>{{ formatStatus(act.status) }}</td>
 
                     <td  ng-if="display!=='citizen'" >
                         <button class="btn btn-primary" ng-click="update(act.uri)" ng-disabled="currentStatus!=='amendment'">Update</button>

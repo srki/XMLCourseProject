@@ -11,7 +11,7 @@
             </tr>
             <tr ng-repeat="act in data">
                 <td>{{ act.title }}</td>
-                <td>{{ act.status }}</td>
+                <td>{{ formatStatus(act.status) }}</td>
                 <td><button class="btn btn-warning" ng-click="openPdf(act.uri)">PDF</button></td>
                 <td><button class="btn btn-info" ng-click="showHtml(act.uri)">HTML</button></td>
                 <td><button class="btn btn-danger" ng-click="delete(act.uri)" ng-disabled="currentStatus != 'act'">Delete</button></td>

@@ -55,12 +55,15 @@
 
                 $scope.showHtml = function (uri) {
                     $location.path('/acts/' + parseURI(uri));
-                    $location.search('edit', 'true');
                 };
 
                 $scope.openPdf = function (uri) {
                     $window.open('/api/export/pdf/' + parseURI(uri));
                 };
+
+                $scope.formatStatus = function (status) {
+                    return status.toUpperCase().split('_').join(' ');
+                }
 
                 $scope.init();
             }]);

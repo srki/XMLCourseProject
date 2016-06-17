@@ -68,6 +68,10 @@
                     $window.open('/api/export/pdf/' + parseURI(uri));
                 };
 
+                $scope.formatStatus = function (status) {
+                    return status.toUpperCase().split('_').join(' ');
+                }
+
                 $scope.init();
             }]);
 }(angular));

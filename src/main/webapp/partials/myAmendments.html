@@ -12,7 +12,7 @@
             </tr>
             <tr ng-repeat="amendment in data">
                 <td>{{ amendment.name }}</td>
-                <td>{{ amendment.status }}</td>
+                <td>{{ formatStatus((amendment.status) }}</td>
                 <td><button class="btn btn-warning" ng-click="openPdf(amendment.uri)">PDF</button></td>
                 <td><button class="btn btn-info" ng-click="showHtml(amendment.uri)">HTML</button></td>
                 <td><button class="btn btn-warning" ng-click="openActPdf(amendment.act)">PDF</button></td>
