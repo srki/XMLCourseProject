@@ -3,8 +3,8 @@
  */
 (function (angular) {
     angular.module('app.ManageSessionCtrl', [])
-        .controller('ManageSessionCtrl', ['$scope', 'SystemStatus',
-            function ($scope, SystemStatus) {
+        .controller('ManageSessionCtrl', ['$scope', 'SystemStatus', '$rootScope',
+            function ($scope, SystemStatus, $rootScope) {
                 $scope.status = '';
                 $scope.max = 3;
                 $scope.dynamic = 0;
@@ -14,6 +14,7 @@
 
                 SystemStatus.getStatus().then(function(response) {
                     $scope.status = response.data.systemStatus.status;
+                    $rootScope.currentStatus = $scope.status;
                     console.log("Current: " + $scope.status);
                     switch ($scope.status) {
                         case states[0]:
@@ -55,6 +56,7 @@
                     }
 
                     SystemStatus.updateStatus($scope.status).then(function() {
+                        $rootScope.loadCurrentStatus();
 
                         if ($scope.dynamic < 3)
                             $scope.dynamic++;

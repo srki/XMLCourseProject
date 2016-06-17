@@ -7,7 +7,7 @@
     "use strict";
 
     angular.module('app.NewActCtrl', [])
-        .controller('NewActCtrl', function ($scope, $location, Auth) {
+        .controller('NewActCtrl', function ($scope, $location, Auth, $rootScope) {
 
             Auth.isLogged(function (isLogged) {
                 if (!isLogged) {
@@ -16,11 +16,17 @@
             });
 
             (function () {
+                $rootScope.loadCurrentStatus();
+
                 $scope.options = {
                     schemaUri: '/api/schemas/',
                     schemaName: 'act.xsd',
                     rootElement: 'act',
                     submitPath: '/api/acts'
+                }
+
+                if ($rootScope.currentStatus != 'act') {
+                    $location.path('/home');
                 }
             }());
         });

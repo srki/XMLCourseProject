@@ -8,6 +8,11 @@
                 <meta charset="UTF-8"/>
             </head>
             <body style="font-family: Calibri">
+                <div style="text-align: center; margin-bottom: 15px">
+                    <img src="http://localhost:8080/img/novi-sad-logo.png" height="96" width="96"/>
+                </div>
+                <h2 style="text-align: center">GRAD NOVI SAD</h2>
+
                 <h3 style="text-align: center">
                     Amandman
                     <xsl:value-of select="b:amendment/@name"/>

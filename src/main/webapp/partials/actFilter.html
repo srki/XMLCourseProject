@@ -68,11 +68,13 @@
             <table class="table table-bordered table-striped table-hover" ng-if="state === 'showResults'">
                 <tr>
                     <th class="text-center">Title</th>
+                    <th class="text-center">Status</th>
                     <th  ng-if="display!=='citizen'" class="text-center">Operation</th>
                     <th colspan="2" class="text-center">Export To</th>
                 </tr>
                 <tr ng-repeat="act in data">
                     <td>{{ act.title }}</td>
+                    <td>{{ act.status }}</td>
 
                     <td  ng-if="display!=='citizen'" >
                         <button class="btn btn-primary" ng-click="update(act.uri)" ng-disabled="currentStatus!=='amendment'">Update</button>
