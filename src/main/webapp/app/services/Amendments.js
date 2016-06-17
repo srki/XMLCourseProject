@@ -34,6 +34,13 @@
                     });
                 },
 
+                getHtml: function (id) {
+                    return $http({
+                        method: 'GET',
+                        url: 'api/export/amendment/html/' + id
+                    });
+                },
+
                 remove: function (amendmentId) {
                     return  $http({
                         method: 'DELETE',

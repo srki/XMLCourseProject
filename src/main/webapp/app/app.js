@@ -57,6 +57,14 @@
                     templateUrl: 'partials/showAct.html',
                     controller: 'EditActCtrl'
                 })
+                .when('/amendments',{
+                    templateUrl: 'partials/amendmentFilter.html',
+                    controller: 'AmendmentFilterCtrl'
+                })
+                .when('/amendments/:id', {
+                    templateUrl: 'partials/showAmendment.html',
+                    controller: 'ShowAmendmentCtrl'
+                })
                 .when('/acts/:actId/:articleId', {
                     templateUrl: 'partials/editAct.html',
                     controller: 'EditArticleCtrl'

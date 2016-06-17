@@ -1,0 +1,90 @@
+<div id="amendmentFilter" class="pl-50 pr-50 pb-50 pt-20">
+
+    <div class="mt-50">
+        <h1 class="mb-20">Search Amendments</h1>
+        <h4 class="mb-20">You can use this form to filter and find Amendments</h4>
+
+        <table class="mt-10 mb-10">
+            <tr>
+                <td class="col-sm-3">Status:</td>
+                <!--<td class="col-sm-3">Title:</td>-->
+                <!--<td class="col-sm-3">Country:</td>-->
+                <!--<td class="col-sm-3">Region:</td>-->
+                <!--<td class="col-sm-3">City:</td>-->
+            </tr>
+            <tr>
+                <td class="col-sm-3">
+                    <select id="status" class="form-control" ng-options="doc for doc in documentOptions" ng-model="status"></select>
+                </td>
+                <!--<td class="col-sm-3">-->
+                    <!--<input type="text" class="form-control" id="atitle" placeholder="Enter title" ng-model="filter.title">-->
+                <!--</td>-->
+
+                <!--<td class="col-sm-3">-->
+                    <!--<input type="text" class="form-control" id="acntry" placeholder="Enter country" ng-model="filter.country">-->
+                <!--</td>-->
+
+                <!--<td class="col-sm-3">-->
+                    <!--<input type="text" class="form-control" id="argn" placeholder="Enter region" ng-model="filter.region">-->
+                <!--</td>-->
+
+                <!--<td class="col-sm-3">-->
+                    <!--<input type="text" class="form-control" id="acty" placeholder="Enter city" ng-model="filter.city">-->
+                <!--</td>-->
+            </tr>
+            <!--<tr>-->
+                <!--<td class="col-sm-3">Establishment:</td>-->
+                <!--<td class="col-sm-3">Start date:</td>-->
+                <!--<td class="col-sm-3">End date:</td>-->
+                <!--<td class="col-sm-3">Serial:</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td class="col-sm-3">-->
+                    <!--<input type="text" class="form-control" id="aest" placeholder="Enter establishment" ng-model="filter.establishment">-->
+                <!--</td>-->
+                <!--<td class="col-sm-3">-->
+                    <!--<input type="date" class="form-control" id="astd" ng-model="filter.start_date">-->
+                <!--</td>-->
+                <!--<td class="col-sm-3">-->
+                    <!--<input type="date" class="form-control" id="aend" ng-model="filter.end_date">-->
+                <!--</td>-->
+                <!--<td class="col-sm-3">-->
+                    <!--<input type="text" class="form-control" id="aser" placeholder="Enter serial" ng-model="filter.serial">-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td colspan="3" class="col-sm-3">Text:</td>-->
+            <!--</tr>-->
+            <tr>
+                <!--<td class="col-sm-3" colspan="3">-->
+                    <!--<textarea type="text" class="form-control" id="atxt" placeholder="Enter text" ng-model="filter.text"-->
+                              <!--style="resize: none"></textarea>-->
+                <!--</td>-->
+                <td class="col-sm-3" >
+                    <input type="button" value = "Clear" class="btn btn-danger fl-right ml-10 mt-10" ng-click="clear()"/>
+                    <input type="button" value = "Search" class="btn btn-success fl-right mt-10" ng-click="get()"/>
+                </td>
+            </tr>
+        </table>
+
+
+        <div class="mt-50">
+            <table class="table table-bordered table-striped table-hover" ng-if="state === 'showResults'">
+                <tr>
+                    <th class="text-center">Title</th>
+                    <th colspan="2" class="text-center">Export To</th>
+                    <th colspan="2" class="text-center">Related to act</th>
+                </tr>
+                <tr ng-repeat="amendment in data">
+                    <td>{{ amendment.name }}</td>
+
+                    <td><button class="btn btn-warning" ng-click="openPdf(amendment.uri)">PDF</button></td>
+                    <td><button class="btn btn-info" ng-click="showHtml(amendment.uri)">HTML</button></td>
+                    <td><button class="btn btn-warning" ng-click="openActPdf(amendment.act)">PDF</button></td>
+                    <td><button class="btn btn-info" ng-click="showActHtml(amendment.act)">HTML</button></td>
+                </tr>
+            </table>
+            <p ng-if="state === 'noResults'"><b>No results</b></p>
+        </div>
+    </div>
+</div>

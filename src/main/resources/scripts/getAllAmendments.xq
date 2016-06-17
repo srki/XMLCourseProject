@@ -34,6 +34,7 @@ declare variable $q4 := if ($username eq "") then $q3 else
         return
             <amendment>
                 <uri>{$x}</uri>
+                <act>{data(doc($x)/mlt:amendment/@uri)}</act>
                 <status>{data(xdmp:document-get-properties($x, QName('', 'status')))}</status>
                 <date>{data(doc($x)/mlt:amendment/@date)}</date>
                 <name>{data(doc($x)/mlt:amendment/@name)}</name>

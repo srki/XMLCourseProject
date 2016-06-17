@@ -48,6 +48,9 @@
                 <a href id="simple-dropdown" uib-dropdown-toggle>Amendments</a>
                 <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
                     <li ng-if="display == 'representative' || display == 'president'">
+                        <a href="/amendments">Search Amendments</a>
+                    </li>
+                    <li ng-if="display == 'representative' || display == 'president'">
                         <a href="/myAmendments">My Amendments</a>
                     </li>
                 </ul>
