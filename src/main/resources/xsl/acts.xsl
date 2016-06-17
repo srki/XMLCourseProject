@@ -11,6 +11,7 @@
                 <div style="text-align: center; margin-bottom: 15px">
                     <img src="http://localhost:8080/img/novi-sad-logo.png" height="96" width="96"/>
                 </div>
+                <h2 style="text-align: center">GRAD NOVI SAD</h2>
 
                 <xsl:apply-templates select="//b:preamble"/>
                 <h2 style="text-align: center">
@@ -100,6 +101,9 @@
                     <a>
                         <xsl:attribute name="href">
                             <xsl:value-of select="@modify"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="ng-disabled">
+                            currentStatus != 'amendment'
                         </xsl:attribute>
                         <div style="text-align: center">Modify</div>
                     </a>

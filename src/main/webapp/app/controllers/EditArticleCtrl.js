@@ -9,9 +9,9 @@
     angular.module('app.EditArticleCtrl', [])
 
         .controller('EditArticleCtrl', [
-            '$scope', '$routeParams', '$location', 'Auth',
+            '$scope', '$routeParams', '$location', 'Auth', '$rootScope',
 
-            function ($scope, $routeParams, $location, Auth) {
+            function ($scope, $routeParams, $location, Auth, $rootScope) {
                 Auth.isLogged(function (isLogged) {
                     if (!isLogged) {
                         $location.path('/login');
@@ -19,6 +19,7 @@
                 });
 
                 (function () {
+                    $rootScope.loadCurrentStatus();
 
                     if($routeParams.new){
 
@@ -37,6 +38,10 @@
                             retrievalPath: '/api/acts/' + $routeParams.actId + '/articles/'
                             + $routeParams.articleId + '/amendment'
                         };
+                    }
+
+                    if ($rootScope.currentStatus != 'amendment') {
+                        $location.path('/home');
                     }
                 }());
             }]);

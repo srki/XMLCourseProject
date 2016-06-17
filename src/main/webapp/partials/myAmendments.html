@@ -5,12 +5,14 @@
         <table class="table table-bordered table-striped table-hover" ng-if="data.length">
             <tr>
                 <th>Title</th>
+                <th>Status</th>
                 <th colspan="2" class="text-center">Export To</th>
                 <th colspan="2" class="text-center">Related to act</th>
                 <th>Operation</th>
             </tr>
             <tr ng-repeat="amendment in data">
                 <td>{{ amendment.name }}</td>
+                <td>{{ amendment.status }}</td>
                 <td><button class="btn btn-warning" ng-click="openPdf(amendment.uri)">PDF</button></td>
                 <td><button class="btn btn-info" ng-click="showHtml(amendment.uri)">HTML</button></td>
                 <td><button class="btn btn-warning" ng-click="openActPdf(amendment.act)">PDF</button></td>
