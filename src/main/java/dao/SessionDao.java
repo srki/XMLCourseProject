@@ -67,6 +67,19 @@ public class SessionDao extends AbstractDao implements ISessionDao {
 
         NodeList amendments = (NodeList)xPath.evaluate("//mlt:amendment", e, XPathConstants.NODESET);
 
+        applyAmendments(act, xPath , amendments);
+
+        Element amendmentsElement = getDocumentFromString(amendmentDao.getAllAmendments(act.getDocumentURI(),
+                                                          "approved", "")).getDocumentElement();
+
+        amendments = (NodeList)xPath.evaluate("//amendment/uri", amendmentsElement, XPathConstants.NODESET);
+
+        applyAmendmentsFromQuery(act, xPath , amendments);
+
+        return act;
+    }
+
+    private void applyAmendments(Document act, XPath xPath, NodeList amendments) throws Exception {
         for(int i = 0; i < amendments.getLength(); ++i) {
             Element amendmentInfo = (Element)amendments.item(i);
 
@@ -76,8 +89,13 @@ public class SessionDao extends AbstractDao implements ISessionDao {
                 executeAmendmentOperation(act, amendment, xPath);
             }
         }
+    }
 
-        return act;
+    private void applyAmendmentsFromQuery(Document act, XPath xPath, NodeList amendments) throws Exception {
+        for(int i = 0; i < amendments.getLength(); ++i) {
+            Element amendment = amendmentDao.getDocument(amendments.item(i).getTextContent().split("/")[3]).getDocumentElement();
+            executeAmendmentOperation(act, amendment, xPath);
+        }
     }
 
     private void executeAmendmentOperation(Document act,

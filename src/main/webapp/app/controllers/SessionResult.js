@@ -178,7 +178,7 @@
                         aldermen: [],
                         beginDate: $scope.session._beginDate,
                         endDate: $scope.session._endDate,
-                        place: $scope.session.place
+                        place: $scope.session.place,
                     };
 
                     for(var i = 0; i < $scope.aldermen.length; i++){
@@ -196,12 +196,9 @@
                             _votedFor: $scope.dirty[i].votedFor,
                             _votedAgainst: $scope.dirty[i].votedAgainst,
                             _notVoted: $scope.dirty[i].notVoted,
-                            _ref: parseURI($scope.dirty[i].uri)
+                            _ref: parseURI($scope.dirty[i].uri),
+                            amendment : []
                         };
-
-                        if ($scope.dirty[i].amendments.length != 0) {
-                            act['amendment'] = [];
-                        }
 
                         for(var j = 0; j < $scope.dirty[i].amendments.length; j++){
 
@@ -216,6 +213,11 @@
                                 });
                             }
                         }
+
+                        if (act.amendment.length == 0) {
+                            delete act['amendment'];
+                        }
+
 
                         preparedData.acts.push(act);
                     }
