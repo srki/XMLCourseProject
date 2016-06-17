@@ -15,8 +15,40 @@
 
                 self.document = JSON.parse(JSON.stringify((index < 0) ? act : act.amendments[index]));
                 self.documentOptions = [];
+                self.errorMessage = '';
+
+                var errMsgCommon = 'ERROR! ';
+
+                function isInt(number) {
+                    return parseInt(number) == number;
+                }
+
+                self.validate = function () {
+
+                    if(!isInt(self.document.votedFor) || self.document.votedFor < 0){
+                        self.errorMessage = errMsgCommon + 'voted for field accepts only positive integer!';
+                        return false;
+                    }
+
+
+                    if(!isInt(self.document.votedAgainst) || self.document.votedAgainst < 0){
+                        self.errorMessage = errMsgCommon + 'voted against field accepts only positive integer!';
+                        return false;
+                    }
+
+                    if(!isInt(self.document.notVoted) || self.document.notVoted < 0) {
+                        self.errorMessage = errMsgCommon + 'not voted field accepts only positive integer!';
+                        return false;
+                    }
+
+                    self.errorMessage = '';
+                    return true;
+                };
 
                 self.confirm = function () {
+
+                    if(!self.validate())
+                        return;
 
                     if(index < 0){
                         act = self.document;

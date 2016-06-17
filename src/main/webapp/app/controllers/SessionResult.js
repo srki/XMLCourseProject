@@ -18,6 +18,7 @@
                 $scope.dirty = [];
                 $scope.attended = [];
                 $scope.aldermen = [];
+                $scope.errorMessage = '';
 
                 console.log($scope.currentStatus);
 
@@ -119,7 +120,10 @@
                     }
                 };
 
-                $scope.dialog = function (act, index) {
+                $scope.dialog = function (act, index, event) {
+
+                    if(event)
+                        event.preventDefault();
 
                     SessionResultModal.open(act, index).result.then(
 
@@ -177,8 +181,12 @@
                         place: $scope.session.place
                     };
 
-                    for(var i = 0; i < $scope.aldermen.length; i++)
-                        preparedData.aldermen.push({_username: $scope.aldermen[i].username});
+                    for(var i = 0; i < $scope.aldermen.length; i++){
+
+                        if($scope.aldermen[i].attended)
+                            preparedData.aldermen.push({_username: $scope.aldermen[i].username});
+                    }
+
 
 
                     for(i = 0; i < $scope.dirty.length; i++) {
@@ -212,11 +220,21 @@
                         preparedData.acts.push(act);
                     }
 
-                    console.log(preparedData);
+                    console.log(preparedData.aldermen);
+
+                    if(preparedData.aldermen.length === 0){
+                        $scope.errorMessage = 'ERROR! You must add at least one alderman!';
+                        return;
+                    }else
+                        $scope.errorMessage = '';
 
                     Sessions.update(parseURI($scope.session.uri), preparedData).then(
 
                         function (response) {
+
+                            $scope.dirty = [];
+                            $scope.getAldermen();
+
                             console.log(response);
                             $location.url('/sessions');
                         },
@@ -233,7 +251,10 @@
 
                     if(event)
                         event.preventDefault();
-                    if(index < 0) {
+
+                    $scope.errorMessage = '';
+
+                    if(index < 0){
 
                         for(var i = 0; i < $scope.dirty.length; i++){
 
@@ -252,8 +273,6 @@
                     }
 
                 };
-
-
 
                 function parseURI(uri) {
                     var index = uri.lastIndexOf('/');

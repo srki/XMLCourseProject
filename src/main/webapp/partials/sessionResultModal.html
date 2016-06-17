@@ -2,7 +2,7 @@
     <h3 class="modal-title">{{srmc.document.title || srmc.document.name}}</h3>
 </div>
 <div class="modal-body">
-
+    <p class="alert alert-danger mt-20 mb-20" ng-if="srmc.errorMessage"><b>{{srmc.errorMessage}}</b></p>
     <label for="status">Status:</label>
     <select id="status" class="form-control" ng-options="doc for doc in srmc.documentOptions" ng-model="srmc.document.status"></select>
 
