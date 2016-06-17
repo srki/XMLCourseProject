@@ -8,7 +8,7 @@ declare variable $act := xdmp:unquote($act_string);
 declare variable $errors := xdmp:validate($act, "strict");
 declare variable $validation_error := if (exists($errors//error:error)) then "NOT OK" else "OK";
 declare variable $is_not_act_error := if (name($act/mlt:act) eq "act") then "OK" else "NOT OK";
-declare variable $less_articles := if(count($act//mlt:article) le 2) then "NOT OK" else "OK";
+declare variable $less_articles := if(count($act//mlt:article) lt 2) then "NOT OK" else "OK";
 declare variable $document_uri := "/xml/acts/" || sem:uuid-string() || ".xml";
 
 declare variable $result := if ($validation_error eq 'OK' and $is_not_act_error eq 'OK' and $less_articles eq 'OK') then

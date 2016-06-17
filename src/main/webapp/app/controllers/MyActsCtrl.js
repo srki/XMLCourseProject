@@ -3,8 +3,8 @@
  */
 (function (angular) {
     angular.module('app.MyActsCtrl', [])
-        .controller('MyActsCtrl', ['$scope', 'Acts', '$rootScope', '$uibModal',
-            function ($scope, Acts, $rootScope, $uibModal) {
+        .controller('MyActsCtrl', ['$scope', 'Acts', '$rootScope', '$uibModal', '$location', '$window',
+            function ($scope, Acts, $rootScope, $uibModal, $location, $window) {
                 $scope.data = [];
 
                 $scope.init = function() {
@@ -51,6 +51,14 @@
                     }, function () {
                         console.log('Modal dismissed at: ' + new Date());
                     });
+                };
+
+                $scope.showHtml = function (uri) {
+                    $location.path('/acts/' + parseURI(uri));
+                };
+
+                $scope.openPdf = function (uri) {
+                    $window.open('/api/export/pdf/' + parseURI(uri));
                 };
 
                 $scope.init();

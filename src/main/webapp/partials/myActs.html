@@ -5,10 +5,13 @@
         <table class="table table-bordered table-striped table-hover" ng-if="data.length">
             <tr>
                 <th class="text-center">Title</th>
+                <th colspan="2" class="text-center">Export To</th>
                 <th class="text-center">Operation</th>
             </tr>
             <tr ng-repeat="act in data">
                 <td>{{ act.title }}</td>
+                <td><button class="btn btn-warning" ng-click="openPdf(act.uri)">PDF</button></td>
+                <td><button class="btn btn-info" ng-click="showHtml(act.uri)">HTML</button></td>
                 <td><button class="btn btn-danger" ng-click="delete(act.uri)" ng-disabled="currentStatus != 'act'">Delete</button></td>
             </tr>
         </table>

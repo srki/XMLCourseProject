@@ -3,8 +3,8 @@
  */
 (function (angular) {
     angular.module('app.MyAmendmentsCtrl', [])
-        .controller('MyAmendmentsCtrl', ['$scope', 'Amendments', '$rootScope', '$uibModal',
-            function ($scope, Amendments, $rootScope, $uibModal) {
+        .controller('MyAmendmentsCtrl', ['$scope', 'Amendments', '$rootScope', '$uibModal', '$location', '$window',
+            function ($scope, Amendments, $rootScope, $uibModal, $location, $window) {
                 $scope.data = [];
 
                 $scope.init = function() {
@@ -50,6 +50,22 @@
                     }, function () {
                         console.log('Modal dismissed at: ' + new Date());
                     });
+                };
+
+                $scope.showHtml = function (uri) {
+                    $location.path('/amendments/' + parseURI(uri));
+                };
+
+                $scope.openPdf = function (uri) {
+                    $window.open('api/export/amendment/pdf/' + parseURI(uri));
+                };
+
+                $scope.showActHtml = function (uri) {
+                    $location.path('/acts/' + parseURI(uri));
+                };
+
+                $scope.openActPdf = function (uri) {
+                    $window.open('/api/export/pdf/' + parseURI(uri));
                 };
 
                 $scope.init();
