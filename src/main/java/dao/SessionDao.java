@@ -5,6 +5,7 @@ import com.marklogic.client.eval.ServerEvaluationCall;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Element;
+import warehouse.WarehouseRequester;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -143,6 +144,7 @@ public class SessionDao extends AbstractDao implements ISessionDao {
 
     @Override
     public void storeSessionResults(String raw, String uri) throws Exception {
+        Thread thread = null;
         Transaction t = this.databaseManager.getDatabaseClient().openTransaction();
 
         ServerEvaluationCall call = this.databaseManager.getDatabaseClient().newServerEval();
@@ -172,6 +174,14 @@ public class SessionDao extends AbstractDao implements ISessionDao {
                     throw new BadRequestException();
                 }
             }
+
+            // Create archive thread
+            thread = new Thread(() -> {
+                WarehouseRequester wr = new WarehouseRequester();
+                for (Document d : purifiedActs) {
+                    wr.archiveAct(d.getDocumentURI(), getDocumentAsString(d));
+                }
+            });
         }
 
         call = this.databaseManager.getDatabaseClient().newServerEval();
@@ -186,6 +196,11 @@ public class SessionDao extends AbstractDao implements ISessionDao {
         }
 
         t.commit();
+
+        // Archive
+        if (thread != null) {
+            thread.start();
+        }
     }
 
     @Override
