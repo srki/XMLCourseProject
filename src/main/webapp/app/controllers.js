@@ -20,5 +20,6 @@ angular.module('app.controllers', [
     'app.MyActsCtrl',
     'app.MyAmendmentsCtrl',
     'app.ConfirmDeleteCtrl',
-    'app.SemanticSearchCtrl'
+    'app.SemanticSearchCtrl',
+    'app.SessionResultDetailCtrl'
 ]);

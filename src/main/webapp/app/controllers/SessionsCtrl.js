@@ -14,8 +14,8 @@
 
     angular.module('app.SessionsCtrl', [])
 
-        .controller('SessionsCtrl', ['$scope', 'Sessions', '$location',
-            function ($scope, Sessions, $location) {
+        .controller('SessionsCtrl', ['$scope', 'Sessions', '$location','$rootScope',
+            function ($scope, Sessions, $location, $rootScope) {
 
                 $scope.sessions = [];
                 $scope.activeTab = 0;
@@ -23,7 +23,7 @@
                     beginDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day),
                     endDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day)
                 };
-              
+
                 $scope.getUpcoming = function () {
                     Sessions.getUpcoming().then(
                         function (response) {
@@ -79,6 +79,10 @@
                     );
                 };
 
+                $scope.showDetails = function (uri) {
+                    $location.path('/session-result-detail/' + parseUri(uri));
+                };
+
                 $scope.showForm = function () {
                     $scope.activeTab = 2;
                 };
@@ -111,6 +115,7 @@
                 }
 
                 $scope.getUpcoming();
+                $rootScope.loadCurrentStatus();
             }
         ]);
 

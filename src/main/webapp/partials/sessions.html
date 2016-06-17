@@ -15,18 +15,12 @@
                         <th>Place</th>
                         <th>Starts</th>
                         <th>Ends</th>
-                        <th class="ta-mid"></th>
-                        <th class="ta-mid" ng-if="display === 'president' && title==='Finished'"></th>
                     </tr>
                     <tr ng-repeat="session in data">
                         <td>{{$index + 1}}</td>
                         <td>{{ session.place }}</td>
                         <td>{{ session.beginDate| date:'medium'}}</td>
                         <td>{{ session.endDate| date:'medium'}}</td>
-                        <td class="ta-mid"><button class="btn btn-warning">Details</button></td>
-                        <td  class="ta-mid" ng-if="display==='president' && title==='Finished'">
-                            <button class="btn btn-primary" ng-click="addResults(session.uri)">Add results</button>
-                        </td>
                     </tr>
                 </table>
                 <p ng-if="data.length === 0" class="alert alert-warning"><b>Currently there is no upcoming sessions!</b></p>
@@ -51,9 +45,9 @@
                         <td>{{ session.place }}</td>
                         <td>{{ session.beginDate| date:'medium'}}</td>
                         <td>{{ session.endDate| date:'medium'}}</td>
-                        <td class="ta-mid"><button class="btn btn-warning">Details</button></td>
-                        <td  class="ta-mid" ng-if="display==='president' && title==='Finished'">
-                            <button class="btn btn-primary" ng-click="addResults(session.uri)">Add results</button>
+                        <td class="ta-mid"><button class="btn btn-warning" ng-click="showDetails(session.uri)">Details</button></td>
+                        <td  class="ta-mid" ng-if="display==='president'">
+                            <button ng-disabled="currentStatus !=='voting'" class="btn btn-primary" ng-click="addResults(session.uri)">Add results</button>
                         </td>
                     </tr>
                 </table>

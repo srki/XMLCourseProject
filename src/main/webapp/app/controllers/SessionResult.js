@@ -183,6 +183,9 @@
 
                         var act = {
                             _status: $scope.dirty[i].status,
+                           /* _votedFor: $scope.dirty[i].votedFor,
+                            _votedAgainst: $scope.dirty[i].votedAgainst,
+                            _notVoted: $scope.dirty[i].notVoted,*/
                             _ref: parseURI($scope.dirty[i].uri),
                             amendment: []
                         };
@@ -193,6 +196,9 @@
 
                                 act.amendment.push({
                                     _status: $scope.dirty[i].amendments[j].status,
+                                  /*  _votedFor: $scope.dirty[i].amendments[j].votedFor,
+                                    _votedAgainst: $scope.dirty[i].amendments[j].votedAgainst,
+                                    _notVoted: $scope.dirty[i].amendments[j].notVoted,*/
                                     _ref: parseURI( $scope.dirty[i].amendments[j].uri)
                                 });
                             }

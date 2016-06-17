@@ -1,26 +1,30 @@
-<div id="searchResult" class="pl-50 pr-50 pb-50 pt-20">
+<div id="sessionResult" class="pl-50 pr-50 pb-50 pt-20">
     <h2 class="mb-20">Add Session results</h2>
     <uib-tabset ng-hide="currentStatus !== 'voting'">
 
         <uib-tab index="0" heading="Aldermen" ng-click="getAldermen()">
+
             <div class="mt-10 mb-10">
+
                 <h5>Here you can add all aldermen who attended the session.</h5>
 
                 <table class="table mt-50 mb-10">
                     <tr>
+                        <th>Username</th>
                         <th>First name</th>
                         <th>Last name</th>
                         <th></th>
                     </tr>
                     <tr ng-repeat="alderman in aldermen">
-                        <td class="col-sm-5">{{ alderman.name }}</td>
-                        <td class="col-sm-5">{{ alderman.lastname }}</td>
+                        <td class="col-sm-4">{{ alderman.username }}</td>
+                        <td class="col-sm-4">{{ alderman.name }}</td>
+                        <td class="col-sm-4">{{ alderman.lastname }}</td>
                         <td class="col-sm-3" ng-if="!alderman.attended"><button class="btn btn-success" ng-click="alderman.attended=true">+</button></td>
                         <td class="col-sm-3" ng-if="alderman.attended"><button class="btn btn-danger" ng-click="alderman.attended=false">-</button></td>
                     </tr>
                 </table>
-
             </div>
+
         </uib-tab>
 
         <uib-tab index="1" heading="Acts">

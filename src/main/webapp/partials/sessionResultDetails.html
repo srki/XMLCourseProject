@@ -1,0 +1,122 @@
+<div id="sessionResultDetails" class="pl-50 pr-50 pb-50 pt-20">
+
+    <h2 class="mb-20">Session details</h2>
+
+    <h5>This is a detailed view of session.</h5>
+
+    <uib-tabset>
+
+        <uib-tab index="0" heading="General">
+
+            <table class="table table-bordered mt-20">
+                <tr>
+                    <td>Place:</td>
+                    <td>{{ session.place }}</td>
+                </tr>
+                <tr>
+                    <td>Begin date:</td>
+                    <td>{{ session._beginDate| date:'medium' }}</td>
+                </tr>
+                <tr>
+                    <td>End date:</td>
+                    <td>{{ session._endDate| date:'medium' }}</td>
+                </tr>
+            </table>
+
+        </uib-tab>
+
+        <uib-tab index="1" heading="Acts">
+
+            <div>
+                <h5>Here you can see all the changes made to acts and amendments in this session.</h5>
+
+                <div class="mt-50">
+                    <uib-accordion>
+                        <uib-accordion-group ng-repeat="act in acts">
+                            <uib-accordion-heading>
+                                {{ ($index+1) + ") " + act._title}}
+                            </uib-accordion-heading>
+
+                            <table class="table table-bordered mt-10 mb-20">
+                                <tr>
+                                    <td>Status:</td>
+                                    <td>{{act._status}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Voted for:</td>
+                                    <td>{{act._votedFor}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Voted against:</td>
+                                    <td>{{act._votedAgainst}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Not Voted:</td>
+                                    <td>{{act._notVoted}}</td>
+                                </tr>
+                            </table>
+
+                            <h4>Amendments</h4>
+                            <table class="table table-bordered mt-10 mb-10">
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Title</th>
+                                    <th>Stats</th>
+                                    <th></th>
+                                </tr>
+                                <tr ng-repeat="amendment in act.amendments">
+                                    <td class="col-sm-1">{{$index + 1}})</td>
+                                    <td class="col-sm-4">{{amendment._name}}</td>
+                                    <td class="col-sm-7">
+                                        <table class="table table-bordered mt-10 mb-20">
+                                            <tr>
+                                                <td>Status:</td>
+                                                <td>{{amendment._status}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Voted for:</td>
+                                                <td>{{amendment._votedFor}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Voted against:</td>
+                                                <td>{{amendment._votedAgainst}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Not Voted:</td>
+                                                <td>{{amendment._notVoted}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </uib-accordion-group>
+                    </uib-accordion>
+                </div>
+            </div>
+
+        </uib-tab>
+
+        <uib-tab index="2" heading="Aldermen">
+
+            <div class="mt-10 mb-10">
+
+                <h5>Here is the list of aldermen who attended the session.</h5>
+
+                <table class="table mt-50 mb-10">
+                    <tr>
+                        <th>Username</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                    </tr>
+                    <tr ng-repeat="alderman in aldermen">
+                        <td class="col-sm-5">{{ alderman.username }}</td>
+                        <td class="col-sm-5">{{ alderman.name }}</td>
+                        <td class="col-sm-5">{{ alderman.lastname }}</td>
+                    </tr>
+                </table>
+            </div>
+
+        </uib-tab>
+
+    </uib-tabset>
+</div>

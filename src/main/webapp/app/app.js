@@ -40,6 +40,11 @@
                     templateUrl: 'partials/sessionResult.html',
                     controller: 'SessionResultCtrl'
                 })
+
+                .when('/session-result-detail/:id',{
+                    templateUrl: 'partials/sessionResultDetails.html',
+                    controller: 'SessionResultDetailCtrl'
+                })
                 .when('/newAct', {
                     templateUrl: 'partials/newAct.html',
                     controller: 'NewActCtrl'
