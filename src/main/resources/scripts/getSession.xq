@@ -23,7 +23,7 @@ declare variable $endDate := data($session/mlt:session/@beginDate);
                 {$act/@notVoted}
                 {
                     for $amendment in $act//mlt:amendment return
-                        <amendment title="{data(xdmp:document-get-properties('/xml/amendments/' || $amendment/@ref, QName('', 'title')))}">
+                        <amendment title="{xdmp:document-get-properties('/xml/amendments/' || $amendment/@ref, QName('', 'title'))/@name}">
                             {$amendment/@status}
                             {$amendment/@ref}
                             {$amendment/@votedFor}
