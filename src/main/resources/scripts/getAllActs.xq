@@ -92,7 +92,7 @@ declare variable $q10 := if ($username eq "") then $q9 else
             )
     )));
 
-declare variable $q11 := if ($username eq "") then $q10 else
+declare variable $q11 := if ($country eq "") then $q10 else
     cts:and-query(($q10, cts:properties-query(
             cts:element-word-query(
                     QName('', 'country'),
