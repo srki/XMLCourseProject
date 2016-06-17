@@ -108,7 +108,7 @@
 
             <h3 style="text-align: center">
                 <xsl:attribute name="ng-click">scroll(<xsl:value-of select="@id"/>)</xsl:attribute>
-                Član <xsl:value-of select="@id+1"/>.
+                Član <xsl:value-of select="1 + count(./preceding::b:article | ./ancestor::b:article)"/>.
             </h3>
 
             <xsl:choose>

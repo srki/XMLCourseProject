@@ -139,7 +139,7 @@ public class SessionDao extends AbstractDao implements ISessionDao {
             index =  value > index ? value : index;
         }
 
-        return index;
+        return index + 1;
     }
 
     @Override
