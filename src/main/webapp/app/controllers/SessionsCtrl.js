@@ -19,6 +19,7 @@
 
                 $scope.sessions = [];
                 $scope.activeTab = 0;
+                $scope.errorMessage = '';
                 $scope.inputData = {
                     beginDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day),
                     endDate: new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day)
@@ -56,7 +57,33 @@
                     );
                 };
 
+                $scope.validate = function () {
+
+                    if(!$scope.inputData.place){
+                        $scope.errorMessage = 'ERROR! Place cannot be empty!';
+                        return false;
+                    }
+
+                    var checkDate =  new Date(Math.floor(new Date().getTime() / hour) * hour + 7 * day).getTime();
+
+                    if($scope.inputData.beginDate.getTime() < checkDate){
+                        $scope.errorMessage = 'ERROR! Begin date must be at least a week after today!';
+                        return false;
+                    }
+
+                    if($scope.inputData.beginDate.getTime() > $scope.inputData.endDate.getTime()){
+                        $scope.errorMessage = 'ERROR! End date must be after begin date!';
+                        return false;
+                    }
+
+                    $scope.errorMessage = '';
+                    return true;
+                };
+
                 $scope.create = function () {
+
+                    if(!$scope.validate())
+                        return;
 
                     Sessions.create($scope.inputData).then(
                         function (response) {

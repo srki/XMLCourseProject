@@ -62,20 +62,26 @@
 
                 update: function (sessionId, data) {
 
+                    var session = {
+                        _xmlns : "http://ftn.uns.ac.rs/xml",
+                        '_xmlns:xsi': "http://www.w3.org/2001/XMLSchema-instance",
+                        _beginDate : data.beginDate,
+                        _endDate : data.endDate,
+                        place: data.place
+                    };
+
+                    if(data.acts.length > 0) {
+                        session.act = data.acts;
+                    }
+
+                    if(data.aldermen.length > 0){
+                        session.alderman = data.aldermen;
+                    }
+
                     return $http({
                         method: 'PUT',
                         url: 'api/sessions/' + sessionId,
-                        data: {
-                            session: {
-                               _xmlns : "http://ftn.uns.ac.rs/xml",
-                                '_xmlns:xsi': "http://www.w3.org/2001/XMLSchema-instance",
-                                _beginDate : data.beginDate,
-                                _endDate : data.endDate,
-                                place: data.place,
-                                act: data.acts,
-                                alderman: data.aldermen
-                            }
-                        }
+                        data: {session : session}
                     });
                 }
             };

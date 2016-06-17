@@ -99,7 +99,7 @@
                                 <table>
                                     <tr>
                                         <td class="col-sm-12"> {{ ($index+1) + ") " + act.title}} </td>
-                                        <td class="col-sm-3"> <button class="btn btn-success" ng-click="dialog(act, -1)">+</button> </td>
+                                        <td class="col-sm-3"> <button class="btn btn-success" ng-click="dialog(act, -1, $event)">+</button> </td>
                                     </tr>
                                 </table>
                             </uib-accordion-heading>
@@ -114,7 +114,7 @@
                                 <tr ng-repeat="amendment in act.amendments">
                                     <td class="col-sm-1">{{$index + 1}})</td>
                                     <td class="col-sm-11">{{amendment.name}}</td>
-                                    <td class="col-sm-2"><button class="btn btn-success" ng-click="dialog(act, $index)">+</button></td>
+                                    <td class="col-sm-2"><button class="btn btn-success" ng-click="dialog(act, $index, $event)">+</button></td>
                                 </tr>
                             </table>
                         </uib-accordion-group>
@@ -131,8 +131,18 @@
         <uib-tab index="2" heading="Changes">
             <div>
                 <h5>Here you can see all the changes you made to acts and amendments in this current session.</h5>
-                <button ng-disabled="dirty.length===0" class="btn btn-primary fl-right mb-50" ng-click="finish()">Finish</button>
 
+                <p ng-if ="dirty.length === 0" class="alert alert-info mt-20 mb-10">
+                    <b>INFO</b>
+                    Finish button is disabled as long there is no changes to acts or amendments.
+                </p>
+
+                <p ng-if ="errorMessage" class="alert alert-danger mt-20 mb-10">
+                   <b> {{errorMessage}} </b>
+                </p>
+
+                <button ng-disabled="dirty.length===0" class="btn btn-primary fl-right mb-50" ng-click="finish()">Finish</button>
+                <br>
                 <div class="mt-50" ng-if="dirty.length > 0">
                     <uib-accordion>
                         <uib-accordion-group ng-repeat="act in dirty">
@@ -208,7 +218,7 @@
                     </uib-accordion>
                 </div>
 
-                <h5 ng-if="dirty.length === 0" class="alert alert-warning col-sm-5"><b><b>No changes!</b> You haven't made any changes yet.</b></h5>
+                <h5 ng-if="dirty.length === 0" class="alert alert-warning col-sm-5 mt-10"><b><b>No changes!</b> You haven't made any changes yet.</b></h5>
             </div>
         </uib-tab>
     </uib-tabset>
