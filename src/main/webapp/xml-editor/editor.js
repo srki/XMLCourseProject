@@ -21,7 +21,7 @@ $(function () {
             schemaURI: params.schemaUri,
             rootElement: params.rootElement
         }),
-        elementText = '<element xlmns="http://ftn.uns.ac.rs/xml"></element>'
+        elementText = '<element xmlns="http://ftn.uns.ac.rs/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></element>'
             .split('element')
             .join(params.rootElement),
         ajaxOptions = {
@@ -40,7 +40,8 @@ $(function () {
             ajaxOptions: ajaxOptions,
             submitErrorHandler: function (jqXHR) {
                 var error = new X2JS().xml_str2json(jqXHR.responseText).error.message;
-                alert(error);
+                console.log(error);
+                alert("Failed to store the act:\nCheck act structure again.")
             }
         });
 });

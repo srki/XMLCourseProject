@@ -14,7 +14,8 @@
                     $location.path('/home');
                 },
                 error = function (response) {
-                    console.log(response)
+                    console.log(response);
+                    $scope.alertMessage = "Username and/or password are incorrect.";
                 };
 
             $scope.login = function () {
