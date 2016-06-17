@@ -6,7 +6,7 @@ declare variable $session := doc("/xml/sessions/" || $session_uri);
 
 
 declare variable $beginDate := data($session/mlt:session/@beginDate);
-declare variable $endDate := data($session/mlt:session/@beginDate);
+declare variable $endDate := data($session/mlt:session/@endDate);
 
 <session beginDate="{$beginDate}" endDate="{$endDate}" xmlns="http://ftn.uns.ac.rs/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
