@@ -28,7 +28,7 @@
                     <li ng-if="display == 'representative' || display == 'president'">
                         <a href="/myActs">My Acts</a>
                     </li>
-                    <li ng-if="display == 'representative' || display == 'president'" >
+                    <li ng-if="(display == 'representative' || display == 'president') && currentStatus == 'act'" >
                         <a href="/newAct" ng-class="{'non-active' : (currentStatus != 'act')}">Propose an act</a>
                     </li>
                     <li ng-if="display == 'citizen' || display == 'representative' || display == 'president'">

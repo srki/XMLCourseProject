@@ -66,15 +66,19 @@
                         switch ($scope.dynamic) {
                             case 0:
                                 $scope.buttonText = "Start proposing acts";
+                                $rootScope.currentStatus = 'act';
                                 break;
                             case 1:
                                 $scope.buttonText = "Start proposing amendments";
                                 break;
+                                $rootScope.currentStatus = 'amendment';
                             case 2:
                                 $scope.buttonText = "Start voting";
+                                $rootScope.currentStatus = 'voting';
                                 break;
                             case 3:
                                 $scope.buttonText = "Close session";
+                                $rootScope.currentStatus = 'idle';
                                 break;
                         }
 
