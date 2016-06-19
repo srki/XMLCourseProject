@@ -24,9 +24,27 @@
 
     <!-- Preamble -->
     <xsl:template match="b:preamble">
+        <xsl:apply-templates select="b:block"/>
+    </xsl:template>
+
+    <xsl:template match="b:block" name="block">
         <p>
             <xsl:value-of select="."/>
         </p>
+
+        <xsl:choose>
+            <xsl:when test="@uri">
+                <p>
+                    <a>
+                        <xsl:attribute name="href">
+                            <xsl:value-of select="@uri"/>
+                        </xsl:attribute>
+                        Vidi
+                    </a>
+                </p>
+            </xsl:when>
+        </xsl:choose>
+
     </xsl:template>
 
     <!-- Part -->
@@ -128,9 +146,8 @@
 
     <!-- Paragraph -->
     <xsl:template match="b:paragraph">
-        <p>
-            <xsl:value-of select="b:text"/>
-        </p>
+        <xsl:apply-templates select="b:text/b:block"/>
+
         <xsl:choose>
             <xsl:when test="count(b:item) &gt; 0">
                 <ol>
@@ -144,38 +161,32 @@
 
     <!-- Item -->
     <xsl:template match="b:item">
+        <xsl:apply-templates select="b:text/b:block"/>
+
         <xsl:choose>
             <xsl:when test="count(b:subitem) &gt; 0">
                 <xsl:apply-templates select="b:subitem"/>
             </xsl:when>
-            <xsl:otherwise>
-                <li>
-                    <xsl:value-of select="."/>
-                </li>
-            </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
     <!-- Subitem -->
     <xsl:template match="b:subitem">
+        <xsl:apply-templates select="b:text/b:block"/>
+
         <xsl:choose>
             <xsl:when test="count(b:ident) &gt; 0">
                 <ol>
                     <xsl:apply-templates select="b:ident"/>
                 </ol>
             </xsl:when>
-            <xsl:otherwise>
-                <ol>
-                    <xsl:value-of select="."/>
-                </ol>
-            </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
     <!-- Ident -->
     <xsl:template match="b:ident">
         <li>
-            <xsl:value-of select="."/>
+            <xsl:apply-templates select="b:text/b:block"/>
         </li>
     </xsl:template>
 </xsl:stylesheet>

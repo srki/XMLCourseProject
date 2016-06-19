@@ -14,7 +14,7 @@
                                     $scope.data = response.data.amendments.amendment;
                                 }else {
                                     $scope.data = [];
-                                    $scope.data.push(response.data.acts.amendment);
+                                    $scope.data.push(response.data.amendments.amendment);
                                 }
                             } else {
                                 $scope.data = [];
