@@ -1,6 +1,4 @@
-/**
- * Created by ragnar on 14.6.16..
- */
+
 (function (angular) {
     angular.module('app.MyAmendmentsCtrl', [])
         .controller('MyAmendmentsCtrl', ['$scope', 'Amendments', '$rootScope', '$uibModal', '$location', '$window',
@@ -9,14 +7,14 @@
 
                 $scope.init = function() {
                     $rootScope.loadCurrentStatus();
-                    Amendments.getAllFor($rootScope.username).then(
+                    Amendments.get({username: $rootScope.username}).then(
                         function (response) {
-                            if (response.data.amendments){
+                            if (response.data.amendments.amendment){
                                 if(response.data.amendments.amendment.length) {
                                     $scope.data = response.data.amendments.amendment;
-                                } else {
+                                }else {
                                     $scope.data = [];
-                                    $scope.data.push(response.data.amendments.amendment);
+                                    $scope.data.push(response.data.acts.amendment);
                                 }
                             } else {
                                 $scope.data = [];
