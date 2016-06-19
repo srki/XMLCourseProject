@@ -161,26 +161,32 @@
 
     <!-- Item -->
     <xsl:template match="b:item">
-        <xsl:apply-templates select="b:text/b:block"/>
+        <li>
+            <xsl:apply-templates select="b:text/b:block"/>
 
-        <xsl:choose>
-            <xsl:when test="count(b:subitem) &gt; 0">
-                <xsl:apply-templates select="b:subitem"/>
-            </xsl:when>
-        </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="count(b:subitem) &gt; 0">
+                    <ol>
+                        <xsl:apply-templates select="b:subitem"/>
+                    </ol>
+                </xsl:when>
+            </xsl:choose>
+        </li>
     </xsl:template>
 
     <!-- Subitem -->
     <xsl:template match="b:subitem">
-        <xsl:apply-templates select="b:text/b:block"/>
+        <li>
+            <xsl:apply-templates select="b:text/b:block"/>
 
-        <xsl:choose>
-            <xsl:when test="count(b:ident) &gt; 0">
-                <ol>
-                    <xsl:apply-templates select="b:ident"/>
-                </ol>
-            </xsl:when>
-        </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="count(b:ident) &gt; 0">
+                    <ul>
+                        <xsl:apply-templates select="b:ident"/>
+                    </ul>
+                </xsl:when>
+            </xsl:choose>
+        </li>
     </xsl:template>
 
     <!-- Ident -->

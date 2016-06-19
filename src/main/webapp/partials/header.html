@@ -25,14 +25,14 @@
             <li uib-dropdown on-toggle="toggled(open)" ng-if="display == 'citizen' || display == 'representative' || display == 'president'">
                 <a href id="simple-dropdown" uib-dropdown-toggle>Acts</a>
                 <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                    <li ng-if="display == 'citizen' || display == 'representative' || display == 'president'">
+                        <a href="/acts">Search Acts</a>
+                    </li>
                     <li ng-if="display == 'representative' || display == 'president'">
                         <a href="/myActs">My Acts</a>
                     </li>
                     <li ng-if="(display == 'representative' || display == 'president') && currentStatus == 'act'" >
                         <a href="/newAct" ng-class="{'non-active' : (currentStatus != 'act')}">Propose an act</a>
-                    </li>
-                    <li ng-if="display == 'citizen' || display == 'representative' || display == 'president'">
-                        <a href="/acts">Search Acts</a>
                     </li>
                 </ul>
             </li>
